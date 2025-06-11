@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Unicom_TIC_Management_System__UMS_.View
 {
-    public partial class AdminForm : Form
+    public partial class AdminMainForm : Form
     {
-        public AdminForm()
+        public AdminMainForm()
         {
             InitializeComponent();
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

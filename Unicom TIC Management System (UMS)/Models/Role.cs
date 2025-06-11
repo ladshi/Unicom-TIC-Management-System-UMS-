@@ -8,5 +8,8 @@ namespace Unicom_TIC_Management_System__UMS_.Models
 {
     internal class Role
     {
+        private int Id { get; set; }
+        private string Name { get; set; }
+        
     }
 }

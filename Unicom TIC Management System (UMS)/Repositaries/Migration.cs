@@ -22,6 +22,18 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
                         Password TEXT NOT NULL
                         
                     );
+
+                    CREATE TABLE IF NOT EXISTS Courses(
+                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        CourseName TEXT NOT NULL,
+                        
+                    );
+
+                    CREATE TABLE IF NOT EXISTS Roles(
+                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        RoleName TEXT NOT NULL
+
+                    );
                 ";
                 cmd.ExecuteNonQuery();
             }
