@@ -8,8 +8,8 @@ namespace Unicom_TIC_Management_System__UMS_.Models
 {
     internal class Student
     {
-        private int Id { get; set; }
-        private string  FirstName { get; set; }
+        public int Id { get; set; }
+        public string  FirstName { get; set; }
         private string LastName { get; set; }   
         private string DOB { get; set; }
         private string Gender { get; set; }

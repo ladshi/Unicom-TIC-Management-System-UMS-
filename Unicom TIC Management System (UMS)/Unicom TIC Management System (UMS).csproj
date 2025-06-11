@@ -72,17 +72,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositaries\DataConfig.cs" />
     <Compile Include="Repositaries\Migration.cs" />
+    <Compile Include="Services\CourseService.cs" />
     <Compile Include="View\AdminMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\AdminMainForm.Designer.cs">
       <DependentUpon>AdminMainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Courses.cs">
+    <Compile Include="View\CourseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Courses.Designer.cs">
-      <DependentUpon>Courses.cs</DependentUpon>
+    <Compile Include="View\CourseForm.Designer.cs">
+      <DependentUpon>CourseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Login.cs">
       <SubType>Form</SubType>
@@ -111,8 +112,8 @@
     <EmbeddedResource Include="View\AdminMainForm.resx">
       <DependentUpon>AdminMainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Courses.resx">
-      <DependentUpon>Courses.cs</DependentUpon>
+    <EmbeddedResource Include="View\CourseForm.resx">
+      <DependentUpon>CourseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

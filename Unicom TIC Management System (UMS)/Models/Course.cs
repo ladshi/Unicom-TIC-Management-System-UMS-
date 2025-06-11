@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Unicom_TIC_Management_System__UMS_.Models
 {
-    internal class Course
+    public class Course
     {
-        private int Id { get; set; }
-        private string Name { get; set; }   
+        public int Id { get; set; }
+        public string Name { get; set; }
+
     }
 }

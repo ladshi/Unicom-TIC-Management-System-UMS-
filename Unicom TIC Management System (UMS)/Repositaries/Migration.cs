@@ -25,7 +25,7 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
 
                     CREATE TABLE IF NOT EXISTS Courses(
                         Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        CourseName TEXT NOT NULL,
+                        CourseName TEXT NOT NULL
                         
                     );
 

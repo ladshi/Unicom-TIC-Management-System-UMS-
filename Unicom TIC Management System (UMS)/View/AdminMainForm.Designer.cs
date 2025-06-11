@@ -35,7 +35,6 @@
             this.adStaffbtn = new System.Windows.Forms.Button();
             this.adLecturesbtn = new System.Windows.Forms.Button();
             this.adStudentbtn = new System.Windows.Forms.Button();
-            this.adAdminbtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,7 +46,6 @@
             this.panel1.Controls.Add(this.adStaffbtn);
             this.panel1.Controls.Add(this.adLecturesbtn);
             this.panel1.Controls.Add(this.adStudentbtn);
-            this.panel1.Controls.Add(this.adAdminbtn);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -114,23 +112,13 @@
             this.adStudentbtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.adStudentbtn.UseVisualStyleBackColor = true;
             // 
-            // adAdminbtn
-            // 
-            this.adAdminbtn.Location = new System.Drawing.Point(12, 130);
-            this.adAdminbtn.Name = "adAdminbtn";
-            this.adAdminbtn.Size = new System.Drawing.Size(162, 23);
-            this.adAdminbtn.TabIndex = 0;
-            this.adAdminbtn.Text = "Admin";
-            this.adAdminbtn.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.adAdminbtn.UseVisualStyleBackColor = true;
-            // 
-            // AdminForm
+            // AdminMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
-            this.Name = "AdminForm";
+            this.Name = "AdminMainForm";
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -140,7 +128,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button adAdminbtn;
         private System.Windows.Forms.Button adTimetablebtn;
         private System.Windows.Forms.Button adcoursebtn;
         private System.Windows.Forms.Button adStaffbtn;

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unicom_TIC_Management_System__UMS_.Repositaries;
+using Unicom_TIC_Management_System__UMS_.View;
 
 namespace Unicom_TIC_Management_System__UMS_
 {
@@ -15,12 +16,13 @@ namespace Unicom_TIC_Management_System__UMS_
         [STAThread]
         static void Main()
         {
+
             //to create tables when starting the system
             Migration.CreateTables();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new CourseForm());
         }
     }
 }

@@ -57,6 +57,10 @@
             this.textGurPhoNo = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblSname
@@ -81,10 +85,8 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(72, 184);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 19);
+            this.label2.Size = new System.Drawing.Size(0, 19);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Gender";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -98,16 +100,14 @@
             this.textSaddress.Location = new System.Drawing.Point(74, 273);
             this.textSaddress.Name = "textSaddress";
             this.textSaddress.Size = new System.Drawing.Size(558, 27);
-            this.textSaddress.TabIndex = 7;
-            this.textSaddress.TextChanged += new System.EventHandler(this.textSaddress_TextChanged);
+            this.textSaddress.TabIndex = 47;
             // 
             // textSusername
             // 
             this.textSusername.Location = new System.Drawing.Point(75, 330);
             this.textSusername.Name = "textSusername";
             this.textSusername.Size = new System.Drawing.Size(262, 27);
-            this.textSusername.TabIndex = 9;
-            this.textSusername.TextChanged += new System.EventHandler(this.textSusername_TextChanged);
+            this.textSusername.TabIndex = 46;
             // 
             // lblLastname
             // 
@@ -161,11 +161,12 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(374, 308);
+            this.label4.Location = new System.Drawing.Point(368, 308);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(81, 19);
             this.label4.TabIndex = 24;
             this.label4.Text = "Password";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // textSpassword
             // 
@@ -200,8 +201,6 @@
             this.buttonDelete.Size = new System.Drawing.Size(75, 30);
             this.buttonDelete.TabIndex = 28;
             this.buttonDelete.Text = "DELETE";
-            this.buttonDelete.UseVisualStyleBackColor = true;
-            this.buttonDelete.Click += new System.EventHandler(this.button3_Click);
             // 
             // textBox1
             // 
@@ -231,10 +230,8 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(72, 251);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(69, 19);
+            this.label6.Size = new System.Drawing.Size(0, 19);
             this.label6.TabIndex = 37;
-            this.label6.Text = "Address";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label7
             // 
@@ -260,28 +257,23 @@
             this.lblgurdian.AutoSize = true;
             this.lblgurdian.Location = new System.Drawing.Point(72, 423);
             this.lblgurdian.Name = "lblgurdian";
-            this.lblgurdian.Size = new System.Drawing.Size(131, 19);
+            this.lblgurdian.Size = new System.Drawing.Size(0, 19);
             this.lblgurdian.TabIndex = 40;
-            this.lblgurdian.Text = "Gurdian\'s Name";
-            this.lblgurdian.Click += new System.EventHandler(this.lblgurdian_Click);
             // 
             // textGurname
             // 
             this.textGurname.Location = new System.Drawing.Point(72, 445);
             this.textGurname.Name = "textGurname";
             this.textGurname.Size = new System.Drawing.Size(261, 27);
-            this.textGurname.TabIndex = 41;
-            this.textGurname.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.textGurname.TabIndex = 45;
             // 
             // lblGurPhone
             // 
             this.lblGurPhone.AutoSize = true;
             this.lblGurPhone.Location = new System.Drawing.Point(374, 423);
             this.lblGurPhone.Name = "lblGurPhone";
-            this.lblGurPhone.Size = new System.Drawing.Size(171, 19);
+            this.lblGurPhone.Size = new System.Drawing.Size(0, 19);
             this.lblGurPhone.TabIndex = 42;
-            this.lblGurPhone.Text = "Gurdian\'s Contact No";
-            this.lblGurPhone.Click += new System.EventHandler(this.lblGurPhone_Click);
             // 
             // textGurPhoNo
             // 
@@ -304,14 +296,53 @@
             this.textBox3.Location = new System.Drawing.Point(74, 392);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(554, 27);
-            this.textBox3.TabIndex = 45;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged_1);
+            this.textBox3.TabIndex = 0;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(72, 189);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(64, 19);
+            this.label10.TabIndex = 48;
+            this.label10.Text = "Gender";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(72, 251);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(69, 19);
+            this.label11.TabIndex = 49;
+            this.label11.Text = "Address";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(70, 423);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(131, 19);
+            this.label12.TabIndex = 50;
+            this.label12.Text = "Gurdian\'s Name";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(368, 422);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(171, 19);
+            this.label13.TabIndex = 51;
+            this.label13.Text = "Gurdian\'s Contact No";
             // 
             // StudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(714, 657);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.textGurPhoNo);
@@ -381,5 +412,9 @@
         private System.Windows.Forms.TextBox textGurPhoNo;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
     }
 }
