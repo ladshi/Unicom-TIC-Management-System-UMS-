@@ -10,29 +10,29 @@ using System.Windows.Forms;
 
 namespace Unicom_TIC_Management_System__UMS_.View
 {
-    public partial class StudentForm : Form
+    public partial class AdminForm : Form
     {
-        public StudentForm()
+        public AdminForm()
         {
             InitializeComponent();
         }
 
-        private void ButtonADD_Click(object sender, EventArgs e)
-        {
-           // Students students = new 
-        }
-
-        private void label4_Click(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void buttonDelete_Click(object sender, EventArgs e)
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void textBox4_TextChanged(object sender, EventArgs e)
+        private void AdminForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

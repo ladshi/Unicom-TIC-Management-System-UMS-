@@ -29,97 +29,49 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.adExambtn = new System.Windows.Forms.Button();
-            this.adTimetablebtn = new System.Windows.Forms.Button();
-            this.adcoursebtn = new System.Windows.Forms.Button();
-            this.adStaffbtn = new System.Windows.Forms.Button();
-            this.adLecturesbtn = new System.Windows.Forms.Button();
-            this.adStudentbtn = new System.Windows.Forms.Button();
+            this.treeAdmin = new System.Windows.Forms.TreeView();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.adExambtn);
-            this.panel1.Controls.Add(this.adTimetablebtn);
-            this.panel1.Controls.Add(this.adcoursebtn);
-            this.panel1.Controls.Add(this.adStaffbtn);
-            this.panel1.Controls.Add(this.adLecturesbtn);
-            this.panel1.Controls.Add(this.adStudentbtn);
+            this.panel1.BackColor = System.Drawing.Color.Indigo;
+            this.panel1.Controls.Add(this.treeAdmin);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(186, 450);
+            this.panel1.Size = new System.Drawing.Size(183, 528);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // adExambtn
+            // treeAdmin
             // 
-            this.adExambtn.Location = new System.Drawing.Point(12, 308);
-            this.adExambtn.Name = "adExambtn";
-            this.adExambtn.Size = new System.Drawing.Size(162, 23);
-            this.adExambtn.TabIndex = 6;
-            this.adExambtn.Text = "Exams ";
-            this.adExambtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.adExambtn.UseVisualStyleBackColor = true;
+            this.treeAdmin.Location = new System.Drawing.Point(12, 167);
+            this.treeAdmin.Name = "treeAdmin";
+            this.treeAdmin.Size = new System.Drawing.Size(161, 349);
+            this.treeAdmin.TabIndex = 7;
+            this.treeAdmin.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeAdmin_AfterSelect);
             // 
-            // adTimetablebtn
+            // panel2
             // 
-            this.adTimetablebtn.Location = new System.Drawing.Point(13, 279);
-            this.adTimetablebtn.Name = "adTimetablebtn";
-            this.adTimetablebtn.Size = new System.Drawing.Size(161, 23);
-            this.adTimetablebtn.TabIndex = 5;
-            this.adTimetablebtn.Text = "Time Table";
-            this.adTimetablebtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.adTimetablebtn.UseVisualStyleBackColor = true;
-            // 
-            // adcoursebtn
-            // 
-            this.adcoursebtn.Location = new System.Drawing.Point(13, 250);
-            this.adcoursebtn.Name = "adcoursebtn";
-            this.adcoursebtn.Size = new System.Drawing.Size(161, 23);
-            this.adcoursebtn.TabIndex = 4;
-            this.adcoursebtn.Text = "Courses";
-            this.adcoursebtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.adcoursebtn.UseVisualStyleBackColor = true;
-            // 
-            // adStaffbtn
-            // 
-            this.adStaffbtn.Location = new System.Drawing.Point(13, 220);
-            this.adStaffbtn.Name = "adStaffbtn";
-            this.adStaffbtn.Size = new System.Drawing.Size(161, 23);
-            this.adStaffbtn.TabIndex = 3;
-            this.adStaffbtn.Text = "Staff";
-            this.adStaffbtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.adStaffbtn.UseVisualStyleBackColor = true;
-            // 
-            // adLecturesbtn
-            // 
-            this.adLecturesbtn.Location = new System.Drawing.Point(12, 190);
-            this.adLecturesbtn.Name = "adLecturesbtn";
-            this.adLecturesbtn.Size = new System.Drawing.Size(162, 23);
-            this.adLecturesbtn.TabIndex = 2;
-            this.adLecturesbtn.Text = "Lectures";
-            this.adLecturesbtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.adLecturesbtn.UseVisualStyleBackColor = true;
-            // 
-            // adStudentbtn
-            // 
-            this.adStudentbtn.Location = new System.Drawing.Point(12, 160);
-            this.adStudentbtn.Name = "adStudentbtn";
-            this.adStudentbtn.Size = new System.Drawing.Size(162, 23);
-            this.adStudentbtn.TabIndex = 1;
-            this.adStudentbtn.Text = "Students";
-            this.adStudentbtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.adStudentbtn.UseVisualStyleBackColor = true;
+            this.panel2.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.panel2.Location = new System.Drawing.Point(181, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(687, 37);
+            this.panel2.TabIndex = 1;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // AdminMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(868, 528);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "AdminMainForm";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.AdminMainForm_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -128,11 +80,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button adTimetablebtn;
-        private System.Windows.Forms.Button adcoursebtn;
-        private System.Windows.Forms.Button adStaffbtn;
-        private System.Windows.Forms.Button adLecturesbtn;
-        private System.Windows.Forms.Button adStudentbtn;
-        private System.Windows.Forms.Button adExambtn;
+        private System.Windows.Forms.TreeView treeAdmin;
+        private System.Windows.Forms.Panel panel2;
     }
 }

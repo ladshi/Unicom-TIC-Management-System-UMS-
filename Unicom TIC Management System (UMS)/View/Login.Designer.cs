@@ -31,7 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textpasswordlog = new System.Windows.Forms.Label();
             this.textUsername = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textPassword = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -62,12 +62,12 @@
             this.textUsername.Size = new System.Drawing.Size(432, 20);
             this.textUsername.TabIndex = 2;
             // 
-            // textBox2
+            // textPassword
             // 
-            this.textBox2.Location = new System.Drawing.Point(235, 177);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(432, 20);
-            this.textBox2.TabIndex = 5;
+            this.textPassword.Location = new System.Drawing.Point(235, 177);
+            this.textPassword.Name = "textPassword";
+            this.textPassword.Size = new System.Drawing.Size(432, 20);
+            this.textPassword.TabIndex = 5;
             // 
             // button1
             // 
@@ -96,7 +96,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textPassword);
             this.Controls.Add(this.textUsername);
             this.Controls.Add(this.textpasswordlog);
             this.Controls.Add(this.label1);
@@ -112,7 +112,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label textpasswordlog;
         private System.Windows.Forms.TextBox textUsername;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textPassword;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
     }
