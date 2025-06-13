@@ -16,13 +16,23 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
 
             foreach (var user in users)
             {
-                if (user.Username == username && user.Password == password)
+                if (user.Name == username && user.Password == password)
                 {
                     return true;
                 }
             }
 
             return false;
+        }
+
+        public int AddUser(User user)
+        {
+            return UserService.AddUser(user);
+        }
+
+        public bool IsUserTableEmpty()
+        {
+            return UserService.IsUserTableEmpty();
         }
     }
 }

@@ -25,13 +25,43 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                     {
                         users.Add(new User
                         {
-                            Username = reader["Username"].ToString(),
+                            Name = reader["Username"].ToString(),
                             Password = reader["Password"].ToString()
                         });
                     }
                 }
             }
             return users;
+        }
+
+        public int AddUser(User user)
+        {
+            using (var conn = DataConfig.GetConnection())
+            {
+                conn.Open();
+                string sql = "INSERT INTO Users (Username, Password, Role) VALUES (@user, @pass, @role)";
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@user", user.Name);
+                    cmd.Parameters.AddWithValue("@pass", user.Password);
+                    cmd.Parameters.AddWithValue("@role", user.Role);
+                    cmd.ExecuteNonQuery();
+                    return (int)conn.LastInsertRowId;
+                }
+            }
+        }
+
+        public bool IsUserTableEmpty()
+        {
+            using (var conn = DataConfig.GetConnection())
+            {
+                conn.Open();
+                string sql = "SELECT COUNT(*) FROM Users";
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    return (long)cmd.ExecuteScalar() == 0;
+                }
+            }
         }
     }
 }

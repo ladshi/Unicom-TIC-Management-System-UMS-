@@ -19,7 +19,8 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
                     CREATE TABLE IF NOT EXISTS Users(
                         Id INTEGER PRIMARY KEY AUTOINCREMENT,
                         Username TEXT NOT NULL UNIQUE,
-                        Password TEXT NOT NULL
+                        Password TEXT NOT NULL,
+                        Role TEXT NOT NULL
                         
                     );
                     
@@ -29,7 +30,7 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
                         
                     );
 
-                    CREATE TABLE IF NOT EXISTS Roles(
+                    //CREATE TABLE IF NOT EXISTS Roles(
                         Id INTEGER PRIMARY KEY AUTOINCREMENT,
                         RoleName TEXT NOT NULL
 
@@ -58,6 +59,17 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
                         StudentId INTEGER,
                         FOREIGN KEY (StudentId) REFERENCES Students(Id)
                     );
+
+                    CREATE TABLE IF NOT EXISTS Admin (
+                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        FirstName TEXT NOT NULL,
+                        LastName TEXT NOT NULL,
+                        ContactNo TEXT,
+                        Email TEXT,
+                        Address TEXT,
+                        UserId INTEGER NOT NULL,
+                        FOREIGN KEY (UserId) REFERENCES Users(Id)
+);
 
      
                 ";
