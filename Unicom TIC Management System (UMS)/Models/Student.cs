@@ -6,19 +6,11 @@ using System.Threading.Tasks;
 
 namespace Unicom_TIC_Management_System__UMS_.Models
 {
-    internal class Student
+    public class Student : Person
     {
-        public int Id { get; set; }
-        public string  FirstName { get; set; }
-        private string LastName { get; set; }   
-        private string DOB { get; set; }
-        private string Gender { get; set; }
-        private string phone_no { get; set; }
-
-        private string Address { get; set; }
-        private string  email { get; set; }
-        private int CourseId { get; set; }
-        private int UserId { get; set; }
-        
+        public string DOB { get; set; }
+        public string EnrollmentDate { get; set; }
+        public int CourseId { get; set; }
+        public int UserId { get; set; }
     }
 }

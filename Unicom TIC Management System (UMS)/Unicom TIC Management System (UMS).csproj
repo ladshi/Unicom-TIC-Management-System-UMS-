@@ -55,6 +55,8 @@
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Enums\Gender.cs" />
+    <Compile Include="Enums\UserRole.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +68,7 @@
     <Compile Include="Models\Exam.cs" />
     <Compile Include="Models\Lecture.cs" />
     <Compile Include="Models\Mark.cs" />
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\RoomAllocation.cs" />
     <Compile Include="Models\Staff.cs" />
@@ -75,6 +78,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositaries\DataConfig.cs" />
     <Compile Include="Repositaries\Migration.cs" />
+    <Compile Include="Services\AdminService.cs" />
     <Compile Include="Services\CourseService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="View\AdminForm.cs">
@@ -83,11 +87,11 @@
     <Compile Include="View\AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\AdminMainForm.cs">
+    <Compile Include="View\DashboardForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\AdminMainForm.Designer.cs">
-      <DependentUpon>AdminMainForm.cs</DependentUpon>
+    <Compile Include="View\DashboardForm.Designer.cs">
+      <DependentUpon>DashboardForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\CourseForm.cs">
       <SubType>Form</SubType>
@@ -140,8 +144,8 @@
     <EmbeddedResource Include="View\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\AdminMainForm.resx">
-      <DependentUpon>AdminMainForm.cs</DependentUpon>
+    <EmbeddedResource Include="View\DashboardForm.resx">
+      <DependentUpon>DashboardForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\CourseForm.resx">
       <DependentUpon>CourseForm.cs</DependentUpon>

@@ -11,9 +11,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Unicom_TIC_Management_System__UMS_.View
 {
-    public partial class AdminMainForm : Form
+    public partial class DashboardForm : Form
     {
-        public AdminMainForm()
+        public DashboardForm()
         {
             InitializeComponent();
         }

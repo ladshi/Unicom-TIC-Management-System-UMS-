@@ -16,7 +16,7 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
 
             foreach (var user in users)
             {
-                if (user.Name == username && user.Password == password)
+                if (user.UserName == username && user.Password == password)
                 {
                     return true;
                 }
@@ -25,7 +25,7 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
             return false;
         }
 
-        public int AddUser(User user)
+        public static int AddUser(User user)
         {
             return UserService.AddUser(user);
         }

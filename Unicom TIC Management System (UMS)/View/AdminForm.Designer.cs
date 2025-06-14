@@ -128,6 +128,7 @@
             this.textUsername.Name = "textUsername";
             this.textUsername.Size = new System.Drawing.Size(275, 20);
             this.textUsername.TabIndex = 7;
+            this.textUsername.TextChanged += new System.EventHandler(this.textUsername_TextChanged);
             // 
             // textpassword
             // 
@@ -190,7 +191,7 @@
             // 
             this.addresslbl.AutoSize = true;
             this.addresslbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addresslbl.Location = new System.Drawing.Point(61, 273);
+            this.addresslbl.Location = new System.Drawing.Point(61, 269);
             this.addresslbl.Name = "addresslbl";
             this.addresslbl.Size = new System.Drawing.Size(62, 18);
             this.addresslbl.TabIndex = 15;
@@ -198,7 +199,7 @@
             // 
             // textAddress
             // 
-            this.textAddress.Location = new System.Drawing.Point(64, 294);
+            this.textAddress.Location = new System.Drawing.Point(64, 290);
             this.textAddress.Name = "textAddress";
             this.textAddress.Size = new System.Drawing.Size(275, 20);
             this.textAddress.TabIndex = 16;
@@ -238,7 +239,7 @@
             this.buttonAdd.TabIndex = 20;
             this.buttonAdd.Text = "ADD";
             this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.Click += new System.EventHandler(this.button1_Click);
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click_1);
             // 
             // buttonUpdate
             // 
@@ -318,7 +319,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(757, 644);
+            this.ClientSize = new System.Drawing.Size(762, 663);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.buttonsearch);
             this.Controls.Add(this.label7);

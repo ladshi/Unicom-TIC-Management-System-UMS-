@@ -29,13 +29,13 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
                         CourseName TEXT NOT NULL
                         
                     );
-
-                    //CREATE TABLE IF NOT EXISTS Roles(
+                    -- optional role table for future use
+                    CREATE TABLE IF NOT EXISTS Roles(
                         Id INTEGER PRIMARY KEY AUTOINCREMENT,
                         RoleName TEXT NOT NULL
 
                     );
-                         CREATE TABLE IF NOT EXISTS Students (
+                      CREATE TABLE IF NOT EXISTS Students (
                         Id INTEGER PRIMARY KEY AUTOINCREMENT,
                         First_name TEXT NOT NULL,
                         Last_name TEXT NOT NULL,
@@ -47,7 +47,7 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
                         Enrollment_date TEXT, 
                         CourseId INTEGER,
                         UserId INTEGER,
-                        FOREIGN KEY (CourseId) REFERENCES Courses(Id)
+                        FOREIGN KEY (CourseId) REFERENCES Courses(Id),
                         FOREIGN KEY (UserId) REFERENCES Users(Id)
                         
                     );
@@ -69,9 +69,59 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
                         Address TEXT,
                         UserId INTEGER NOT NULL,
                         FOREIGN KEY (UserId) REFERENCES Users(Id)
-);
+                    );
+                    
+                    CREATE TABLE IF NOT EXISTS Staff (
+                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        FirstName TEXT NOT NULL,
+                        LastName TEXT NOT NULL,
+                        PhoneNumber TEXT,
+                        Email TEXT,
+                        Address TEXT,
+                        Subject TEXT,
+                        UserId INTEGER,
+                        FOREIGN KEY (UserId) REFERENCES Users(Id)
+                    );
 
-     
+                    CREATE TABLE IF NOT EXISTS RoomAllocation (
+                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        RoomNumber TEXT NOT NULL,
+                        CourseId INTEGER,
+                        LectureId INTEGER,
+                        AllocationDate TEXT,
+                        FOREIGN KEY (CourseId) REFERENCES Courses(Id),
+                        FOREIGN KEY (LectureId) REFERENCES Lectures(Id)
+                    );
+
+                    CREATE TABLE IF NOT EXISTS Lectures (
+                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        LectureTitle TEXT NOT NULL,
+                        LectureDate TEXT NOT NULL,
+                        CourseId INTEGER NOT NULL,
+                        StaffId INTEGER NOT NULL,
+                        FOREIGN KEY (CourseId) REFERENCES Courses(Id),
+                        FOREIGN KEY (StaffId) REFERENCES Staff(Id)
+                    );
+                    
+                    CREATE TABLE IF NOT EXISTS Exams (
+                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        ExamTitle TEXT NOT NULL,
+                        ExamDate TEXT NOT NULL,
+                        CourseId INTEGER,
+                        FOREIGN KEY (CourseId) REFERENCES Courses(Id)
+                    );
+
+                    CREATE TABLE IF NOT EXISTS Marks (
+                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        StudentId INTEGER NOT NULL,
+                        ExamId INTEGER NOT NULL,
+                        Mark INTEGER NOT NULL,
+                        Grade TEXT,
+                        FOREIGN KEY (StudentId) REFERENCES Students(Id),
+                        FOREIGN KEY (ExamId) REFERENCES Exams(Id)
+                    );
+
+
                 ";
                 cmd.ExecuteNonQuery();
             }

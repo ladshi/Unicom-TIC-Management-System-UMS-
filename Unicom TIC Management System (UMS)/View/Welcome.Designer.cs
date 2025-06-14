@@ -35,17 +35,18 @@
             // Welcomenote
             // 
             this.Welcomenote.AutoSize = true;
-            this.Welcomenote.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Welcomenote.Location = new System.Drawing.Point(211, 149);
+            this.Welcomenote.Font = new System.Drawing.Font("Microsoft YaHei UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Welcomenote.Location = new System.Drawing.Point(161, 158);
             this.Welcomenote.Name = "Welcomenote";
-            this.Welcomenote.Size = new System.Drawing.Size(353, 16);
+            this.Welcomenote.Size = new System.Drawing.Size(483, 19);
             this.Welcomenote.TabIndex = 0;
             this.Welcomenote.Text = "WELCOME TO THE UNICOM TIC MANAGEMENT SYSTEM(UMS) ";
+            this.Welcomenote.Click += new System.EventHandler(this.Welcomenote_Click);
             // 
             // buttonStart
             // 
             this.buttonStart.BackColor = System.Drawing.Color.LightGreen;
-            this.buttonStart.Location = new System.Drawing.Point(559, 340);
+            this.buttonStart.Location = new System.Drawing.Point(546, 316);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(127, 27);
             this.buttonStart.TabIndex = 1;

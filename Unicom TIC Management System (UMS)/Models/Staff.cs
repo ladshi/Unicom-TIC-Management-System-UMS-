@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Unicom_TIC_Management_System__UMS_.Models
 {
-    internal class Staff
+    public class Staff : Person
     {
+        public string Subject { get; set; }
+        public int UserId { get; set; }
     }
 }

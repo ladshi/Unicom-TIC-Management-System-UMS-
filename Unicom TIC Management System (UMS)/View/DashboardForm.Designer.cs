@@ -1,6 +1,6 @@
 ﻿namespace Unicom_TIC_Management_System__UMS_.View
 {
-    partial class AdminMainForm
+    partial class DashboardForm
     {
         /// <summary>
         /// Required designer variable.
@@ -62,15 +62,15 @@
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
-            // AdminMainForm
+            // DashboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(868, 528);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "AdminMainForm";
-            this.Text = "Form1";
+            this.Name = "DashboardForm";
+            this.Text = "SS";
             this.Load += new System.EventHandler(this.AdminMainForm_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
