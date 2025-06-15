@@ -12,11 +12,11 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
 {
     internal class AdminController
     {
-        private readonly AdminService _adminService = new AdminService();
+        private AdminService adminService = new AdminService();
 
         public bool AddAdmin(Admin admin)
         {
-            return _adminService.AddAdmin(admin);
+            return adminService.AddAdmin(admin);  // returns true if insert successful
         }
     }
 }

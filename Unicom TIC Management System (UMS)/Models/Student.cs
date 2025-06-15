@@ -12,5 +12,6 @@ namespace Unicom_TIC_Management_System__UMS_.Models
         public string EnrollmentDate { get; set; }
         public int CourseId { get; set; }
         public int UserId { get; set; }
+        public string CourseName { get; set; }
     }
 }

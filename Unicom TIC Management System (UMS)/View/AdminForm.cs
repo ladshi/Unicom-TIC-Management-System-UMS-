@@ -10,18 +10,21 @@ using System.Windows.Forms;
 using Unicom_TIC_Management_System__UMS_.Controllers;
 using Unicom_TIC_Management_System__UMS_.Enum;
 using Unicom_TIC_Management_System__UMS_.Models;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using Unicom_TIC_Management_System__UMS_.Services;
 
 namespace Unicom_TIC_Management_System__UMS_.View
 {
     public partial class AdminForm : Form
     {
         private bool isFirstTime;
+        private UserRole currentMode; // Admin or Staff
 
-        public AdminForm(bool firstTime = false)
+        public AdminForm(bool firstTime = false, UserRole mode = UserRole.Admin)
         {
             InitializeComponent();
             isFirstTime = firstTime;
+            currentMode = mode;
+            ApplyModeSettings();
         }
 
         private void AdminForm_Load(object sender, EventArgs e)
@@ -43,61 +46,26 @@ namespace Unicom_TIC_Management_System__UMS_.View
             }
             else
             {
-                LoadAdmins(); // Load gridview and form normally
+                LoadAdmins();
             }
         }
 
-        private void buttonAdd_Click(object sender, EventArgs e)
+        private void ApplyModeSettings()
         {
-            string username = textUsername.Text.Trim();
-            string password = textpassword.Text.Trim();
-            string role = comboaccess.Text;
-
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(role))
+            if (currentMode == UserRole.Staff)
             {
-                MessageBox.Show("Username, Password and Access Level are required.");
-                return;
+                labeltitle.Text = "STAFF DETAILS";
+                labelaccess.Visible = false;
+                comboaccess.Visible = false;
             }
-
-            var user = new User
+            else if (currentMode == UserRole.Admin)
             {
-                UserName = username,
-                Password = password,
-                Role = System.Enum.TryParse(role, out UserRole parsedRole) ? parsedRole : UserRole.Admin
-            };
-
-            int userId = UserController.AddUser(user);
-
-            if (userId > 0)
-            {
-                var admin = new Admin
-                {
-                    FirstName = textfirstname.Text.Trim(),
-                    LastName = textLastName.Text.Trim(),
-                    PhoneNumber = textContactNo.Text.Trim(),
-                    Email = textEmail.Text.Trim(),
-                    Address = textAddress.Text.Trim(),
-                    UserId = userId
-                };
-
-                AdminController adminController = new AdminController();
-                adminController.AddAdmin(admin);
-
-                MessageBox.Show("Main admin added successfully.");
-
-                // Go to login
-                this.Hide();
-                Login login = new Login();
-                login.ShowDialog();
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("User creation failed.");
+                labeltitle.Text = "ADMIN DETAILS";
+                labelaccess.Visible = true;
+                comboaccess.Visible = true;
             }
         }
 
-        // Example placeholder
         private void LoadAdmins()
         {
             // Load admin list into grid here when not first-time
@@ -105,38 +73,76 @@ namespace Unicom_TIC_Management_System__UMS_.View
 
         private void buttonAdd_Click_1(object sender, EventArgs e)
         {
+            string usernameInput = textUsername.Text.Trim();
+
+            if (UserService.IsUsernameExists(usernameInput))
+            {
+                MessageBox.Show("Username already exists. Please choose a different username.");
+                return;
+            }
+
             var user = new User
             {
-                UserName = textUsername.Text.Trim(),
+                UserName = usernameInput,
                 Password = textpassword.Text.Trim(),
-                Role = System.Enum.TryParse("Admin", out UserRole parsedRole) ? parsedRole : UserRole.Admin
+                Role = currentMode
             };
 
-            int userId = UserController.AddUser(user);  // static call
+            int userId = UserController.AddUser(user);
 
             if (userId > 0)
             {
-                var admin = new Admin
+                if (currentMode == UserRole.Admin)
                 {
-                    FirstName = textfirstname.Text.Trim(),
-                    LastName = textLastName.Text.Trim(),
-                    PhoneNumber = textContactNo.Text.Trim(),
-                    Email = textEmail.Text.Trim(),
-                    Address = textAddress.Text.Trim(),
-                    UserId = userId
-                };
+                    var admin = new Admin
+                    {
+                        FirstName = textfirstname.Text.Trim(),
+                        LastName = textLastName.Text.Trim(),
+                        PhoneNumber = textContactNo.Text.Trim(),
+                        Email = textEmail.Text.Trim(),
+                        Address = textAddress.Text.Trim(),
+                        AccessLevel = comboaccess.Text,
+                        UserId = userId
+                    };
 
-                AdminController adminController = new AdminController();
-                if (adminController.AddAdmin(admin))
-                {
-                    MessageBox.Show("Admin added successfully.");
-                    this.Hide();
-                    new Login().ShowDialog();
-                    this.Close();
+                    AdminController adminController = new AdminController();
+                    if (adminController.AddAdmin(admin))
+                    {
+                        MessageBox.Show("Admin added successfully.");
+                        this.Hide();
+                        new Login().ShowDialog();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Admin creation failed.");
+                    }
                 }
-                else
+                else if (currentMode == UserRole.Staff)
                 {
-                    MessageBox.Show("Admin creation failed.");
+                    var staff = new Staff
+                    {
+                        FirstName = textfirstname.Text.Trim(),
+                        LastName = textLastName.Text.Trim(),
+                        PhoneNumber = textContactNo.Text.Trim(),
+                        Email = textEmail.Text.Trim(),
+                        Address = textAddress.Text.Trim(),
+                        DOB = dateTimePicker.Value,
+                        UserId = userId
+                    };
+
+                    StaffController staffController = new StaffController();
+                    if (staffController.AddStaff(staff))
+                    {
+                        MessageBox.Show("Staff added successfully.");
+                        this.Hide();
+                        new Login().ShowDialog();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Staff creation failed.");
+                    }
                 }
             }
             else
@@ -145,9 +151,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
             }
         }
 
-        private void textUsername_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        private void textUsername_TextChanged(object sender, EventArgs e) { }
+        private void comboaccess_SelectedIndexChanged(object sender, EventArgs e) { }
     }
 }

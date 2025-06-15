@@ -10,6 +10,7 @@ namespace Unicom_TIC_Management_System__UMS_.Enum
     {
         Admin,
         Student,
-        Staff
+        Staff,
+        Lecturer
     }
 }

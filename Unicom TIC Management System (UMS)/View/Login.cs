@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unicom_TIC_Management_System__UMS_.Controllers;
+using Unicom_TIC_Management_System__UMS_.Enum;
+using Unicom_TIC_Management_System__UMS_.Models;
 
 
 namespace Unicom_TIC_Management_System__UMS_.View
@@ -23,6 +25,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
         {
             string username = textUsername.Text.Trim();
             string password = textPassword.Text;
+            UserRole role = UserRole.Admin;
 
             if (username == "")
             {
@@ -46,9 +49,12 @@ namespace Unicom_TIC_Management_System__UMS_.View
 
             if (isValid)
             {
+                string accessLevel = UserController.GetAccessLevel(username);
                 MessageBox.Show("Login successful!", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Hide();
-                //new MainForm().Show(); // Change to your actual main form
+                DashboardForm dashboardForm = new DashboardForm(role, username , accessLevel);
+                dashboardForm.Show();
+                this.Hide();
             }
             else
             {

@@ -80,6 +80,7 @@
     <Compile Include="Repositaries\Migration.cs" />
     <Compile Include="Services\AdminService.cs" />
     <Compile Include="Services\CourseService.cs" />
+    <Compile Include="Services\StudentService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="View\AdminForm.cs">
       <SubType>Form</SubType>
@@ -98,6 +99,12 @@
     </Compile>
     <Compile Include="View\CourseForm.Designer.cs">
       <DependentUpon>CourseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\defaultForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\defaultForm.Designer.cs">
+      <DependentUpon>defaultForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Login.cs">
       <SubType>Form</SubType>
@@ -149,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\CourseForm.resx">
       <DependentUpon>CourseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\defaultForm.resx">
+      <DependentUpon>defaultForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

@@ -65,5 +65,20 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                 }
             }
         }
+
+        public static bool IsUsernameExists(string username)
+        {
+            using (var conn = DataConfig.GetConnection())
+            {
+                string query = "SELECT COUNT(*) FROM Users WHERE Username = @username";
+                using (var cmd = new SQLiteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@username", username);
+                    long count = (long)cmd.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+        }
+
     }
 }

@@ -45,9 +45,8 @@
             this.ButtonADD = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textfirstname = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -64,6 +63,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label14 = new System.Windows.Forms.Label();
             this.searchstudent = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -208,12 +208,12 @@
             this.buttonDelete.Text = "DELETE";
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
-            // textBox1
+            // textfirstname
             // 
-            this.textBox1.Location = new System.Drawing.Point(76, 95);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(261, 27);
-            this.textBox1.TabIndex = 34;
+            this.textfirstname.Location = new System.Drawing.Point(76, 95);
+            this.textfirstname.Name = "textfirstname";
+            this.textfirstname.Size = new System.Drawing.Size(261, 27);
+            this.textfirstname.TabIndex = 34;
             // 
             // label5
             // 
@@ -223,13 +223,6 @@
             this.label5.Size = new System.Drawing.Size(105, 19);
             this.label5.TabIndex = 35;
             this.label5.Text = "Date of Birth";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(75, 211);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(258, 27);
-            this.textBox2.TabIndex = 36;
             // 
             // label6
             // 
@@ -366,11 +359,20 @@
             this.searchstudent.TabIndex = 54;
             this.searchstudent.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(76, 211);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(261, 27);
+            this.comboBox1.TabIndex = 55;
+            // 
             // StudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(714, 657);
+            this.ClientSize = new System.Drawing.Size(696, 657);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.searchstudent);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.dataGridView1);
@@ -387,9 +389,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textfirstname);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonUpdate);
             this.Controls.Add(this.ButtonADD);
@@ -436,9 +437,8 @@
         private System.Windows.Forms.Button ButtonADD;
         private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.Button buttonDelete;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textfirstname;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label1;
@@ -455,5 +455,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox searchstudent;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

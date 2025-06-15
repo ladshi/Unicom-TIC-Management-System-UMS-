@@ -9,5 +9,6 @@ namespace Unicom_TIC_Management_System__UMS_.Models
     public class Admin : Person
     {
         public int UserId { get; set; }
+        public string AccessLevel { get; set; }
     }
 }

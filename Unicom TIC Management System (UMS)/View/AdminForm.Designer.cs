@@ -42,10 +42,9 @@
             this.textContactNo = new System.Windows.Forms.TextBox();
             this.textEmail = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textdob = new System.Windows.Forms.TextBox();
             this.addresslbl = new System.Windows.Forms.Label();
             this.textAddress = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.labelaccess = new System.Windows.Forms.Label();
             this.comboaccess = new System.Windows.Forms.ComboBox();
             this.admingridview = new System.Windows.Forms.DataGridView();
             this.buttonAdd = new System.Windows.Forms.Button();
@@ -54,9 +53,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textsearch = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.labeltitle = new System.Windows.Forms.Label();
             this.buttonsearch = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.admingridview)).BeginInit();
             this.SuspendLayout();
             // 
@@ -180,13 +180,6 @@
             this.label2.Size = new System.Drawing.Size(0, 18);
             this.label2.TabIndex = 13;
             // 
-            // textdob
-            // 
-            this.textdob.Location = new System.Drawing.Point(405, 202);
-            this.textdob.Name = "textdob";
-            this.textdob.Size = new System.Drawing.Size(279, 20);
-            this.textdob.TabIndex = 14;
-            // 
             // addresslbl
             // 
             this.addresslbl.AutoSize = true;
@@ -204,23 +197,24 @@
             this.textAddress.Size = new System.Drawing.Size(275, 20);
             this.textAddress.TabIndex = 16;
             // 
-            // label5
+            // labelaccess
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(402, 269);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(95, 18);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "Access Level";
+            this.labelaccess.AutoSize = true;
+            this.labelaccess.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelaccess.Location = new System.Drawing.Point(402, 269);
+            this.labelaccess.Name = "labelaccess";
+            this.labelaccess.Size = new System.Drawing.Size(95, 18);
+            this.labelaccess.TabIndex = 17;
+            this.labelaccess.Text = "Access Level";
             // 
             // comboaccess
             // 
             this.comboaccess.FormattingEnabled = true;
-            this.comboaccess.Location = new System.Drawing.Point(405, 290);
+            this.comboaccess.Location = new System.Drawing.Point(405, 289);
             this.comboaccess.Name = "comboaccess";
             this.comboaccess.Size = new System.Drawing.Size(279, 21);
             this.comboaccess.TabIndex = 18;
+            this.comboaccess.SelectedIndexChanged += new System.EventHandler(this.comboaccess_SelectedIndexChanged);
             // 
             // admingridview
             // 
@@ -286,15 +280,15 @@
             this.label6.TabIndex = 26;
             this.label6.Text = "First Name";
             // 
-            // label7
+            // labeltitle
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI Historic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(229, 23);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(222, 37);
-            this.label7.TabIndex = 27;
-            this.label7.Text = "ADMIN DETAILS";
+            this.labeltitle.AutoSize = true;
+            this.labeltitle.Font = new System.Drawing.Font("Segoe UI Historic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labeltitle.Location = new System.Drawing.Point(229, 23);
+            this.labeltitle.Name = "labeltitle";
+            this.labeltitle.Size = new System.Drawing.Size(222, 37);
+            this.labeltitle.TabIndex = 27;
+            this.labeltitle.Text = "ADMIN DETAILS";
             // 
             // buttonsearch
             // 
@@ -315,14 +309,22 @@
             this.label8.TabIndex = 29;
             this.label8.Text = "DOB";
             // 
+            // dateTimePicker
+            // 
+            this.dateTimePicker.Location = new System.Drawing.Point(405, 202);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.Size = new System.Drawing.Size(279, 20);
+            this.dateTimePicker.TabIndex = 30;
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(762, 663);
+            this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.buttonsearch);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.labeltitle);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textsearch);
             this.Controls.Add(this.label3);
@@ -331,10 +333,9 @@
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.admingridview);
             this.Controls.Add(this.comboaccess);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.labelaccess);
             this.Controls.Add(this.textAddress);
             this.Controls.Add(this.addresslbl);
-            this.Controls.Add(this.textdob);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textEmail);
             this.Controls.Add(this.textContactNo);
@@ -375,10 +376,9 @@
         private System.Windows.Forms.TextBox textContactNo;
         private System.Windows.Forms.TextBox textEmail;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textdob;
         private System.Windows.Forms.Label addresslbl;
         private System.Windows.Forms.TextBox textAddress;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelaccess;
         private System.Windows.Forms.ComboBox comboaccess;
         private System.Windows.Forms.DataGridView admingridview;
         private System.Windows.Forms.Button buttonAdd;
@@ -387,8 +387,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textsearch;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label labeltitle;
         private System.Windows.Forms.Button buttonsearch;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DateTimePicker dateTimePicker;
     }
 }
