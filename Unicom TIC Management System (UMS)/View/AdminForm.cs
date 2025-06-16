@@ -127,7 +127,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
                         PhoneNumber = textContactNo.Text.Trim(),
                         Email = textEmail.Text.Trim(),
                         Address = textAddress.Text.Trim(),
-                        DOB = dateTimePicker.Value,
+                        DOB = textdob.Text.Trim(),
                         UserId = userId
                     };
 

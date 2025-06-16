@@ -1,88 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Unicom_TIC_Management_System__UMS_.Models;
-using Unicom_TIC_Management_System__UMS_.Repositaries;
-using Unicom_TIC_Management_System__UMS_.View;
-using static System.Collections.Specialized.BitVector32;
+using Unicom_TIC_Management_System__UMS_.Services;
 
 namespace Unicom_TIC_Management_System__UMS_.Controllers
 {
-    internal class CourseController
+    public class CourseController
     {
-        public List<Course> GetAllCourses()
+        public static List<Course> GetAllCourses()
         {
-            var course = new List<Course>();
-
-            using (var conn = DataConfig.GetConnection())
-            {
-                var cmd = new SQLiteCommand("SELECT * FROM Courses", conn);
-                var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    course.Add(new Course
-                    {
-                        Id = reader.GetInt32(0),
-                        Name = reader.GetString(1)
-                    });
-                }
-            }
-
-            return course;
-        }
-        public void AddCourse(Course course)
-        {
-            using (var conn = DataConfig.GetConnection())
-            {
-                var cmd = new SQLiteCommand("INSERT INTO Courses (CourseName) VALUES (@Name)", conn);
-                cmd.Parameters.AddWithValue("@Name", course.Name);
-                cmd.ExecuteNonQuery();
-            }
+            return CourseService.GetAll();
         }
 
-        public void UpdateCourse(Course course)
+        // Add new course using the service
+        public static void AddCourse(Course course)
         {
-            using (var conn = DataConfig.GetConnection())
-            {
-                var cmd = new SQLiteCommand("UPDATE Courses SET CourseName = @Name WHERE Id = @Id", conn);
-                cmd.Parameters.AddWithValue("@Name", course.Name);
-                cmd.Parameters.AddWithValue("@Id", course.Id);
-                cmd.ExecuteNonQuery();
-            }
+            CourseService.Add(course);
         }
 
-        public void DeleteCourse(int sectionId)
+        // Update course using the service
+        public static void UpdateCourse(Course course)
         {
-            using (var conn = DataConfig.GetConnection())
-            {
-                var cmd = new SQLiteCommand("DELETE FROM Courses WHERE Id = @Id", conn);
-                cmd.Parameters.AddWithValue("@Id", sectionId);
-                cmd.ExecuteNonQuery();
-            }
+            CourseService.Update(course);
         }
 
-        public List<Course> SearchCourses(string name)
+        // Delete course by ID using the service
+        public static void DeleteCourse(int courseId)
         {
-            var courseList = new List<Course>();
-            using (var conn = DataConfig.GetConnection())
-            {
-                var cmd = new SQLiteCommand("SELECT * FROM Courses WHERE CourseName LIKE @name", conn);
-                cmd.Parameters.AddWithValue("@name", $"%{name}%");
-                var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    courseList.Add(new Course
-                    {
-                        Id = reader.GetInt32(0),
-                        Name = reader.GetString(1)
-                    });
-                }
-            }
-            return courseList;
+            CourseService.Delete(courseId);
+        }
+
+        // Get a course by its ID
+        public static Course GetCourseById(int id)
+        {
+            return CourseService.GetById(id);
+        }
+
+        // Get a course by its name (for ComboBox search)
+        public static Course GetCourseByName(string name)
+        {
+            return CourseService.GetByName(name);
         }
     }
 }

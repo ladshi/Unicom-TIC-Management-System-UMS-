@@ -57,6 +57,7 @@
             this.buttonsearch = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.textdob = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.admingridview)).BeginInit();
             this.SuspendLayout();
             // 
@@ -311,16 +312,24 @@
             // 
             // dateTimePicker
             // 
-            this.dateTimePicker.Location = new System.Drawing.Point(405, 202);
+            this.dateTimePicker.Location = new System.Drawing.Point(563, 202);
             this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(279, 20);
+            this.dateTimePicker.Size = new System.Drawing.Size(130, 20);
             this.dateTimePicker.TabIndex = 30;
+            // 
+            // textdob
+            // 
+            this.textdob.Location = new System.Drawing.Point(405, 201);
+            this.textdob.Name = "textdob";
+            this.textdob.Size = new System.Drawing.Size(152, 20);
+            this.textdob.TabIndex = 31;
             // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(762, 663);
+            this.Controls.Add(this.textdob);
             this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.buttonsearch);
@@ -391,5 +400,6 @@
         private System.Windows.Forms.Button buttonsearch;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
+        private System.Windows.Forms.TextBox textdob;
     }
 }

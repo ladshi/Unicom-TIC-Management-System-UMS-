@@ -23,6 +23,20 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
                         Role TEXT NOT NULL
                         
                     );
+
+                    CREATE TABLE IF NOT EXISTS CourseSubjects (
+                        CourseId INTEGER NOT NULL,
+                        SubjectId INTEGER NOT NULL,
+                        PRIMARY KEY (CourseId, SubjectId),
+                        FOREIGN KEY (CourseId) REFERENCES Courses(CourseId) ON DELETE CASCADE,
+                        FOREIGN KEY (SubjectId) REFERENCES Subjects(SubjectId) ON DELETE CASCADE
+                    );
+
+
+                    CREATE TABLE IF NOT EXISTS Subjects (
+                        SubjectId INTEGER PRIMARY KEY AUTOINCREMENT,
+                        SubjectName TEXT NOT NULL UNIQUE
+                    );
                     
                     CREATE TABLE IF NOT EXISTS Courses(
                         Id INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -53,7 +53,9 @@
   <ItemGroup>
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Enums\Gender.cs" />
     <Compile Include="Enums\UserRole.cs" />
@@ -65,6 +67,7 @@
     </Compile>
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\CourseSubject.cs" />
     <Compile Include="Models\Exam.cs" />
     <Compile Include="Models\Lecture.cs" />
     <Compile Include="Models\Mark.cs" />
@@ -73,14 +76,17 @@
     <Compile Include="Models\RoomAllocation.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositaries\DataConfig.cs" />
     <Compile Include="Repositaries\Migration.cs" />
     <Compile Include="Services\AdminService.cs" />
-    <Compile Include="Services\CourseService.cs" />
+    <Compile Include="Services\CourseService1.cs" />
+    <Compile Include="Services\StaffService.cs" />
     <Compile Include="Services\StudentService.cs" />
+    <Compile Include="Services\SubjectService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="View\AdminForm.cs">
       <SubType>Form</SubType>
@@ -94,17 +100,17 @@
     <Compile Include="View\DashboardForm.Designer.cs">
       <DependentUpon>DashboardForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\CourseForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\CourseForm.Designer.cs">
-      <DependentUpon>CourseForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\defaultForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\defaultForm.Designer.cs">
       <DependentUpon>defaultForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\CourseSubjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\CourseSubjectForm.Designer.cs">
+      <DependentUpon>CourseSubjectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Login.cs">
       <SubType>Form</SubType>
@@ -151,11 +157,11 @@
     <EmbeddedResource Include="View\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\CourseSubjectForm.resx">
+      <DependentUpon>CourseSubjectForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\DashboardForm.resx">
       <DependentUpon>DashboardForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\CourseForm.resx">
-      <DependentUpon>CourseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\defaultForm.resx">
       <DependentUpon>defaultForm.cs</DependentUpon>

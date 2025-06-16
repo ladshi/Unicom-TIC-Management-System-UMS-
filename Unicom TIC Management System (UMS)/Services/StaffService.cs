@@ -10,9 +10,9 @@ using Unicom_TIC_Management_System__UMS_.Repositaries;
 
 namespace Unicom_TIC_Management_System__UMS_.Services
 {
-    public class AdminService
+    internal class StaffService
     {
-        public bool AddAdmin(Admin admin)
+        public static bool AddStaff(Staff staff)
         {
             using (var conn = DataConfig.GetConnection())
             {
@@ -24,12 +24,12 @@ namespace Unicom_TIC_Management_System__UMS_.Services
 
                     using (var cmd = new SQLiteCommand(sql, conn))
                     {
-                        cmd.Parameters.AddWithValue("@first", admin.FirstName);
-                        cmd.Parameters.AddWithValue("@last", admin.LastName);
-                        cmd.Parameters.AddWithValue("@contact", admin.PhoneNumber);
-                        cmd.Parameters.AddWithValue("@email", admin.Email);
-                        cmd.Parameters.AddWithValue("@address", admin.Address);
-                        cmd.Parameters.AddWithValue("@userId", admin.UserId);
+                        cmd.Parameters.AddWithValue("@first", staff.FirstName);
+                        cmd.Parameters.AddWithValue("@last", staff.LastName);
+                        cmd.Parameters.AddWithValue("@contact", staff.PhoneNumber);
+                        cmd.Parameters.AddWithValue("@email", staff.Email);
+                        cmd.Parameters.AddWithValue("@address", staff.Address);
+                        cmd.Parameters.AddWithValue("@userId", staff.UserId);
 
                         int rows = cmd.ExecuteNonQuery();
                         MessageBox.Show("Admin insert rows: " + rows); // Add this line to see if rows > 0
@@ -43,6 +43,5 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                 }
             }
         }
-
     }
 }
