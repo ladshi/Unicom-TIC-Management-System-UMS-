@@ -11,30 +11,107 @@ namespace Unicom_TIC_Management_System__UMS_.Services
 {
     public class StudentService
     {
-        public static bool AddStudent(Student student)
+        public bool AddStudent(Student student, Guardian guardian, User user)
         {
             using (var conn = DataConfig.GetConnection())
             {
-                string query = @"INSERT INTO Students
-                    (First_name, Last_name, DOB, Gender, Email, Phone_Number, Address, Enrollment_date, CourseId, UserId)
-                    VALUES (@FirstName, @LastName, @DOB, @Gender, @Email, @PhoneNumber, @Address, @EnrollmentDate, @CourseId, @UserId)";
+                conn.Open();
 
-                using (var cmd = new SQLiteCommand(query, conn))
+                using (var transaction = conn.BeginTransaction())
                 {
-                    cmd.Parameters.AddWithValue("@FirstName", student.FirstName);
-                    cmd.Parameters.AddWithValue("@LastName", student.LastName);
-                    cmd.Parameters.AddWithValue("@DOB", student.DOB);
-                    cmd.Parameters.AddWithValue("@Gender", (int)student.Gender); // Enum as int
-                    cmd.Parameters.AddWithValue("@Email", student.Email);
-                    cmd.Parameters.AddWithValue("@PhoneNumber", student.PhoneNumber);
-                    cmd.Parameters.AddWithValue("@Address", student.Address);
-                    cmd.Parameters.AddWithValue("@EnrollmentDate", student.EnrollmentDate);
-                    cmd.Parameters.AddWithValue("@CourseId", student.CourseId);
-                    cmd.Parameters.AddWithValue("@UserId", student.UserId);
+                    try
+                    {
+                        // Insert into Users
+                        var userCmd = conn.CreateCommand();
+                        userCmd.CommandText = "INSERT INTO Users (Username, Password) VALUES (@username, @password); SELECT last_insert_rowid();";
+                        userCmd.Parameters.AddWithValue("@username", user.UserName);
+                        userCmd.Parameters.AddWithValue("@password", user.Password);
+                        var userId = Convert.ToInt32(userCmd.ExecuteScalar());
 
-                    return cmd.ExecuteNonQuery() > 0;
+                        // Insert into Guardians
+                        var guardianCmd = conn.CreateCommand();
+                        guardianCmd.CommandText = "INSERT INTO Guardians (Name, ContactNo) VALUES (@name, @contact); SELECT last_insert_rowid();";
+                        guardianCmd.Parameters.AddWithValue("@name", guardian.Name);
+                        guardianCmd.Parameters.AddWithValue("@contact", guardian.PhoneNumber);
+                        var guardianId = Convert.ToInt32(guardianCmd.ExecuteScalar());
+
+                        // Insert into Students
+                        var studentCmd = conn.CreateCommand();
+                        studentCmd.CommandText = @"
+                    INSERT INTO Students 
+                    (FirstName, LastName, DOB, Gender, PhoneNumber, Address, Course, Email, GuardianId, UserId)
+                    VALUES 
+                    (@fname, @lname, @dob, @gender, @phone, @address, @course, @email, @guardianId, @userId);";
+
+                        studentCmd.Parameters.AddWithValue("@fname", student.FirstName);
+                        studentCmd.Parameters.AddWithValue("@lname", student.LastName);
+                        studentCmd.Parameters.AddWithValue("@dob", student.DOB);
+                        studentCmd.Parameters.AddWithValue("@gender", student.Gender);
+                        studentCmd.Parameters.AddWithValue("@phone", student.PhoneNumber);
+                        studentCmd.Parameters.AddWithValue("@address", student.Address);
+                        studentCmd.Parameters.AddWithValue("@course", student.CourseName);
+                        studentCmd.Parameters.AddWithValue("@email", student.Email);
+                        studentCmd.Parameters.AddWithValue("@guardianId", guardianId);
+                        studentCmd.Parameters.AddWithValue("@userId", userId);
+
+                        studentCmd.ExecuteNonQuery();
+
+                        transaction.Commit();
+                        return true;
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        return false;
+                    }
                 }
             }
         }
+
+        public List<Student> GetAllStudentDetails()
+        {
+            var students = new List<Student>();
+
+            using (var conn = DataConfig.GetConnection())
+            {
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = @"
+            SELECT s.Id, s.FirstName, s.LastName, s.DOB, s.Gender, s.PhoneNumber, 
+                   s.Address, s.Course, s.Email, 
+                   g.Name AS GuardianName, g.ContactNo AS GuardianContact
+            FROM Students s
+            INNER JOIN Guardians g ON s.GuardianId = g.Id;
+        ";
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var student = new Student
+                        {
+                            Id = Convert.ToInt32(reader["Id"]),
+                            FirstName = reader["FirstName"].ToString(),
+                            LastName = reader["LastName"].ToString(),
+                            DOB = reader["DOB"].ToString(),
+                            Gender = reader["Gender"].ToString(),
+                            PhoneNumber = reader["PhoneNumber"].ToString(),
+                            Address = reader["Address"].ToString(),
+                            CourseName = reader["Course"].ToString(),
+                            Email = reader["Email"].ToString(),
+                            Guardian = new Guardian
+                            {
+                                Name = reader["GuardianName"].ToString(),
+                                PhoneNumber = reader["GuardianContact"].ToString()
+                            }
+                        };
+
+                        students.Add(student);
+                    }
+                }
+            }
+
+            return students;
+        }
+
     }
 }

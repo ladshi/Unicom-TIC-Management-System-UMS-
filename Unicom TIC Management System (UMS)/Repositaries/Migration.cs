@@ -79,12 +79,12 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
                        FirstName TEXT NOT NULL,
                        LastName TEXT NOT NULL,
                        ContactNo TEXT,
-                        Email TEXT,
-                        Address TEXT,
-                        UserId INTEGER NOT NULL,
-                        AccessLevel TEXT NOT NULL,
-                        FOREIGN KEY (UserId) REFERENCES Users(Id)
-                        );
+                       Email TEXT,
+                       Address TEXT,
+                       UserId INTEGER NOT NULL,
+                       AccessLevel TEXT NOT NULL,
+                       FOREIGN KEY (UserId) REFERENCES Users(Id)
+                    );
 
                     
                     CREATE TABLE IF NOT EXISTS Staff (

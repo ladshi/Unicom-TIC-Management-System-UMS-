@@ -145,16 +145,16 @@ namespace Unicom_TIC_Management_System__UMS_.View
                     LoadForm(new StudentForm());  // Add appropriate constructor if needed
                     break;
 
+                case "Manage Courses & Subjects":
+                    LoadForm(new CourseSubjectForm());
+                    break;
+
                 /*case "Manage Staffs":
                     LoadForm(new StaffForm());  // Add appropriate constructor if needed
                     break;
 
                 case "Manage Lecturers":
                     LoadForm(new LecturerForm());  // Add appropriate constructor if needed
-                    break;
-
-                case "Manage Courses & Subjects":
-                    LoadForm(new CourseSubjectForm());
                     break;
 
                 case "Manage Exams":
@@ -189,5 +189,9 @@ namespace Unicom_TIC_Management_System__UMS_.View
             }
         }
 
+        private void mainPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

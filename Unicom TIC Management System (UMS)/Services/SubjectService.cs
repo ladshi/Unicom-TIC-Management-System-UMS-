@@ -16,7 +16,6 @@ namespace Unicom_TIC_Management_System__UMS_.Services
         {
             using (var conn = new SQLiteConnection(DataConfig.GetConnection()))
             {
-                conn.Open();
                 var cmd = new SQLiteCommand("INSERT INTO Subjects (Name, CourseId) VALUES (@Name, @CourseId)", conn);
                 cmd.Parameters.AddWithValue("@Name", subject.Name);
                 cmd.Parameters.AddWithValue("@CourseId", subject.Id);
@@ -28,7 +27,6 @@ namespace Unicom_TIC_Management_System__UMS_.Services
         {
             using (var conn = new SQLiteConnection(DataConfig.GetConnection()))
             {
-                conn.Open();
                 var cmd = new SQLiteCommand("UPDATE Subjects SET Name = @Name, CourseId = @CourseId WHERE Id = @Id", conn);
                 cmd.Parameters.AddWithValue("@Name", subject.Name);
                 cmd.Parameters.AddWithValue("@CourseId", subject.CourseId);
@@ -41,7 +39,6 @@ namespace Unicom_TIC_Management_System__UMS_.Services
         {
             using (var conn = new SQLiteConnection(DataConfig.GetConnection()))
             {
-                conn.Open();
                 var cmd = new SQLiteCommand("DELETE FROM Subjects WHERE Id = @Id", conn);
                 cmd.Parameters.AddWithValue("@Id", subjectId);
                 cmd.ExecuteNonQuery();
@@ -54,7 +51,6 @@ namespace Unicom_TIC_Management_System__UMS_.Services
 
             using (var conn = new SQLiteConnection(DataConfig.GetConnection()))
             {
-                conn.Open();
                 var cmd = new SQLiteCommand("SELECT * FROM Subjects", conn);
                 var reader = cmd.ExecuteReader();
 
@@ -78,7 +74,6 @@ namespace Unicom_TIC_Management_System__UMS_.Services
 
             using (var conn = new SQLiteConnection(DataConfig.GetConnection()))
             {
-                conn.Open();
                 var cmd = new SQLiteCommand(@"
                     SELECT s.Id AS SubjectId, s.Name AS SubjectName, c.Name AS CourseName
                     FROM Subjects s

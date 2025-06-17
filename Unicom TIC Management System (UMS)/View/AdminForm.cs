@@ -153,5 +153,10 @@ namespace Unicom_TIC_Management_System__UMS_.View
 
         private void textUsername_TextChanged(object sender, EventArgs e) { }
         private void comboaccess_SelectedIndexChanged(object sender, EventArgs e) { }
+
+        private void textsearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

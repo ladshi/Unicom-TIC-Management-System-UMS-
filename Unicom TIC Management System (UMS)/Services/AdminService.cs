@@ -19,8 +19,8 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                 try
                 {
                     string sql = @"INSERT INTO Admin 
-                (FirstName, LastName, ContactNo, Email, Address, UserId)
-                VALUES (@first, @last, @contact, @email, @address, @userId)";
+                (FirstName, LastName, ContactNo, Email, Address, UserId, AccessLevel)
+                VALUES (@first, @last, @contact, @email, @address, @userId,@accesslevel)";
 
                     using (var cmd = new SQLiteCommand(sql, conn))
                     {
@@ -30,6 +30,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                         cmd.Parameters.AddWithValue("@email", admin.Email);
                         cmd.Parameters.AddWithValue("@address", admin.Address);
                         cmd.Parameters.AddWithValue("@userId", admin.UserId);
+                        cmd.Parameters.AddWithValue("@accesslevel",admin.AccessLevel);
 
                         int rows = cmd.ExecuteNonQuery();
                         MessageBox.Show("Admin insert rows: " + rows); // Add this line to see if rows > 0

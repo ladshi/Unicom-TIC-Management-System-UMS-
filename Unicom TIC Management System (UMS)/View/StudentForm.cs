@@ -15,55 +15,125 @@ namespace Unicom_TIC_Management_System__UMS_.View
 {
     public partial class StudentForm : Form
     {
-        public StudentForm()
+        public partial class StudentForm : Form
         {
-            InitializeComponent();
-        }
+            private StudentController studentController = new StudentController();
 
-        private void ButtonADD_Click(object sender, EventArgs e)
-        {
-            /*Student student = new Student
+            public StudentForm()
             {
-                FirstName = textfirstname.Text.Trim(),
-                LastName = textSlastname.Text.Trim(),
-                DOB = dobPicker.Value.ToString("yyyy-MM-dd"),
-                Gender = (Gender)comboGender.SelectedIndex,
-                Email = textEmail.Text.Trim(),
-                PhoneNumber = textPhoneNumber.Text.Trim(),
-                Address = textAddress.Text.Trim(),
-                EnrollmentDate = DateTime.Now.ToString("yyyy-MM-dd"),
-                CourseId = (int)comboCourse.SelectedValue
-            };
+                InitializeComponent();
+                txtDOB.ReadOnly = true;
+                dateTimePickerDOB.ValueChanged += dateTimePickerDOB_ValueChanged;
+                LoadStudentData();
+            }
 
-            User user = new User
+            private void dateTimePickerDOB_ValueChanged(object sender, EventArgs e)
             {
-                UserName = textUsername.Text.Trim(),
-                Password = textPassword.Text.Trim(),
-                Role = UserRole.Student
-            };
+                txtDOB.Text = dateTimePickerDOB.Value.ToString("yyyy-MM-dd");
+            }
 
-            StudentController controller = new StudentController();
-            bool isSuccess = controller.AddStudent(student, user);
+            private void btnAdd_Click(object sender, EventArgs e)
+            {
+                // Build objects from form data
+                var student = new Student
+                {
+                    FirstName = txtFirstName.Text,
+                    LastName = txtLastName.Text,
+                    DOB = txtDOB.Text,
+                    Gender = cmbGender.Text,
+                    PhoneNumber = txtPhoneNumber.Text,
+                    Address = txtAddress.Text,
+                    Course = cmbCourse.Text,
+                    Email = txtEmail.Text
+                };
 
-            if (isSuccess)
-                MessageBox.Show("Student added successfully!");
-            else
-                MessageBox.Show("Failed to add student.");*/
+                var guardian = new Guardian
+                {
+                    Name = txtGuardianName.Text,
+                    ContactNo = txtGuardianContactNo.Text
+                };
+
+                var user = new User
+                {
+                    Username = txtUsername.Text,
+                    Password = txtPassword.Text
+                };
+
+                // Add to database
+                bool success = studentController.AddStudent(student, guardian, user);
+
+                if (success)
+                {
+                    MessageBox.Show("Student added successfully!");
+                    LoadStudentData();
+                    ClearForm();
+                }
+                else
+                {
+                    MessageBox.Show("Error occurred while adding student.");
+                }
+            }
+
+            private void LoadStudentData()
+            {
+                var students = studentController.GetAllStudents();
+                dgvStudents.Rows.Clear();
+
+                foreach (var student in students)
+                {
+                    dgvStudents.Rows.Add(
+                        student.FirstName,
+                        student.LastName,
+                        student.DOB,
+                        student.Gender,
+                        student.PhoneNumber,
+                        student.Address,
+                        student.Course,
+                        student.Email,
+                        student.Guardian?.Name,
+                        student.Guardian?.ContactNo
+                    );
+                }
+            }
+
+            private void ClearForm()
+            {
+                txtFirstName.Clear();
+                txtLastName.Clear();
+                txtDOB.Clear();
+                txtPhoneNumber.Clear();
+                txtAddress.Clear();
+                cmbGender.SelectedIndex = -1;
+                cmbCourse.SelectedIndex = -1;
+                txtUsername.Clear();
+                txtPassword.Clear();
+                txtEmail.Clear();
+                txtGuardianName.Clear();
+                txtGuardianContactNo.Clear();
+            }
         }
 
-        private void label4_Click(object sender, EventArgs e)
+        private void LoadStudentsToGrid()
         {
+            var students = studentController.GetAllStudents(); // Controller call
 
+            dataGridView1.Rows.Clear();
+            foreach (var student in students)
+            {
+                dataGridView1.Rows.Add(
+                    student.FirstName,
+                    student.LastName,
+                    student.DOB,
+                    student.Gender,
+                    student.PhoneNumber,
+                    student.Address,
+                    student.Course,
+                    student.Email,
+                    student.Guardian?.Name,
+                    student.Guardian?.ContactNo
+                );
+            }
         }
 
-        private void buttonDelete_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -64,6 +64,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.searchstudent = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,9 +80,10 @@
             // 
             // textSDOB
             // 
-            this.textSDOB.Location = new System.Drawing.Point(76, 154);
+            this.textSDOB.Location = new System.Drawing.Point(76, 159);
             this.textSDOB.Name = "textSDOB";
-            this.textSDOB.Size = new System.Drawing.Size(261, 27);
+            this.textSDOB.ReadOnly = true;
+            this.textSDOB.Size = new System.Drawing.Size(257, 27);
             this.textSDOB.TabIndex = 3;
             // 
             // label2
@@ -170,7 +172,6 @@
             this.label4.Size = new System.Drawing.Size(81, 19);
             this.label4.TabIndex = 24;
             this.label4.Text = "Password";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // textSpassword
             // 
@@ -188,7 +189,7 @@
             this.ButtonADD.TabIndex = 26;
             this.ButtonADD.Text = "ADD";
             this.ButtonADD.UseVisualStyleBackColor = false;
-            this.ButtonADD.Click += new System.EventHandler(this.ButtonADD_Click);
+
             // 
             // buttonUpdate
             // 
@@ -206,7 +207,6 @@
             this.buttonDelete.Size = new System.Drawing.Size(75, 30);
             this.buttonDelete.TabIndex = 28;
             this.buttonDelete.Text = "DELETE";
-            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // textfirstname
             // 
@@ -357,7 +357,7 @@
             this.searchstudent.Name = "searchstudent";
             this.searchstudent.Size = new System.Drawing.Size(180, 27);
             this.searchstudent.TabIndex = 54;
-            this.searchstudent.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+        
             // 
             // comboBox1
             // 
@@ -367,11 +367,19 @@
             this.comboBox1.Size = new System.Drawing.Size(261, 27);
             this.comboBox1.TabIndex = 55;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(183, 128);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(154, 27);
+            this.dateTimePicker1.TabIndex = 56;
+            // 
             // StudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(696, 657);
+            this.ClientSize = new System.Drawing.Size(696, 661);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.searchstudent);
             this.Controls.Add(this.label14);
@@ -409,6 +417,7 @@
             this.Controls.Add(this.textSDOB);
             this.Controls.Add(this.lblSname);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "StudentForm";
             this.Text = "StudentForm";
@@ -456,5 +465,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox searchstudent;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
