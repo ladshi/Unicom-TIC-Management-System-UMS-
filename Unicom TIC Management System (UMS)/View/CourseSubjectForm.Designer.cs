@@ -52,6 +52,7 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.courseSEARCH = new System.Windows.Forms.ComboBox();
             this.combosubject = new System.Windows.Forms.ComboBox();
+            this.Coursenamecombo = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.courseDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subjectDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.courseSubjectDataGridView)).BeginInit();
@@ -113,7 +114,7 @@
             this.courseDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.courseDataGridView.Location = new System.Drawing.Point(27, 189);
             this.courseDataGridView.Name = "courseDataGridView";
-            this.courseDataGridView.Size = new System.Drawing.Size(271, 231);
+            this.courseDataGridView.Size = new System.Drawing.Size(288, 231);
             this.courseDataGridView.TabIndex = 6;
             // 
             // coursesearchbutton
@@ -263,11 +264,20 @@
             this.combosubject.Size = new System.Drawing.Size(191, 21);
             this.combosubject.TabIndex = 26;
             // 
+            // Coursenamecombo
+            // 
+            this.Coursenamecombo.FormattingEnabled = true;
+            this.Coursenamecombo.Location = new System.Drawing.Point(442, 59);
+            this.Coursenamecombo.Name = "Coursenamecombo";
+            this.Coursenamecombo.Size = new System.Drawing.Size(216, 21);
+            this.Coursenamecombo.TabIndex = 27;
+            // 
             // CourseSubjectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(696, 650);
+            this.Controls.Add(this.Coursenamecombo);
             this.Controls.Add(this.combosubject);
             this.Controls.Add(this.courseSEARCH);
             this.Controls.Add(this.textBox5);
@@ -329,5 +339,6 @@
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.ComboBox courseSEARCH;
         private System.Windows.Forms.ComboBox combosubject;
+        private System.Windows.Forms.ComboBox Coursenamecombo;
     }
 }

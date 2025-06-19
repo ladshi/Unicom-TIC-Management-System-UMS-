@@ -11,7 +11,7 @@ using System.Data.SQLite;
 
 namespace Unicom_TIC_Management_System__UMS_.Services
 {
-    /*
+    
     internal class CourseService
     {
         public static void Add(Course course)
@@ -121,5 +121,5 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             }
             return null;
         }
-    }*/
+    }
 }

@@ -10,7 +10,6 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
 {
     public class CourseController
     {
-        /*
         public static List<Course> GetAllCourses()
         {
             return CourseService.GetAll();
@@ -45,6 +44,6 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
         {
             return CourseService.GetByName(name);
         }
-        */
+        
     }
 }

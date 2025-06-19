@@ -12,7 +12,6 @@ namespace Unicom_TIC_Management_System__UMS_.Services
 {
     internal class SubjectService
     {
-        /*
         public static void AddSubject(Subject subject)
         {
             using (var conn = new SQLiteConnection(DataConfig.GetConnection()))
@@ -96,7 +95,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             }
 
             return list;
-        }*/
+        }
     }
 }
 

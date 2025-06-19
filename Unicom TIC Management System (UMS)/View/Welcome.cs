@@ -25,7 +25,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
             if (userController.IsUserTableEmpty())
             {
                 //  First-time setting up
-                MessageBox.Show("First time admin setting up", "Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("First time admin setting up.Please add Main admin!", "Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 AdminForm adminForm = new AdminForm(firstTime: true); 
                 adminForm.Show();

@@ -18,22 +18,23 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             {
                 try
                 {
-                    string sql = @"INSERT INTO Admin 
-                (FirstName, LastName, ContactNo, Email, Address, DOB, UserId)
-                VALUES (@first, @last, @contact, @email, @address, @DOB, @userId)";
+                    string sql = @"INSERT INTO Staff 
+                (FirstName, LastName, PhoneNumber, Email, Address, DOB, UserId)
+                VALUES (@first, @last, @phonenum, @email, @address, @DOB, @userId)";
 
                     using (var cmd = new SQLiteCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@first", staff.FirstName);
                         cmd.Parameters.AddWithValue("@last", staff.LastName);
-                        cmd.Parameters.AddWithValue("@contact", staff.PhoneNumber);
+                        cmd.Parameters.AddWithValue("@phonenum", staff.PhoneNumber);
                         cmd.Parameters.AddWithValue("@email", staff.Email);
                         cmd.Parameters.AddWithValue("@address", staff.Address);
-                        cmd.Parameters.AddWithValue("@DOB", staff.Address);
+                        cmd.Parameters.AddWithValue("@DOB", staff.DOB);
                         cmd.Parameters.AddWithValue("@userId", staff.UserId);
-
+                       
                         int rows = cmd.ExecuteNonQuery();
-                        MessageBox.Show("Admin insert rows: " + rows); // Add this line to see if rows > 0
+                        //MessageBox.Show("Admin insert rows: " + rows); // Add this line to see if rows > 0
+                        MessageBox.Show("Staff added successfully");
                         return rows > 0;
                     }
                 }

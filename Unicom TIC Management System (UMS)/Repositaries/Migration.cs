@@ -41,14 +41,9 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
                     CREATE TABLE IF NOT EXISTS Courses(
                         Id INTEGER PRIMARY KEY AUTOINCREMENT,
                         CourseName TEXT NOT NULL
-                        
-                    );
-                    -- optional role table for future use
-                    CREATE TABLE IF NOT EXISTS Roles(
-                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        RoleName TEXT NOT NULL
 
                     );
+
                       CREATE TABLE IF NOT EXISTS Students (
                         Id INTEGER PRIMARY KEY AUTOINCREMENT,
                         First_name TEXT NOT NULL,
@@ -56,7 +51,7 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
                         DOB TEXT NOT NULL, 
                         Gender INTEGER NOT NULL ,
                         Email TEXT NOT NULL UNIQUE,
-                        Phone_Number TEXT NOT NULL ,
+                        PhoneNumber TEXT NOT NULL ,
                         Address  TEXT NOT NULL,
                         Enrollment_date TEXT, 
                         CourseId INTEGER,
@@ -69,7 +64,7 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
 
                     CREATE TABLE IF NOT EXISTS Gurdians(
                         Gurdian_Name TEXT NOT NULL,
-                        Contact_No TEXT NOT NULL,
+                        PhoneNumber TEXT NOT NULL,
                         StudentId INTEGER,
                         FOREIGN KEY (StudentId) REFERENCES Students(Id)
                     );
@@ -78,7 +73,7 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
                        FirstName TEXT NOT NULL,
                        LastName TEXT NOT NULL,
-                       ContactNo TEXT,
+                       PhoneNumber TEXT,
                        Email TEXT,
                        Address TEXT,
                        DOB TEXT,
@@ -115,7 +110,7 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
                         Id INTEGER PRIMARY KEY AUTOINCREMENT,
                         FirstName TEXT NOT NULL,
                         LastName TEXT NOT NULL,
-                        ContactNo TEXT,
+                        PhoneNumber TEXT,
                         Email TEXT,
                         Address TEXT,
                         DOB TEXT,

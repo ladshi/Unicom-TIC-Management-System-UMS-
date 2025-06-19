@@ -12,7 +12,6 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
 {
     internal class SubjectController
     {
-        /*
         public static void AddSubject(Subject subject)
         {
             SubjectService.AddSubject(subject);
@@ -37,6 +36,6 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
         {
             return SubjectService.GetCourseSubjectView();
         }
-        */
+        
     }
 }

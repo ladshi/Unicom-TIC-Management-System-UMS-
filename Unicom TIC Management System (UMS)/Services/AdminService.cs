@@ -20,14 +20,14 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                 try
                 {
                     string sql = @"INSERT INTO Admin 
-                (FirstName, LastName, ContactNo, Email, Address, DOB , UserId, AccessLevel)
-                VALUES (@first, @last, @contact, @email, @address, @DOB, @userId,@accesslevel)";
+                (FirstName, LastName, PhoneNumber, Email, Address, DOB , UserId, AccessLevel)
+                VALUES (@first, @last, @phonenum, @email, @address, @DOB, @userId,@accesslevel)";
 
                     using (var cmd = new SQLiteCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@first", admin.FirstName);
                         cmd.Parameters.AddWithValue("@last", admin.LastName);
-                        cmd.Parameters.AddWithValue("@contact", admin.PhoneNumber);
+                        cmd.Parameters.AddWithValue("@phonenum", admin.PhoneNumber);
                         cmd.Parameters.AddWithValue("@email", admin.Email);
                         cmd.Parameters.AddWithValue("@address", admin.Address);
                         cmd.Parameters.AddWithValue("@DOB", admin.DOB);
@@ -35,7 +35,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                         cmd.Parameters.AddWithValue("@accesslevel",admin.AccessLevel);
 
                         int rows = cmd.ExecuteNonQuery();
-                        MessageBox.Show("Admin insert rows: " + rows); // Add this line to see if rows > 0
+                        MessageBox.Show("Admin added successfully."); 
                         return rows > 0;
                     }
                 }
@@ -53,7 +53,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
 
             using (var conn = DataConfig.GetConnection())
             {
-                string query = "SELECT FirstName, LastName, PhoneNumber, Email, Address, DOB, AccessLevel FROM Admins";
+                string query = "SELECT FirstName, LastName, PhoneNumber, Email, Address, DOB, AccessLevel FROM Admin";
 
                 using (var cmd = new SQLiteCommand(query, conn))
                 using (var reader = cmd.ExecuteReader())

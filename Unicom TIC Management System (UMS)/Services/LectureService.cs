@@ -18,22 +18,22 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             {
                 try
                 {
-                    string sql = @"INSERT INTO Lectures 
-                (FirstName, LastName, ContactNo, Email, Address, DOB, UserId)
-                VALUES (@first, @last, @contact, @email, @address, @DOB, @userId)";
+                    string sql = @"INSERT INTO Lectures
+                (FirstName, LastName, PhoneNumber, Email, Address, DOB, UserId)
+                VALUES (@first, @last, @phonenum, @email, @address, @DOB, @userId)";
 
                     using (var cmd = new SQLiteCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@first", lecturer.FirstName);
                         cmd.Parameters.AddWithValue("@last", lecturer.LastName);
-                        cmd.Parameters.AddWithValue("@contact", lecturer.PhoneNumber);
+                        cmd.Parameters.AddWithValue("@phonenum", lecturer.PhoneNumber);
                         cmd.Parameters.AddWithValue("@email", lecturer.Email);
                         cmd.Parameters.AddWithValue("@address", lecturer.Address);
-                        cmd.Parameters.AddWithValue("@DOB", lecturer.Address);
+                        cmd.Parameters.AddWithValue("@DOB", lecturer.DOB);
                         cmd.Parameters.AddWithValue("@userId", lecturer.UserId);
 
                         int rows = cmd.ExecuteNonQuery();
-                        MessageBox.Show("Admin insert rows: " + rows); // Add this line to see if rows > 0
+                        MessageBox.Show("Lecturer added successfully!"); 
                         return rows > 0;
                     }
                 }
@@ -51,7 +51,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
 
             using (var conn = DataConfig.GetConnection())
             {
-                string query = "SELECT FirstName, LastName, PhoneNumber, Email, Address, DOB FROM Lecturers";
+                string query = "SELECT FirstName, LastName, PhoneNumber, Email, Address, DOB FROM Lectures";
 
                 using (var cmd = new SQLiteCommand(query, conn))
                 using (var reader = cmd.ExecuteReader())

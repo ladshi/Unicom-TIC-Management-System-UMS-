@@ -32,7 +32,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
         {
             if (isFirstTime)
             {
-                MessageBox.Show("First-time setup – please add the main admin.", "Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("First-time setup – please add the main admin.", "Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 buttonAdd.Visible = true;
                 buttonUpdate.Visible = false;
@@ -66,13 +66,15 @@ namespace Unicom_TIC_Management_System__UMS_.View
             {
                 labeltitle.Text = "ADMIN DETAILS";
                 labelaccess.Visible = true;
-                comboaccess.Visible = true;  
+                comboaccess.Visible = true;
+                comboaccess.Items.Add(UserRole.MainAdmin.ToString());
+                comboaccess.Items.Add(UserRole.Admin.ToString());
             }
             else if (currentMode == UserRole.Lecturer)
             {
                 labeltitle.Text = "LECTURER DETAILS";
                 labelaccess.Visible = true;
-                comboaccess.Visible =   true;
+                comboaccess.Visible =  true;
                 comboaccess.Items.Add(UserRole.Lecturer.ToString());
             }
         }
@@ -94,58 +96,18 @@ namespace Unicom_TIC_Management_System__UMS_.View
         {
             admingridview.Rows.Clear();
 
-            if (currentMode == UserRole.Admin || currentMode == UserRole.MainAdmin)
+            // Ensure columns exist
+            if (admingridview.Columns.Count == 0)
             {
-             
-                var admins = AdminController.GetAdmins();
-
-                foreach (var admin in admins)
-                {
-                    admingridview.Rows.Add(
-                        admin.FirstName,
-                        admin.LastName,
-                        admin.PhoneNumber,
-                        admin.Email,
-                        admin.Address,
-                        admin.DOB,
-                        admin.AccessLevel
-                    );
-                }
+                admingridview.Columns.Add("FirstName", "First Name");
+                admingridview.Columns.Add("LastName", "Last Name");
+                admingridview.Columns.Add("PhoneNumber", "Phone Number");
+                admingridview.Columns.Add("Email", "Email");
+                admingridview.Columns.Add("Address", "Address");
+                admingridview.Columns.Add("DOB", "DOB");
+                admingridview.Columns.Add("AccessLevel", "Access Level");
             }
-            else if (currentMode == UserRole.Staff)
-            {
-         
-                var staffs = StaffController.GetStaffs();
 
-                foreach (var staff in staffs)
-                {
-                    admingridview.Rows.Add(
-                        staff.FirstName,
-                        staff.LastName,
-                        staff.PhoneNumber,
-                        staff.Email,
-                        staff.Address,
-                        staff.DOB
-                    );
-                }
-            }
-            else if (currentMode == UserRole.Lecturer)
-            {
-                
-                var lecturers = LectureController.GetLecturers();
-
-                foreach (var lec in lecturers)
-                {
-                    admingridview.Rows.Add(
-                        lec.FirstName,
-                        lec.LastName,
-                        lec.PhoneNumber,
-                        lec.Email,
-                        lec.Address,
-                        lec.DOB
-                    );
-                }
-            }
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -233,81 +195,6 @@ namespace Unicom_TIC_Management_System__UMS_.View
 
         }
 
-        private void buttonAdd_Click_1(object sender, EventArgs e)
-        {
-            string username = textUsername.Text.Trim();
-            string password = textpassword.Text.Trim();
-            UserRole selectedRole = (UserRole)System.Enum.Parse(typeof(UserRole), comboaccess.Text);
-
-            if (UserService.IsUsernameExists(username))
-            {
-                MessageBox.Show("Username already exists.");
-                return;
-            }
-
-            int userId = UserService.AddUser(new User
-            {
-                UserName = username,
-                Password = password,
-                Role = selectedRole
-            });
-
-            if (userId > 0)
-            {
-                if (selectedRole == UserRole.Admin || selectedRole == UserRole.MainAdmin)
-                {
-                    var admin = new Admin
-                    {
-                        FirstName = textfirstname.Text.Trim(),
-                        LastName = textLastName.Text.Trim(),
-                        PhoneNumber = textContactNo.Text.Trim(),
-                        Email = textEmail.Text.Trim(),
-                        Address = textAddress.Text.Trim(),
-                        DOB = dateTimePicker.Value.ToString("yyyy-MM-dd"),
-                        AccessLevel = comboaccess.Text,
-                        UserId = userId
-                    };
-                    AdminService.AddAdmin(admin);
-                }
-                else if (selectedRole == UserRole.Staff)
-                {
-                    var staff = new Staff
-                    {
-                        FirstName = textfirstname.Text.Trim(),
-                        LastName = textLastName.Text.Trim(),
-                        PhoneNumber = textContactNo.Text.Trim(),
-                        Email = textEmail.Text.Trim(),
-                        Address = textAddress.Text.Trim(),
-                        DOB = dateTimePicker.Value.ToString("yyyy-MM-dd"),
-                        UserId = userId
-                    };
-                    StaffService.AddStaff(staff);
-                }
-                else if (selectedRole == UserRole.Lecturer)
-                {
-                    var lecturer = new Lecturer
-                    {
-                        FirstName = textfirstname.Text.Trim(),
-                        LastName = textLastName.Text.Trim(),
-                        PhoneNumber = textContactNo.Text.Trim(),
-                        Email = textEmail.Text.Trim(),
-                        Address = textAddress.Text.Trim(),
-                        DOB = dateTimePicker.Value.ToString("yyyy-MM-dd"),
-                        UserId = userId
-                    };
-                    LectureService.AddLecturer(lecturer);
-                }
-
-                MessageBox.Show("User added successfully!");
-                LoadAdmins();
-            }
-            else
-            {
-                MessageBox.Show("Failed to create user.");
-            }
-            ClearForm();
-            LoadAdmins();
-        }
 
         /*private void buttonUpdate_Click(object sender, EventArgs e)
         {
