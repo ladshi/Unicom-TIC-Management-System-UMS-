@@ -77,16 +77,82 @@ namespace Unicom_TIC_Management_System__UMS_.View
             }
         }
 
+        private void ClearForm()
+        {
+            textUsername.Clear();
+            textpassword.Clear();
+            textfirstname.Clear();
+            textLastName.Clear();
+            textContactNo.Clear();
+            textEmail.Clear();
+            textAddress.Clear();
+            comboaccess.SelectedIndex = -1;
+            dateTimePicker.Value = DateTime.Today;
+        }
+
         private void LoadAdmins()
         {
-            // Load admin list into grid here when not first-time
+            admingridview.Rows.Clear();
+
+            if (currentMode == UserRole.Admin || currentMode == UserRole.MainAdmin)
+            {
+             
+                var admins = AdminController.GetAdmins();
+
+                foreach (var admin in admins)
+                {
+                    admingridview.Rows.Add(
+                        admin.FirstName,
+                        admin.LastName,
+                        admin.PhoneNumber,
+                        admin.Email,
+                        admin.Address,
+                        admin.DOB,
+                        admin.AccessLevel
+                    );
+                }
+            }
+            else if (currentMode == UserRole.Staff)
+            {
+         
+                var staffs = StaffController.GetStaffs();
+
+                foreach (var staff in staffs)
+                {
+                    admingridview.Rows.Add(
+                        staff.FirstName,
+                        staff.LastName,
+                        staff.PhoneNumber,
+                        staff.Email,
+                        staff.Address,
+                        staff.DOB
+                    );
+                }
+            }
+            else if (currentMode == UserRole.Lecturer)
+            {
+                
+                var lecturers = LectureController.GetLecturers();
+
+                foreach (var lec in lecturers)
+                {
+                    admingridview.Rows.Add(
+                        lec.FirstName,
+                        lec.LastName,
+                        lec.PhoneNumber,
+                        lec.Email,
+                        lec.Address,
+                        lec.DOB
+                    );
+                }
+            }
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             string username = textUsername.Text.Trim();
             string password = textpassword.Text.Trim();
-            UserRole selectedRole = (UserRole)Enum.Parse(typeof(UserRole), comboaccess.SelectedItem.ToString());
+            UserRole selectedRole = (UserRole)System.Enum.Parse(typeof(UserRole), comboaccess.Text);
 
             if (UserService.IsUsernameExists(username))
             {
@@ -112,7 +178,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
                         PhoneNumber = textContactNo.Text.Trim(),
                         Email = textEmail.Text.Trim(),
                         Address = textAddress.Text.Trim(),
-                        DOB = dateTimePicker.Text.Trim(),
+                        DOB = dateTimePicker.Value.ToString("yyyy-MM-dd"),
                         AccessLevel = comboaccess.Text,
                         UserId = userId
                     };
@@ -127,7 +193,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
                         PhoneNumber = textContactNo.Text.Trim(),
                         Email = textEmail.Text.Trim(),
                         Address = textAddress.Text.Trim(),
-                        DOB = dateTimePicker.Text.Trim(),
+                        DOB = dateTimePicker.Value.ToString("yyyy-MM-dd"),
                         UserId = userId
                     };
                     StaffService.AddStaff(staff);
@@ -138,13 +204,13 @@ namespace Unicom_TIC_Management_System__UMS_.View
                     {
                         FirstName = textfirstname.Text.Trim(),
                         LastName = textLastName.Text.Trim(),
-                        ContactNo = textContactNo.Text.Trim(),
+                        PhoneNumber = textContactNo.Text.Trim(),
                         Email = textEmail.Text.Trim(),
                         Address = textAddress.Text.Trim(),
-                        DOB = dateTimePicker.Text.Trim(),
+                        DOB = dateTimePicker.Value.ToString("yyyy-MM-dd"),
                         UserId = userId
                     };
-                    LecturerService.AddLecturer(lecturer);
+                    LectureService.AddLecturer(lecturer);
                 }
 
                 MessageBox.Show("User added successfully!");
@@ -154,6 +220,8 @@ namespace Unicom_TIC_Management_System__UMS_.View
             {
                 MessageBox.Show("Failed to create user.");
             }
+            ClearForm();
+            LoadAdmins();
         }
 
 
@@ -164,5 +232,155 @@ namespace Unicom_TIC_Management_System__UMS_.View
         {
 
         }
+
+        private void buttonAdd_Click_1(object sender, EventArgs e)
+        {
+            string username = textUsername.Text.Trim();
+            string password = textpassword.Text.Trim();
+            UserRole selectedRole = (UserRole)System.Enum.Parse(typeof(UserRole), comboaccess.Text);
+
+            if (UserService.IsUsernameExists(username))
+            {
+                MessageBox.Show("Username already exists.");
+                return;
+            }
+
+            int userId = UserService.AddUser(new User
+            {
+                UserName = username,
+                Password = password,
+                Role = selectedRole
+            });
+
+            if (userId > 0)
+            {
+                if (selectedRole == UserRole.Admin || selectedRole == UserRole.MainAdmin)
+                {
+                    var admin = new Admin
+                    {
+                        FirstName = textfirstname.Text.Trim(),
+                        LastName = textLastName.Text.Trim(),
+                        PhoneNumber = textContactNo.Text.Trim(),
+                        Email = textEmail.Text.Trim(),
+                        Address = textAddress.Text.Trim(),
+                        DOB = dateTimePicker.Value.ToString("yyyy-MM-dd"),
+                        AccessLevel = comboaccess.Text,
+                        UserId = userId
+                    };
+                    AdminService.AddAdmin(admin);
+                }
+                else if (selectedRole == UserRole.Staff)
+                {
+                    var staff = new Staff
+                    {
+                        FirstName = textfirstname.Text.Trim(),
+                        LastName = textLastName.Text.Trim(),
+                        PhoneNumber = textContactNo.Text.Trim(),
+                        Email = textEmail.Text.Trim(),
+                        Address = textAddress.Text.Trim(),
+                        DOB = dateTimePicker.Value.ToString("yyyy-MM-dd"),
+                        UserId = userId
+                    };
+                    StaffService.AddStaff(staff);
+                }
+                else if (selectedRole == UserRole.Lecturer)
+                {
+                    var lecturer = new Lecturer
+                    {
+                        FirstName = textfirstname.Text.Trim(),
+                        LastName = textLastName.Text.Trim(),
+                        PhoneNumber = textContactNo.Text.Trim(),
+                        Email = textEmail.Text.Trim(),
+                        Address = textAddress.Text.Trim(),
+                        DOB = dateTimePicker.Value.ToString("yyyy-MM-dd"),
+                        UserId = userId
+                    };
+                    LectureService.AddLecturer(lecturer);
+                }
+
+                MessageBox.Show("User added successfully!");
+                LoadAdmins();
+            }
+            else
+            {
+                MessageBox.Show("Failed to create user.");
+            }
+            ClearForm();
+            LoadAdmins();
+        }
+
+        /*private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            string username = textUsername.Text.Trim();
+            string password = textpassword.Text.Trim();
+            string firstName = textfirstname.Text.Trim();
+            string lastName = textLastName.Text.Trim();
+            string contactNo = textContactNo.Text.Trim();
+            string email = textEmail.Text.Trim();
+            string address = textAddress.Text.Trim();
+            string dob = dateTimePicker.Value.ToString("yyyy-MM-dd"),
+
+            //  Updating  user in Users table
+            User user = new User
+            {
+                UserName = username,
+                Password = password,
+                Role = currentMode
+
+            };
+
+            UserService.UpdateUser(user);
+
+            if (currentMode == UserRole.Admin)
+            {
+                string accessLevel = comboaccess.Text;
+
+                Admin admin = new Admin
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    PhoneNumber = contactNo,
+                    Email = email,
+                    Address = address,
+                    DOB = dob,
+                    AccessLevel = accessLevel
+                };
+
+                AdminService.UpdateAdmin(admin);
+            }
+
+            else if (currentMode == UserRole.Staff)
+            {
+                Staff staff = new Staff
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    PhoneNumber = contactNo,
+                    Email = email,
+                    Address = address,
+                    DOB = dob
+                };
+
+                StaffService.UpdateStaff(staff);
+            }
+            else if (currentMode == UserRole.Lecturer)
+            {
+                Lecturer lecturer = new Lecturer
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    PhoneNumber = contactNo,
+                    Email = email,
+                    Address = address,
+                    DOB = dob
+                };
+
+                LecturerService.UpdateLecturer(lecturer);
+            }
+            ClearForm();
+            LoadAdmins();
+
+        }*/
+
     }
 }

@@ -10,27 +10,27 @@ using Unicom_TIC_Management_System__UMS_.Repositaries;
 
 namespace Unicom_TIC_Management_System__UMS_.Services
 {
-    internal class StaffService
+    internal class LectureService
     {
-        public static bool AddStaff(Staff staff)
+        public static bool AddLecturer(Lecturer lecturer) 
         {
             using (var conn = DataConfig.GetConnection())
             {
                 try
                 {
-                    string sql = @"INSERT INTO Admin 
+                    string sql = @"INSERT INTO Lectures 
                 (FirstName, LastName, ContactNo, Email, Address, DOB, UserId)
                 VALUES (@first, @last, @contact, @email, @address, @DOB, @userId)";
 
                     using (var cmd = new SQLiteCommand(sql, conn))
                     {
-                        cmd.Parameters.AddWithValue("@first", staff.FirstName);
-                        cmd.Parameters.AddWithValue("@last", staff.LastName);
-                        cmd.Parameters.AddWithValue("@contact", staff.PhoneNumber);
-                        cmd.Parameters.AddWithValue("@email", staff.Email);
-                        cmd.Parameters.AddWithValue("@address", staff.Address);
-                        cmd.Parameters.AddWithValue("@DOB", staff.Address);
-                        cmd.Parameters.AddWithValue("@userId", staff.UserId);
+                        cmd.Parameters.AddWithValue("@first", lecturer.FirstName);
+                        cmd.Parameters.AddWithValue("@last", lecturer.LastName);
+                        cmd.Parameters.AddWithValue("@contact", lecturer.PhoneNumber);
+                        cmd.Parameters.AddWithValue("@email", lecturer.Email);
+                        cmd.Parameters.AddWithValue("@address", lecturer.Address);
+                        cmd.Parameters.AddWithValue("@DOB", lecturer.Address);
+                        cmd.Parameters.AddWithValue("@userId", lecturer.UserId);
 
                         int rows = cmd.ExecuteNonQuery();
                         MessageBox.Show("Admin insert rows: " + rows); // Add this line to see if rows > 0
@@ -44,20 +44,21 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                 }
             }
         }
-    public static List<Staff> GetAllStaffs()
+
+        public static List<Lecturer> GetAllLecturers()
         {
-            List<Staff> staffList = new List<Staff>();
+            List<Lecturer> lecturerList = new List<Lecturer>();
 
             using (var conn = DataConfig.GetConnection())
             {
-                string query = "SELECT FirstName, LastName, PhoneNumber, Email, Address, DOB FROM Staff";
+                string query = "SELECT FirstName, LastName, PhoneNumber, Email, Address, DOB FROM Lecturers";
 
                 using (var cmd = new SQLiteCommand(query, conn))
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        Staff staff = new Staff
+                        Lecturer lecturer = new Lecturer
                         {
                             FirstName = reader["FirstName"].ToString(),
                             LastName = reader["LastName"].ToString(),
@@ -67,15 +68,13 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                             DOB = reader["DOB"].ToString()
                         };
 
-                        staffList.Add(staff);
+                        lecturerList.Add(lecturer);
                     }
                 }
             }
 
-            return staffList;
+            return lecturerList;
         }
-
-
 
     }
 }

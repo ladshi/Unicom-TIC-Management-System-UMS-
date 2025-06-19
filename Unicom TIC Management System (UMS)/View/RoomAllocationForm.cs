@@ -26,5 +26,10 @@ namespace Unicom_TIC_Management_System__UMS_.View
         {
 
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

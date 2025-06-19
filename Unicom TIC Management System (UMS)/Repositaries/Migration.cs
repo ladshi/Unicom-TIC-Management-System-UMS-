@@ -81,9 +81,9 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
                        ContactNo TEXT,
                        Email TEXT,
                        Address TEXT,
+                       DOB TEXT,
                        UserId INTEGER NOT NULL,
                        AccessLevel TEXT NOT NULL,
-                       ALTER TABLE Admin ADD COLUMN DOB TEXT;
                        FOREIGN KEY (UserId) REFERENCES Users(Id)
                     );
 
@@ -102,7 +102,8 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
 
                     CREATE TABLE IF NOT EXISTS RoomAllocation (
                         Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        RoomNumber TEXT NOT NULL,
+                        RoomName TEXT NOT NULL,
+                        RoomType TEXT NOT NULL,
                         CourseId INTEGER,
                         LectureId INTEGER,
                         AllocationDate TEXT,
@@ -119,7 +120,7 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
                         Address TEXT,
                         DOB TEXT,
                         UserId INTEGER NOT NULL,
-                        FOREIGN KEY (UserId) REFERENCES Users(Id
+                        FOREIGN KEY (UserId) REFERENCES Users(Id)
                     );
                     
                     CREATE TABLE IF NOT EXISTS Exams (

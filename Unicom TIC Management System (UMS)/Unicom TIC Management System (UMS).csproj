@@ -54,6 +54,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\ExamController.cs" />
+    <Compile Include="Controllers\LectureController.cs" />
     <Compile Include="Controllers\MarkController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
@@ -73,7 +74,7 @@
     <Compile Include="Models\CourseSubject.cs" />
     <Compile Include="Models\Exam.cs" />
     <Compile Include="Models\Guardian.cs" />
-    <Compile Include="Models\Lecture.cs" />
+    <Compile Include="Models\Lecturer.cs" />
     <Compile Include="Models\Mark.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Role.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Services\AdminService.cs" />
     <Compile Include="Services\CourseService1.cs" />
     <Compile Include="Services\ExamService.cs" />
+    <Compile Include="Services\LectureService.cs" />
     <Compile Include="Services\MarkService.cs" />
     <Compile Include="Services\StaffService.cs" />
     <Compile Include="Services\StudentService.cs" />

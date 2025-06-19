@@ -200,7 +200,7 @@
             // 
             // textfirstname
             // 
-            this.textfirstname.Location = new System.Drawing.Point(76, 95);
+            this.textfirstname.Location = new System.Drawing.Point(74, 94);
             this.textfirstname.Name = "textfirstname";
             this.textfirstname.Size = new System.Drawing.Size(261, 27);
             this.textfirstname.TabIndex = 34;
@@ -208,7 +208,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(72, 131);
+            this.label5.Location = new System.Drawing.Point(71, 131);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(105, 19);
             this.label5.TabIndex = 35;
@@ -358,7 +358,7 @@
             // 
             // dateTimePickerDOB
             // 
-            this.dateTimePickerDOB.Location = new System.Drawing.Point(76, 153);
+            this.dateTimePickerDOB.Location = new System.Drawing.Point(72, 153);
             this.dateTimePickerDOB.Name = "dateTimePickerDOB";
             this.dateTimePickerDOB.Size = new System.Drawing.Size(258, 27);
             this.dateTimePickerDOB.TabIndex = 56;

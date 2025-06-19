@@ -81,7 +81,22 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                 }
             }
         }
-    
+
+        public bool UpdateUser(User user)
+        {
+            using (var conn = new SQLiteConnection(DataConfig.GetConnection()))
+            {
+                string query = "UPDATE Users SET Password = @Password WHERE Username = @Username";
+                using (var cmd = new SQLiteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Password", user.Password);
+                    cmd.Parameters.AddWithValue("@Username", user.UserName);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+        }
+
+
 
     }
 }

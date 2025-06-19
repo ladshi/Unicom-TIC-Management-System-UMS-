@@ -8,18 +8,15 @@ using Unicom_TIC_Management_System__UMS_.Services;
 
 namespace Unicom_TIC_Management_System__UMS_.Controllers
 {
-    public class StaffController
+    internal class LectureController
     {
-        //private StaffService staffService = new StaffService();
-
-        public static  bool AddStaff(Staff staff)
+        public static bool AddLecture(Lecturer lecturer)
         {
-            return StaffService.AddStaff(staff);  
+            return LectureService.AddLecturer(lecturer);
         }
-
-        public static List<Staff> GetStaffs()
+        public static List<Lecturer> GetLecturers()
         {
-            return StaffService.GetAllStaffs();
+            return LectureService.GetAllLecturers();
         }
     }
 }
