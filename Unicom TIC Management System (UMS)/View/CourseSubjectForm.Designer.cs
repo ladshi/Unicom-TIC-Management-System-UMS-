@@ -43,7 +43,6 @@
             this.subjectUpdateButton = new System.Windows.Forms.Button();
             this.subjectDeleteButton = new System.Windows.Forms.Button();
             this.subjectDataGridView = new System.Windows.Forms.DataGridView();
-            this.courseComboBox = new System.Windows.Forms.ComboBox();
             this.CourseCombo = new System.Windows.Forms.Label();
             this.Subjectsearchbutton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -71,7 +70,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(49, 59);
+            this.label2.Location = new System.Drawing.Point(24, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 13);
             this.label2.TabIndex = 1;
@@ -80,7 +79,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(362, 92);
+            this.label3.Location = new System.Drawing.Point(348, 94);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 13);
             this.label3.TabIndex = 2;
@@ -88,14 +87,14 @@
             // 
             // courseNameTextBox
             // 
-            this.courseNameTextBox.Location = new System.Drawing.Point(126, 56);
+            this.courseNameTextBox.Location = new System.Drawing.Point(101, 55);
             this.courseNameTextBox.Name = "courseNameTextBox";
             this.courseNameTextBox.Size = new System.Drawing.Size(200, 20);
             this.courseNameTextBox.TabIndex = 3;
             // 
             // subjectNameTextBox
             // 
-            this.subjectNameTextBox.Location = new System.Drawing.Point(439, 89);
+            this.subjectNameTextBox.Location = new System.Drawing.Point(442, 89);
             this.subjectNameTextBox.Name = "subjectNameTextBox";
             this.subjectNameTextBox.Size = new System.Drawing.Size(216, 20);
             this.subjectNameTextBox.TabIndex = 4;
@@ -103,7 +102,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(154, 164);
+            this.label4.Location = new System.Drawing.Point(124, 164);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 13);
             this.label4.TabIndex = 5;
@@ -112,14 +111,14 @@
             // courseDataGridView
             // 
             this.courseDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.courseDataGridView.Location = new System.Drawing.Point(55, 189);
+            this.courseDataGridView.Location = new System.Drawing.Point(27, 189);
             this.courseDataGridView.Name = "courseDataGridView";
             this.courseDataGridView.Size = new System.Drawing.Size(271, 231);
             this.courseDataGridView.TabIndex = 6;
             // 
             // coursesearchbutton
             // 
-            this.coursesearchbutton.Location = new System.Drawing.Point(55, 434);
+            this.coursesearchbutton.Location = new System.Drawing.Point(27, 434);
             this.coursesearchbutton.Name = "coursesearchbutton";
             this.coursesearchbutton.Size = new System.Drawing.Size(75, 23);
             this.coursesearchbutton.TabIndex = 7;
@@ -128,17 +127,16 @@
             // 
             // courseAddButton
             // 
-            this.courseAddButton.Location = new System.Drawing.Point(273, 87);
+            this.courseAddButton.Location = new System.Drawing.Point(249, 87);
             this.courseAddButton.Name = "courseAddButton";
             this.courseAddButton.Size = new System.Drawing.Size(53, 23);
             this.courseAddButton.TabIndex = 9;
             this.courseAddButton.Text = "ADD";
             this.courseAddButton.UseVisualStyleBackColor = true;
-            this.courseAddButton.Click += new System.EventHandler(this.courseAddButton_Click);
             // 
             // courseUpdatebutton
             // 
-            this.courseUpdatebutton.Location = new System.Drawing.Point(198, 87);
+            this.courseUpdatebutton.Location = new System.Drawing.Point(174, 89);
             this.courseUpdatebutton.Name = "courseUpdatebutton";
             this.courseUpdatebutton.Size = new System.Drawing.Size(69, 23);
             this.courseUpdatebutton.TabIndex = 10;
@@ -147,7 +145,7 @@
             // 
             // courseDeleteButton
             // 
-            this.courseDeleteButton.Location = new System.Drawing.Point(134, 87);
+            this.courseDeleteButton.Location = new System.Drawing.Point(101, 89);
             this.courseDeleteButton.Name = "courseDeleteButton";
             this.courseDeleteButton.Size = new System.Drawing.Size(58, 23);
             this.courseDeleteButton.TabIndex = 11;
@@ -156,7 +154,7 @@
             // 
             // Subjectaddbtn
             // 
-            this.Subjectaddbtn.Location = new System.Drawing.Point(580, 125);
+            this.Subjectaddbtn.Location = new System.Drawing.Point(583, 125);
             this.Subjectaddbtn.Name = "Subjectaddbtn";
             this.Subjectaddbtn.Size = new System.Drawing.Size(75, 23);
             this.Subjectaddbtn.TabIndex = 12;
@@ -165,7 +163,7 @@
             // 
             // subjectUpdateButton
             // 
-            this.subjectUpdateButton.Location = new System.Drawing.Point(508, 125);
+            this.subjectUpdateButton.Location = new System.Drawing.Point(511, 125);
             this.subjectUpdateButton.Name = "subjectUpdateButton";
             this.subjectUpdateButton.Size = new System.Drawing.Size(66, 23);
             this.subjectUpdateButton.TabIndex = 13;
@@ -174,7 +172,7 @@
             // 
             // subjectDeleteButton
             // 
-            this.subjectDeleteButton.Location = new System.Drawing.Point(439, 125);
+            this.subjectDeleteButton.Location = new System.Drawing.Point(442, 125);
             this.subjectDeleteButton.Name = "subjectDeleteButton";
             this.subjectDeleteButton.Size = new System.Drawing.Size(63, 23);
             this.subjectDeleteButton.TabIndex = 14;
@@ -184,23 +182,15 @@
             // subjectDataGridView
             // 
             this.subjectDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.subjectDataGridView.Location = new System.Drawing.Point(392, 189);
+            this.subjectDataGridView.Location = new System.Drawing.Point(373, 189);
             this.subjectDataGridView.Name = "subjectDataGridView";
             this.subjectDataGridView.Size = new System.Drawing.Size(285, 225);
             this.subjectDataGridView.TabIndex = 15;
             // 
-            // courseComboBox
-            // 
-            this.courseComboBox.FormattingEnabled = true;
-            this.courseComboBox.Location = new System.Drawing.Point(439, 55);
-            this.courseComboBox.Name = "courseComboBox";
-            this.courseComboBox.Size = new System.Drawing.Size(216, 21);
-            this.courseComboBox.TabIndex = 16;
-            // 
             // CourseCombo
             // 
             this.CourseCombo.AutoSize = true;
-            this.CourseCombo.Location = new System.Drawing.Point(362, 59);
+            this.CourseCombo.Location = new System.Drawing.Point(348, 59);
             this.CourseCombo.Name = "CourseCombo";
             this.CourseCombo.Size = new System.Drawing.Size(71, 13);
             this.CourseCombo.TabIndex = 17;
@@ -208,7 +198,7 @@
             // 
             // Subjectsearchbutton
             // 
-            this.Subjectsearchbutton.Location = new System.Drawing.Point(392, 434);
+            this.Subjectsearchbutton.Location = new System.Drawing.Point(363, 432);
             this.Subjectsearchbutton.Name = "Subjectsearchbutton";
             this.Subjectsearchbutton.Size = new System.Drawing.Size(75, 23);
             this.Subjectsearchbutton.TabIndex = 18;
@@ -218,7 +208,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(505, 164);
+            this.label6.Location = new System.Drawing.Point(469, 164);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(62, 13);
             this.label6.TabIndex = 20;
@@ -227,7 +217,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(291, 460);
+            this.label7.Location = new System.Drawing.Point(258, 472);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(119, 13);
             this.label7.TabIndex = 21;
@@ -236,14 +226,14 @@
             // courseSubjectDataGridView
             // 
             this.courseSubjectDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.courseSubjectDataGridView.Location = new System.Drawing.Point(55, 488);
+            this.courseSubjectDataGridView.Location = new System.Drawing.Point(27, 488);
             this.courseSubjectDataGridView.Name = "courseSubjectDataGridView";
             this.courseSubjectDataGridView.Size = new System.Drawing.Size(622, 82);
             this.courseSubjectDataGridView.TabIndex = 22;
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(198, 575);
+            this.button9.Location = new System.Drawing.Point(168, 576);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(75, 23);
             this.button9.TabIndex = 23;
@@ -252,7 +242,7 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(284, 578);
+            this.textBox5.Location = new System.Drawing.Point(249, 578);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(229, 20);
             this.textBox5.TabIndex = 24;
@@ -260,7 +250,7 @@
             // courseSEARCH
             // 
             this.courseSEARCH.FormattingEnabled = true;
-            this.courseSEARCH.Location = new System.Drawing.Point(157, 434);
+            this.courseSEARCH.Location = new System.Drawing.Point(127, 434);
             this.courseSEARCH.Name = "courseSEARCH";
             this.courseSEARCH.Size = new System.Drawing.Size(169, 21);
             this.courseSEARCH.TabIndex = 25;
@@ -268,7 +258,7 @@
             // combosubject
             // 
             this.combosubject.FormattingEnabled = true;
-            this.combosubject.Location = new System.Drawing.Point(486, 436);
+            this.combosubject.Location = new System.Drawing.Point(457, 432);
             this.combosubject.Name = "combosubject";
             this.combosubject.Size = new System.Drawing.Size(191, 21);
             this.combosubject.TabIndex = 26;
@@ -277,7 +267,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(719, 607);
+            this.ClientSize = new System.Drawing.Size(696, 650);
             this.Controls.Add(this.combosubject);
             this.Controls.Add(this.courseSEARCH);
             this.Controls.Add(this.textBox5);
@@ -287,7 +277,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.Subjectsearchbutton);
             this.Controls.Add(this.CourseCombo);
-            this.Controls.Add(this.courseComboBox);
             this.Controls.Add(this.subjectDataGridView);
             this.Controls.Add(this.subjectDeleteButton);
             this.Controls.Add(this.subjectUpdateButton);
@@ -303,9 +292,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CourseSubjectForm";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.CourseSubjectForm_Load);
+            this.Text = "CourseForm";
             ((System.ComponentModel.ISupportInitialize)(this.courseDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.subjectDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.courseSubjectDataGridView)).EndInit();
@@ -331,7 +320,6 @@
         private System.Windows.Forms.Button subjectUpdateButton;
         private System.Windows.Forms.Button subjectDeleteButton;
         private System.Windows.Forms.DataGridView subjectDataGridView;
-        private System.Windows.Forms.ComboBox courseComboBox;
         private System.Windows.Forms.Label CourseCombo;
         private System.Windows.Forms.Button Subjectsearchbutton;
         private System.Windows.Forms.Label label6;

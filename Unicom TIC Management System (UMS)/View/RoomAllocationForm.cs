@@ -10,11 +10,21 @@ using System.Windows.Forms;
 
 namespace Unicom_TIC_Management_System__UMS_.View
 {
-    public partial class UserControl1 : UserControl
+    public partial class RoomAllocationForm : Form
     {
-        public UserControl1()
+        public RoomAllocationForm()
         {
             InitializeComponent();
+        }
+
+        private void RoomAllocation_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

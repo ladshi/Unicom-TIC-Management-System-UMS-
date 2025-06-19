@@ -12,6 +12,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
 {
     internal class SubjectService
     {
+        /*
         public static void AddSubject(Subject subject)
         {
             using (var conn = new SQLiteConnection(DataConfig.GetConnection()))
@@ -75,26 +76,27 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             using (var conn = new SQLiteConnection(DataConfig.GetConnection()))
             {
                 var cmd = new SQLiteCommand(@"
-                    SELECT s.Id AS SubjectId, s.Name AS SubjectName, c.Name AS CourseName
+                    SELECT s.Id AS Id, s.Name AS SubjectName, c.Name AS CourseName
                     FROM Subjects s
                     JOIN Courses c ON s.CourseId = c.Id
                 ", conn);
 
-                var reader = cmd.ExecuteReader();
-
-                while (reader.Read())
+                using (SQLiteDataReader reader = cmd.ExecuteReader()) 
                 {
-                    list.Add(new CourseSubject
+                    while (reader.Read())
                     {
-                        SubjectId = Convert.ToInt32(reader["SubjectId"]),
-                        SubjectName = reader["SubjectName"].ToString(),
-                        CourseName = reader["CourseName"].ToString()
-                    });
+                        list.Add(new CourseSubject
+                        {
+                            SubjectId = Convert.ToInt32(reader["SubjectId"]),
+                            SubjectName = reader["SubjectName"].ToString(),
+                            CourseName = reader["CourseName"].ToString()
+                        });
+                    }
                 }
             }
 
             return list;
-        }
+        }*/
     }
 }
 

@@ -12,6 +12,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
 {
     internal class StaffService
     {
+        /*
         public static bool AddStaff(Staff staff)
         {
             using (var conn = DataConfig.GetConnection())
@@ -42,6 +43,6 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                     return false;
                 }
             }
-        }
+        }*/
     }
 }

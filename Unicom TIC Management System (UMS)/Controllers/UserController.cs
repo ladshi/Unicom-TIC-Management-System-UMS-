@@ -12,6 +12,7 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
 {
     internal class UserController
     {
+        
         public static bool ValidateLogin(string username, string password)
         {
             List<User> users = UserService.GetAllUsers();
@@ -55,7 +56,7 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
                 }
             }
         }
-
+        
 
     }
 }

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.lblSname = new System.Windows.Forms.Label();
-            this.textSDOB = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textSaddress = new System.Windows.Forms.TextBox();
@@ -55,17 +54,17 @@
             this.lblGurPhone = new System.Windows.Forms.Label();
             this.textGurPhoNo = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textEmail = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.studentsgridview = new System.Windows.Forms.DataGridView();
             this.label14 = new System.Windows.Forms.Label();
             this.searchstudent = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.comboGender = new System.Windows.Forms.ComboBox();
+            this.dateTimePickerDOB = new System.Windows.Forms.DateTimePicker();
+            ((System.ComponentModel.ISupportInitialize)(this.studentsgridview)).BeginInit();
             this.SuspendLayout();
             // 
             // lblSname
@@ -77,14 +76,6 @@
             this.lblSname.Size = new System.Drawing.Size(90, 19);
             this.lblSname.TabIndex = 0;
             this.lblSname.Text = "First Name";
-            // 
-            // textSDOB
-            // 
-            this.textSDOB.Location = new System.Drawing.Point(76, 159);
-            this.textSDOB.Name = "textSDOB";
-            this.textSDOB.ReadOnly = true;
-            this.textSDOB.Size = new System.Drawing.Size(257, 27);
-            this.textSDOB.TabIndex = 3;
             // 
             // label2
             // 
@@ -189,7 +180,6 @@
             this.ButtonADD.TabIndex = 26;
             this.ButtonADD.Text = "ADD";
             this.ButtonADD.UseVisualStyleBackColor = false;
-
             // 
             // buttonUpdate
             // 
@@ -290,12 +280,12 @@
             this.label8.TabIndex = 44;
             this.label8.Text = "Email ";
             // 
-            // textBox3
+            // textEmail
             // 
-            this.textBox3.Location = new System.Drawing.Point(75, 367);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(554, 27);
-            this.textBox3.TabIndex = 0;
+            this.textEmail.Location = new System.Drawing.Point(75, 367);
+            this.textEmail.Name = "textEmail";
+            this.textEmail.Size = new System.Drawing.Size(554, 27);
+            this.textEmail.TabIndex = 0;
             // 
             // label10
             // 
@@ -333,13 +323,13 @@
             this.label13.TabIndex = 51;
             this.label13.Text = "Gurdian\'s Contact No";
             // 
-            // dataGridView1
+            // studentsgridview
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(72, 473);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(557, 108);
-            this.dataGridView1.TabIndex = 52;
+            this.studentsgridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.studentsgridview.Location = new System.Drawing.Point(72, 473);
+            this.studentsgridview.Name = "studentsgridview";
+            this.studentsgridview.Size = new System.Drawing.Size(557, 108);
+            this.studentsgridview.TabIndex = 52;
             // 
             // label14
             // 
@@ -357,38 +347,37 @@
             this.searchstudent.Name = "searchstudent";
             this.searchstudent.Size = new System.Drawing.Size(180, 27);
             this.searchstudent.TabIndex = 54;
-        
             // 
-            // comboBox1
+            // comboGender
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(76, 211);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(261, 27);
-            this.comboBox1.TabIndex = 55;
+            this.comboGender.FormattingEnabled = true;
+            this.comboGender.Location = new System.Drawing.Point(76, 211);
+            this.comboGender.Name = "comboGender";
+            this.comboGender.Size = new System.Drawing.Size(261, 27);
+            this.comboGender.TabIndex = 55;
             // 
-            // dateTimePicker1
+            // dateTimePickerDOB
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(183, 128);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(154, 27);
-            this.dateTimePicker1.TabIndex = 56;
+            this.dateTimePickerDOB.Location = new System.Drawing.Point(76, 153);
+            this.dateTimePickerDOB.Name = "dateTimePickerDOB";
+            this.dateTimePickerDOB.Size = new System.Drawing.Size(258, 27);
+            this.dateTimePickerDOB.TabIndex = 56;
             // 
             // StudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(696, 661);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.comboBox1);
+            this.ClientSize = new System.Drawing.Size(696, 650);
+            this.Controls.Add(this.dateTimePickerDOB);
+            this.Controls.Add(this.comboGender);
             this.Controls.Add(this.searchstudent);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.studentsgridview);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textEmail);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.textGurPhoNo);
             this.Controls.Add(this.lblGurPhone);
@@ -414,14 +403,13 @@
             this.Controls.Add(this.textSaddress);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textSDOB);
             this.Controls.Add(this.lblSname);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "StudentForm";
             this.Text = "StudentForm";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentsgridview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -430,7 +418,6 @@
         #endregion
 
         private System.Windows.Forms.Label lblSname;
-        private System.Windows.Forms.TextBox textSDOB;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textSaddress;
@@ -456,15 +443,15 @@
         private System.Windows.Forms.Label lblGurPhone;
         private System.Windows.Forms.TextBox textGurPhoNo;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textEmail;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView studentsgridview;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox searchstudent;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ComboBox comboGender;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDOB;
     }
 }

@@ -11,8 +11,10 @@ using Unicom_TIC_Management_System__UMS_.Repositaries;
 
 namespace Unicom_TIC_Management_System__UMS_.Services
 {
+    
     internal class UserService
     {
+        
         public static List<User> GetAllUsers()
         {
             List<User> users = new List<User>();
@@ -79,6 +81,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                 }
             }
         }
+    
 
     }
 }

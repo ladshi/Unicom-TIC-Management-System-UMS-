@@ -46,6 +46,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
             form.Dock = DockStyle.Fill;
             this.mainPanel.Controls.Add(form);
             this.mainPanel.Tag = form;
+            form.BringToFront();
             form.Show();
         }
 
@@ -78,15 +79,27 @@ namespace Unicom_TIC_Management_System__UMS_.View
         {
             treeView1.Nodes.Clear();
 
-            if (currentRole == UserRole.Admin)
+            if (currentRole == UserRole.MainAdmin)
             {
                 TreeNode userNode = new TreeNode("Manage Users");
+                userNode.Nodes.Add("Manage Admins");
+                userNode.Nodes.Add("Manage Staffs");
+                userNode.Nodes.Add("Manage Students");
+                userNode.Nodes.Add("Manage Lecturers");
 
-                // Only Main Admin can manage other admins
-                if (accessLevel == "Main Admin")
-                {
-                    userNode.Nodes.Add("Manage Admins");
-                }
+                TreeNode academicNode = new TreeNode("Manage Academics");
+                academicNode.Nodes.Add("Manage Courses & Subjects");
+                academicNode.Nodes.Add("Manage Exams");
+                academicNode.Nodes.Add("Manage Marks");
+                academicNode.Nodes.Add("Manage RoomAllocation");
+                academicNode.Nodes.Add("Manage Timetables");
+
+                treeView1.Nodes.Add(userNode);
+                treeView1.Nodes.Add(academicNode);
+            }
+            else if (currentRole == UserRole.Admin)
+            {
+                TreeNode userNode = new TreeNode("Manage Users");
 
                 userNode.Nodes.Add("Manage Staffs");
                 userNode.Nodes.Add("Manage Students");
@@ -96,6 +109,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
                 academicNode.Nodes.Add("Manage Courses & Subjects");
                 academicNode.Nodes.Add("Manage Exams");
                 academicNode.Nodes.Add("Manage Marks");
+                academicNode.Nodes.Add("Manage RoomAllocation");
                 academicNode.Nodes.Add("Manage Timetables");
 
                 treeView1.Nodes.Add(userNode);
@@ -103,22 +117,22 @@ namespace Unicom_TIC_Management_System__UMS_.View
             }
             else if (currentRole == UserRole.Staff)
             {
-                TreeNode staffNode = new TreeNode("Academic Tasks");
-                staffNode.Nodes.Add("Manage Exams");
-                staffNode.Nodes.Add("Manage Marks");
-                staffNode.Nodes.Add("View Timetables");
+                TreeNode academicNode = new TreeNode("Manage Academics");
+                academicNode.Nodes.Add("Manage Marks");
+                academicNode.Nodes.Add("Manage Exams");
+                academicNode.Nodes.Add("Manage Timetables");
 
-                treeView1.Nodes.Add(staffNode);
+                treeView1.Nodes.Add(academicNode);
             }
             else if (currentRole == UserRole.Lecturer)
             {
-                TreeNode lecturerNode = new TreeNode("Lecturer Panel");
-                lecturerNode.Nodes.Add("Manage Marks");
-                lecturerNode.Nodes.Add("View Timetables");
+                TreeNode academicNode = new TreeNode("Manage Academics");
+                academicNode.Nodes.Add("Manage Marks");
+                academicNode.Nodes.Add("Manage Timetables");
 
-                treeView1.Nodes.Add(lecturerNode);
+                treeView1.Nodes.Add(academicNode);
             }
-            else if (currentRole == UserRole.Student)
+            /*else if (currentRole == UserRole.Student)
             {
                 TreeNode studentNode = new TreeNode("Student Portal");
                 studentNode.Nodes.Add("My Marks");
@@ -126,7 +140,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
                 studentNode.Nodes.Add("My Profile");
 
                 treeView1.Nodes.Add(studentNode);
-            }
+            }*/
 
             treeView1.ExpandAll(); // optional
         }
@@ -138,34 +152,45 @@ namespace Unicom_TIC_Management_System__UMS_.View
             switch (selectedNode)
             {
                 case "Manage Admins":
-                    LoadForm(new AdminForm());  // Add appropriate constructor if needed
+                    LoadForm(new AdminForm());  
                     break;
 
-                case "Manage Students":
-                    LoadForm(new StudentForm());  // Add appropriate constructor if needed
-                    break;
-
-                case "Manage Courses & Subjects":
-                    LoadForm(new CourseSubjectForm());
-                    break;
-
-                /*case "Manage Staffs":
-                    LoadForm(new StaffForm());  // Add appropriate constructor if needed
+                case "Manage Staffs":
+                    LoadForm(new AdminForm(false, UserRole.Staff));  
                     break;
 
                 case "Manage Lecturers":
-                    LoadForm(new LecturerForm());  // Add appropriate constructor if needed
+                    LoadForm(new AdminForm(false, UserRole.Lecturer));  
+                    break;
+
+                case "Manage Students":
+                    LoadForm(new StudentForm());  
+                    break;
+
+                case "Manage Courses & Subjects":
+                    //MessageBox.Show("Trying to open CourseSubjectForm");
+                    //LoadForm(new CourseSubjectForm());
+                    //break;
+                    LoadForm(new CourseSubjectForm());  
                     break;
 
                 case "Manage Exams":
-                    LoadForm(new ExamForm());
+                    LoadForm(new ExamForm());  
                     break;
 
                 case "Manage Marks":
-                    LoadForm(new MarksForm());
+                    LoadForm(new MarksForm()); 
+                    break;
+
+                case "Manage RoomAllocation":
+                    LoadForm(new RoomAllocationForm());
                     break;
 
                 case "Manage Timetables":
+                    LoadForm(new TimeTableForm());
+                    break;
+
+                /*case "Manage Timetables":
                 case "View Timetables":
                     LoadForm(new TimetableForm());
                     break;
@@ -178,7 +203,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
                     LoadForm(new MyTimetableForm());
                     break;
 
-                case "My Profile":
+                /*case "My Profile":
                     LoadForm(new MyProfileForm(username));  // Example
                     break;*/
 

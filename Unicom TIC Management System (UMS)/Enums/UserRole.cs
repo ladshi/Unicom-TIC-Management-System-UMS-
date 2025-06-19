@@ -8,6 +8,7 @@ namespace Unicom_TIC_Management_System__UMS_.Enum
 {
     public enum UserRole
     {
+        MainAdmin,
         Admin,
         Student,
         Staff,

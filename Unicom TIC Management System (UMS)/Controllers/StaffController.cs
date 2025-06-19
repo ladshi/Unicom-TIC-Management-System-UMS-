@@ -10,11 +10,13 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
 {
     internal class StaffController
     {
+        /*
         private StaffService staffService = new StaffService();
 
         public bool AddStaff(Staff staff)
         {
             return StaffService.AddStaff(staff);  
         }
+        */
     }
 }

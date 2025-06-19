@@ -7,20 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unicom_TIC_Management_System__UMS_.Controllers;
-using Unicom_TIC_Management_System__UMS_.Enum;
-using Unicom_TIC_Management_System__UMS_.Models;
 
 namespace Unicom_TIC_Management_System__UMS_.View
 {
-    public partial class StudentForm : Form
+    public partial class ExamForm : Form
     {
-        public StudentForm()
+        public ExamForm()
         {
             InitializeComponent();
         }
-
-        
-
     }
 }

@@ -10,6 +10,7 @@ namespace Unicom_TIC_Management_System__UMS_.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int SubjectId { get; set; }
 
     }
 }

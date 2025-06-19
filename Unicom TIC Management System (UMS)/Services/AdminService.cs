@@ -12,8 +12,10 @@ namespace Unicom_TIC_Management_System__UMS_.Services
 {
     public class AdminService
     {
+        /*
         public bool AddAdmin(Admin admin)
         {
+            
             using (var conn = DataConfig.GetConnection())
             {
                 try
@@ -43,7 +45,12 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                     return false;
                 }
             }
-        }
-
+        }*/
     }
 }
+
+
+
+
+
+

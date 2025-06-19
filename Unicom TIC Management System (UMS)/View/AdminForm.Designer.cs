@@ -51,13 +51,12 @@
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.textsearch = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.labeltitle = new System.Windows.Forms.Label();
             this.buttonsearch = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.textdob = new System.Windows.Forms.TextBox();
+            this.combosearch = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.admingridview)).BeginInit();
             this.SuspendLayout();
             // 
@@ -234,7 +233,6 @@
             this.buttonAdd.TabIndex = 20;
             this.buttonAdd.Text = "ADD";
             this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click_1);
             // 
             // buttonUpdate
             // 
@@ -263,14 +261,6 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 13);
             this.label3.TabIndex = 23;
-            // 
-            // textsearch
-            // 
-            this.textsearch.Location = new System.Drawing.Point(129, 584);
-            this.textsearch.Name = "textsearch";
-            this.textsearch.Size = new System.Drawing.Size(220, 20);
-            this.textsearch.TabIndex = 24;
-            this.textsearch.TextChanged += new System.EventHandler(this.textsearch_TextChanged);
             // 
             // label6
             // 
@@ -313,30 +303,30 @@
             // 
             // dateTimePicker
             // 
-            this.dateTimePicker.Location = new System.Drawing.Point(502, 202);
+            this.dateTimePicker.Location = new System.Drawing.Point(340, 202);
             this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(117, 20);
+            this.dateTimePicker.Size = new System.Drawing.Size(279, 20);
             this.dateTimePicker.TabIndex = 30;
             // 
-            // textdob
+            // combosearch
             // 
-            this.textdob.Location = new System.Drawing.Point(340, 202);
-            this.textdob.Name = "textdob";
-            this.textdob.Size = new System.Drawing.Size(152, 20);
-            this.textdob.TabIndex = 31;
+            this.combosearch.FormattingEnabled = true;
+            this.combosearch.Location = new System.Drawing.Point(121, 582);
+            this.combosearch.Name = "combosearch";
+            this.combosearch.Size = new System.Drawing.Size(228, 21);
+            this.combosearch.TabIndex = 31;
             // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(659, 650);
-            this.Controls.Add(this.textdob);
+            this.ClientSize = new System.Drawing.Size(696, 650);
+            this.Controls.Add(this.combosearch);
             this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.buttonsearch);
             this.Controls.Add(this.labeltitle);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textsearch);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonUpdate);
@@ -396,12 +386,11 @@
         private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textsearch;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label labeltitle;
         private System.Windows.Forms.Button buttonsearch;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
-        private System.Windows.Forms.TextBox textdob;
+        private System.Windows.Forms.ComboBox combosearch;
     }
 }

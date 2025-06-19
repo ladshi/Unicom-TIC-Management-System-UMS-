@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +11,7 @@ using Unicom_TIC_Management_System__UMS_.Controllers;
 using Unicom_TIC_Management_System__UMS_.Enum;
 using Unicom_TIC_Management_System__UMS_.Models;
 using Unicom_TIC_Management_System__UMS_.Services;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Unicom_TIC_Management_System__UMS_.View
 {
@@ -19,7 +20,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
         private bool isFirstTime;
         private UserRole currentMode; // Admin or Staff
 
-        public AdminForm(bool firstTime = false, UserRole mode = UserRole.Admin)
+        public AdminForm(bool firstTime = false, UserRole mode = UserRole.MainAdmin)
         {
             InitializeComponent();
             isFirstTime = firstTime;
@@ -37,12 +38,14 @@ namespace Unicom_TIC_Management_System__UMS_.View
                 buttonUpdate.Visible = false;
                 buttonDelete.Visible = false;
                 buttonsearch.Visible = false;
-                textsearch.Visible = false;
+                combosearch.Visible = false;
                 admingridview.Visible = false;
 
                 comboaccess.Items.Clear();
-                comboaccess.Items.Add("Main Admin");
-                comboaccess.Items.Add("Admin");
+                //comboaccess.Items.Add("Main Admin");//hard coding method 
+                //comboaccess.Items.Add("Admin");
+                comboaccess.Items.Add(UserRole.MainAdmin.ToString());
+                comboaccess.Items.Add(UserRole.Admin.ToString());
             }
             else
             {
@@ -55,14 +58,22 @@ namespace Unicom_TIC_Management_System__UMS_.View
             if (currentMode == UserRole.Staff)
             {
                 labeltitle.Text = "STAFF DETAILS";
-                labelaccess.Visible = false;
-                comboaccess.Visible = false;
+                labelaccess.Visible = true;
+                comboaccess.Visible = true;
+                comboaccess.Items.Add(UserRole.Staff.ToString());
             }
             else if (currentMode == UserRole.Admin)
             {
                 labeltitle.Text = "ADMIN DETAILS";
                 labelaccess.Visible = true;
-                comboaccess.Visible = true;
+                comboaccess.Visible = true;  
+            }
+            else if (currentMode == UserRole.Lecturer)
+            {
+                labeltitle.Text = "LECTURER DETAILS";
+                labelaccess.Visible = true;
+                comboaccess.Visible =   true;
+                comboaccess.Items.Add(UserRole.Lecturer.ToString());
             }
         }
 
@@ -71,28 +82,28 @@ namespace Unicom_TIC_Management_System__UMS_.View
             // Load admin list into grid here when not first-time
         }
 
-        private void buttonAdd_Click_1(object sender, EventArgs e)
+        private void buttonAdd_Click(object sender, EventArgs e)
         {
-            string usernameInput = textUsername.Text.Trim();
+            string username = textUsername.Text.Trim();
+            string password = textpassword.Text.Trim();
+            UserRole selectedRole = (UserRole)Enum.Parse(typeof(UserRole), comboaccess.SelectedItem.ToString());
 
-            if (UserService.IsUsernameExists(usernameInput))
+            if (UserService.IsUsernameExists(username))
             {
-                MessageBox.Show("Username already exists. Please choose a different username.");
+                MessageBox.Show("Username already exists.");
                 return;
             }
 
-            var user = new User
+            int userId = UserService.AddUser(new User
             {
-                UserName = usernameInput,
-                Password = textpassword.Text.Trim(),
-                Role = currentMode
-            };
-
-            int userId = UserController.AddUser(user);
+                UserName = username,
+                Password = password,
+                Role = selectedRole
+            });
 
             if (userId > 0)
             {
-                if (currentMode == UserRole.Admin)
+                if (selectedRole == UserRole.Admin || selectedRole == UserRole.MainAdmin)
                 {
                     var admin = new Admin
                     {
@@ -101,24 +112,13 @@ namespace Unicom_TIC_Management_System__UMS_.View
                         PhoneNumber = textContactNo.Text.Trim(),
                         Email = textEmail.Text.Trim(),
                         Address = textAddress.Text.Trim(),
+                        DOB = dateTimePicker.Text.Trim(),
                         AccessLevel = comboaccess.Text,
                         UserId = userId
                     };
-
-                    AdminController adminController = new AdminController();
-                    if (adminController.AddAdmin(admin))
-                    {
-                        MessageBox.Show("Admin added successfully.");
-                        this.Hide();
-                        new Login().ShowDialog();
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Admin creation failed.");
-                    }
+                    AdminService.AddAdmin(admin);
                 }
-                else if (currentMode == UserRole.Staff)
+                else if (selectedRole == UserRole.Staff)
                 {
                     var staff = new Staff
                     {
@@ -127,29 +127,35 @@ namespace Unicom_TIC_Management_System__UMS_.View
                         PhoneNumber = textContactNo.Text.Trim(),
                         Email = textEmail.Text.Trim(),
                         Address = textAddress.Text.Trim(),
-                        DOB = textdob.Text.Trim(),
+                        DOB = dateTimePicker.Text.Trim(),
                         UserId = userId
                     };
-
-                    StaffController staffController = new StaffController();
-                    if (staffController.AddStaff(staff))
-                    {
-                        MessageBox.Show("Staff added successfully.");
-                        this.Hide();
-                        new Login().ShowDialog();
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Staff creation failed.");
-                    }
+                    StaffService.AddStaff(staff);
                 }
+                else if (selectedRole == UserRole.Lecturer)
+                {
+                    var lecturer = new Lecturer
+                    {
+                        FirstName = textfirstname.Text.Trim(),
+                        LastName = textLastName.Text.Trim(),
+                        ContactNo = textContactNo.Text.Trim(),
+                        Email = textEmail.Text.Trim(),
+                        Address = textAddress.Text.Trim(),
+                        DOB = dateTimePicker.Text.Trim(),
+                        UserId = userId
+                    };
+                    LecturerService.AddLecturer(lecturer);
+                }
+
+                MessageBox.Show("User added successfully!");
+                LoadAdmins();
             }
             else
             {
-                MessageBox.Show("User creation failed.");
+                MessageBox.Show("Failed to create user.");
             }
         }
+
 
         private void textUsername_TextChanged(object sender, EventArgs e) { }
         private void comboaccess_SelectedIndexChanged(object sender, EventArgs e) { }

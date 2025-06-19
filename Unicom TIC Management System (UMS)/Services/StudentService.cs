@@ -11,7 +11,8 @@ namespace Unicom_TIC_Management_System__UMS_.Services
 {
     public class StudentService
     {
-        public bool AddStudent(Student student, Guardian guardian, User user)
+        /*
+        public bool AddStudent(Student student)
         {
             using (var conn = DataConfig.GetConnection())
             {
@@ -22,7 +23,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                     try
                     {
                         // Insert into Users
-                        var userCmd = conn.CreateCommand();
+                        /*var userCmd = conn.CreateCommand();
                         userCmd.CommandText = "INSERT INTO Users (Username, Password) VALUES (@username, @password); SELECT last_insert_rowid();";
                         userCmd.Parameters.AddWithValue("@username", user.UserName);
                         userCmd.Parameters.AddWithValue("@password", user.Password);
@@ -51,8 +52,8 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                         studentCmd.Parameters.AddWithValue("@address", student.Address);
                         studentCmd.Parameters.AddWithValue("@course", student.CourseName);
                         studentCmd.Parameters.AddWithValue("@email", student.Email);
-                        studentCmd.Parameters.AddWithValue("@guardianId", guardianId);
-                        studentCmd.Parameters.AddWithValue("@userId", userId);
+                        //studentCmd.Parameters.AddWithValue("@guardianId", guardianId);
+                        //studentCmd.Parameters.AddWithValue("@userId", userId);
 
                         studentCmd.ExecuteNonQuery();
 
@@ -93,12 +94,12 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                             FirstName = reader["FirstName"].ToString(),
                             LastName = reader["LastName"].ToString(),
                             DOB = reader["DOB"].ToString(),
-                            Gender = reader["Gender"].ToString(),
+                            //Gender = reader["Gender"].ToString(),
                             PhoneNumber = reader["PhoneNumber"].ToString(),
                             Address = reader["Address"].ToString(),
                             CourseName = reader["Course"].ToString(),
                             Email = reader["Email"].ToString(),
-                            Guardian = new Guardian
+                           /* Guardian = new Guardian
                             {
                                 Name = reader["GuardianName"].ToString(),
                                 PhoneNumber = reader["GuardianContact"].ToString()
@@ -112,6 +113,6 @@ namespace Unicom_TIC_Management_System__UMS_.Services
 
             return students;
         }
-
+        */
     }
 }
