@@ -11,10 +11,10 @@ using Unicom_TIC_Management_System__UMS_.Repositaries;
 
 namespace Unicom_TIC_Management_System__UMS_.Services
 {
-    
+
     internal class UserService
     {
-        
+
         public static List<User> GetAllUsers()
         {
             List<User> users = new List<User>();
@@ -28,7 +28,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                     {
                         users.Add(new User
                         {
-                            Id = Convert.ToInt32(reader["Id"]),
+                            UserId = Convert.ToInt32(reader["Id"]),
                             UserName = reader["Username"].ToString(),
                             Password = reader["Password"].ToString(),
                             Role = System.Enum.TryParse(reader["Role"].ToString(), out UserRole role) ? role : UserRole.Student,
@@ -82,21 +82,79 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             }
         }
 
-        public bool UpdateUser(User user)
+        public static bool UpdateUser(User user)
         {
-            using (var conn = new SQLiteConnection(DataConfig.GetConnection()))
+            using (var conn = DataConfig.GetConnection())
             {
-                string query = "UPDATE Users SET Password = @Password WHERE Username = @Username";
+                string query = @"UPDATE Users 
+                         SET UserName = @username, Password = @password, Role = @role
+                         WHERE UserId = @userId";
+
                 using (var cmd = new SQLiteCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Password", user.Password);
-                    cmd.Parameters.AddWithValue("@Username", user.UserName);
+                    cmd.Parameters.AddWithValue("@username", user.UserName);
+                    cmd.Parameters.AddWithValue("@password", user.Password);
+                    cmd.Parameters.AddWithValue("@role", user.Role.ToString());
+                    cmd.Parameters.AddWithValue("@userId", user.UserId);
+
                     return cmd.ExecuteNonQuery() > 0;
                 }
             }
         }
 
+        public static bool DeleteUser(int userId)
+        {
+            using (var conn = DataConfig.GetConnection())
+            {
+                string query = "DELETE FROM Users WHERE UserId = @userId";
+                using (var cmd = new SQLiteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@userId", userId);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+        }
 
+        public static int GetUserIdByUsername(string username)
+        {
+            using (var conn = DataConfig.GetConnection())
+            {
+                string query = "SELECT UserId FROM Users WHERE UserName = @username";
+                using (var cmd = new SQLiteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@username", username);
+                    object result = cmd.ExecuteScalar();
+                    if (result != null)
+                        return Convert.ToInt32(result);
+                }
+            }
+            return -1;
+        }
+        public static User GetUserById(int userId)
+        {
+            using (var conn = DataConfig.GetConnection())
+            {
+                string query = "SELECT * FROM Users WHERE UserId = @userId";
+                using (var cmd = new SQLiteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@userId", userId);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new User
+                            {
+                                UserId = Convert.ToInt32(reader["UserId"]),
+                                UserName = reader["UserName"].ToString(),
+                                Password = reader["Password"].ToString(),
+                                Role = (UserRole)System.Enum.Parse(typeof(UserRole), reader["Role"].ToString())
+                            };
+                        }
+                    }
+                }
+            }
+            return null;
+        }
 
     }
 }

@@ -38,7 +38,7 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
             return UserService.IsUserTableEmpty();
         }
 
-        public static string GetAccessLevel(string username)
+        /*public static string GetAccessLevel(string username)
         {
             using (var conn = DataConfig.GetConnection())
             {
@@ -55,8 +55,33 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
                     return result?.ToString() ?? "Admin"; // fallback default
                 }
             }
+        }*/
+
+
+        public static bool IsUsernameExists(string username)
+        {
+            return UserService.IsUsernameExists(username);
         }
-        
+
+        public static bool UpdateUser(User user)
+        {
+            return UserService.UpdateUser(user);
+        }
+
+        public static bool DeleteUser(int userId)
+        {
+            return UserService.DeleteUser(userId);
+        }
+
+        public static int GetUserIdByUsername(string username)
+        {
+            return UserService.GetUserIdByUsername(username);
+        }
+
+        public static User GetUserById(int userId)
+        {
+            return UserService.GetUserById(userId);
+        }
 
     }
 }

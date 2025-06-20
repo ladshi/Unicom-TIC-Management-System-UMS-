@@ -244,6 +244,7 @@
             this.buttonUpdate.TabIndex = 21;
             this.buttonUpdate.Text = "UPDATE";
             this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
             // buttonDelete
             // 
@@ -254,6 +255,7 @@
             this.buttonDelete.TabIndex = 22;
             this.buttonDelete.Text = "DELETE";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // label3
             // 
@@ -291,6 +293,7 @@
             this.buttonsearch.TabIndex = 28;
             this.buttonsearch.Text = "SEARCH";
             this.buttonsearch.UseVisualStyleBackColor = true;
+            this.buttonsearch.Click += new System.EventHandler(this.buttonsearch_Click);
             // 
             // label8
             // 
@@ -356,6 +359,7 @@
             this.Name = "AdminForm";
             this.Text = "AdminForm";
             this.Load += new System.EventHandler(this.AdminForm_Load);
+            this.Click += new System.EventHandler(this.admingridview_SelectionChanged);
             ((System.ComponentModel.ISupportInitialize)(this.admingridview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

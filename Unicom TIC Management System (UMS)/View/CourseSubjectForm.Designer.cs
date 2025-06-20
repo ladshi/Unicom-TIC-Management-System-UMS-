@@ -51,8 +51,8 @@
             this.button9 = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.courseSEARCH = new System.Windows.Forms.ComboBox();
-            this.combosubject = new System.Windows.Forms.ComboBox();
             this.Coursenamecombo = new System.Windows.Forms.ComboBox();
+            this.Subjectnamecombo = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.courseDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subjectDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.courseSubjectDataGridView)).BeginInit();
@@ -116,6 +116,7 @@
             this.courseDataGridView.Name = "courseDataGridView";
             this.courseDataGridView.Size = new System.Drawing.Size(288, 231);
             this.courseDataGridView.TabIndex = 6;
+            this.courseDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.courseDataGridView_CellContentClick);
             // 
             // coursesearchbutton
             // 
@@ -125,15 +126,17 @@
             this.coursesearchbutton.TabIndex = 7;
             this.coursesearchbutton.Text = "SEARCH";
             this.coursesearchbutton.UseVisualStyleBackColor = true;
+            this.coursesearchbutton.Click += new System.EventHandler(this.coursesearchbutton_Click);
             // 
             // courseAddButton
             // 
-            this.courseAddButton.Location = new System.Drawing.Point(249, 87);
+            this.courseAddButton.Location = new System.Drawing.Point(249, 89);
             this.courseAddButton.Name = "courseAddButton";
             this.courseAddButton.Size = new System.Drawing.Size(53, 23);
             this.courseAddButton.TabIndex = 9;
             this.courseAddButton.Text = "ADD";
             this.courseAddButton.UseVisualStyleBackColor = true;
+            this.courseAddButton.Click += new System.EventHandler(this.courseAddButton_Click);
             // 
             // courseUpdatebutton
             // 
@@ -143,6 +146,7 @@
             this.courseUpdatebutton.TabIndex = 10;
             this.courseUpdatebutton.Text = "UPDATE";
             this.courseUpdatebutton.UseVisualStyleBackColor = true;
+            this.courseUpdatebutton.Click += new System.EventHandler(this.courseUpdatebutton_Click);
             // 
             // courseDeleteButton
             // 
@@ -152,6 +156,7 @@
             this.courseDeleteButton.TabIndex = 11;
             this.courseDeleteButton.Text = "DELETE";
             this.courseDeleteButton.UseVisualStyleBackColor = true;
+            this.courseDeleteButton.Click += new System.EventHandler(this.courseDeleteButton_Click);
             // 
             // Subjectaddbtn
             // 
@@ -161,6 +166,7 @@
             this.Subjectaddbtn.TabIndex = 12;
             this.Subjectaddbtn.Text = "ADD";
             this.Subjectaddbtn.UseVisualStyleBackColor = true;
+            this.Subjectaddbtn.Click += new System.EventHandler(this.Subjectaddbtn_Click);
             // 
             // subjectUpdateButton
             // 
@@ -170,6 +176,7 @@
             this.subjectUpdateButton.TabIndex = 13;
             this.subjectUpdateButton.Text = "UPDATE";
             this.subjectUpdateButton.UseVisualStyleBackColor = true;
+            this.subjectUpdateButton.Click += new System.EventHandler(this.subjectUpdateButton_Click);
             // 
             // subjectDeleteButton
             // 
@@ -179,6 +186,7 @@
             this.subjectDeleteButton.TabIndex = 14;
             this.subjectDeleteButton.Text = "DELETE";
             this.subjectDeleteButton.UseVisualStyleBackColor = true;
+            this.subjectDeleteButton.Click += new System.EventHandler(this.subjectDeleteButton_Click);
             // 
             // subjectDataGridView
             // 
@@ -187,6 +195,7 @@
             this.subjectDataGridView.Name = "subjectDataGridView";
             this.subjectDataGridView.Size = new System.Drawing.Size(285, 225);
             this.subjectDataGridView.TabIndex = 15;
+            this.subjectDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.subjectDataGridView_CellContentClick);
             // 
             // CourseCombo
             // 
@@ -205,6 +214,7 @@
             this.Subjectsearchbutton.TabIndex = 18;
             this.Subjectsearchbutton.Text = "SEARCH";
             this.Subjectsearchbutton.UseVisualStyleBackColor = true;
+            this.Subjectsearchbutton.Click += new System.EventHandler(this.Subjectsearchbutton_Click);
             // 
             // label6
             // 
@@ -256,14 +266,6 @@
             this.courseSEARCH.Size = new System.Drawing.Size(169, 21);
             this.courseSEARCH.TabIndex = 25;
             // 
-            // combosubject
-            // 
-            this.combosubject.FormattingEnabled = true;
-            this.combosubject.Location = new System.Drawing.Point(457, 432);
-            this.combosubject.Name = "combosubject";
-            this.combosubject.Size = new System.Drawing.Size(191, 21);
-            this.combosubject.TabIndex = 26;
-            // 
             // Coursenamecombo
             // 
             this.Coursenamecombo.FormattingEnabled = true;
@@ -272,13 +274,23 @@
             this.Coursenamecombo.Size = new System.Drawing.Size(216, 21);
             this.Coursenamecombo.TabIndex = 27;
             // 
+            // Subjectnamecombo
+            // 
+            this.Subjectnamecombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Subjectnamecombo.FormattingEnabled = true;
+            this.Subjectnamecombo.Location = new System.Drawing.Point(444, 432);
+            this.Subjectnamecombo.Name = "Subjectnamecombo";
+            this.Subjectnamecombo.Size = new System.Drawing.Size(216, 21);
+            this.Subjectnamecombo.TabIndex = 0;
+            this.Subjectnamecombo.SelectedIndexChanged += new System.EventHandler(this.Subjectnamecombo_SelectedIndexChanged);
+            // 
             // CourseSubjectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(696, 650);
+            this.Controls.Add(this.Subjectnamecombo);
             this.Controls.Add(this.Coursenamecombo);
-            this.Controls.Add(this.combosubject);
             this.Controls.Add(this.courseSEARCH);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.button9);
@@ -338,7 +350,7 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.ComboBox courseSEARCH;
-        private System.Windows.Forms.ComboBox combosubject;
         private System.Windows.Forms.ComboBox Coursenamecombo;
+        private System.Windows.Forms.ComboBox Subjectnamecombo;
     }
 }

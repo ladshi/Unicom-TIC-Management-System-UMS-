@@ -18,5 +18,20 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
         {
             return LectureService.GetAllLecturers();
         }
+        public static bool UpdateLecturer(Lecturer lec)
+        {
+            return LectureService.UpdateLecturer(lec);
+        }
+
+        public static bool DeleteLecturer(int userId)
+        {
+            return LectureService.DeleteLecturer(userId);
+        }
+
+        public static List<Lecturer> SearchLecturers(string keyword)
+        {
+            return LectureService.SearchLecturers(keyword);
+        }
+
     }
 }

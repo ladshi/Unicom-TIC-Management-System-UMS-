@@ -18,14 +18,13 @@ namespace Unicom_TIC_Management_System__UMS_.View
     {
         private UserRole currentRole;
         private string username;
-        private string accessLevel;
 
-        public DashboardForm(UserRole role, string username, string accessLevel)
+        public DashboardForm(UserRole role, string username)
         {
             InitializeComponent();
             this.currentRole = role;
             this.username = username;
-            this.accessLevel = accessLevel;
+            //this.accessLevel = accessLevel;
 
             LoadForm(new defaultForm());
 

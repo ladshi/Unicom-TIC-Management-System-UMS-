@@ -17,7 +17,7 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
             
                 cmd.CommandText = @"
                     CREATE TABLE IF NOT EXISTS Users(
-                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        UserId INTEGER PRIMARY KEY AUTOINCREMENT,
                         Username TEXT NOT NULL UNIQUE,
                         Password TEXT NOT NULL,
                         Role TEXT NOT NULL

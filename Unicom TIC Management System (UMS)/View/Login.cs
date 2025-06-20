@@ -25,7 +25,9 @@ namespace Unicom_TIC_Management_System__UMS_.View
         {
             string username = textUsername.Text.Trim();
             string password = textPassword.Text;
-            UserRole role = UserRole.Admin;
+            User user = UserController.GetUserById(UserController.GetUserIdByUsername(username));
+            UserRole role = user != null ? user.Role : UserRole.Admin;
+
 
             if (username == "")
             {
@@ -49,10 +51,10 @@ namespace Unicom_TIC_Management_System__UMS_.View
 
             if (isValid)
             {
-                string accessLevel = UserController.GetAccessLevel(username);
+                //string accessLevel = UserController.GetAccessLevel(username);
                 MessageBox.Show("Login successful!", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Hide();
-                DashboardForm dashboardForm = new DashboardForm(role, username , accessLevel);
+                DashboardForm dashboardForm = new DashboardForm(role, username);
                 dashboardForm.Show();
                 this.Hide();
             }

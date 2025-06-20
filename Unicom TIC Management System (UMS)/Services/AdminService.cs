@@ -80,29 +80,79 @@ namespace Unicom_TIC_Management_System__UMS_.Services
         }
 
 
-        /*public static bool UpdateAdmin(Admin admin)
+        public static bool UpdateAdmin(Admin admin)
         {
             using (var conn = DataConfig.GetConnection())
             {
-                string query = @"UPDATE Admins 
+                string query = @"UPDATE Admin 
                          SET FirstName = @FirstName, LastName = @LastName,
-                             ContactNo = @ContactNo, Email = @Email,
-                             Address = @Address, AccessLevel = @AccessLevel
-                         WHERE Username = @Username";
+                             PhoneNumber = @PhoneNumber, Email = @Email,
+                             Address = @Address, DOB = @DOB, AccessLevel = @AccessLevel
+                         WHERE UserId = @UserId";
+
                 using (var cmd = new SQLiteCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@FirstName", admin.FirstName);
                     cmd.Parameters.AddWithValue("@LastName", admin.LastName);
-                    cmd.Parameters.AddWithValue("@ContactNo", admin.PhoneNumber);
+                    cmd.Parameters.AddWithValue("@PhoneNumber", admin.PhoneNumber);
                     cmd.Parameters.AddWithValue("@Email", admin.Email);
                     cmd.Parameters.AddWithValue("@Address", admin.Address);
+                    cmd.Parameters.AddWithValue("@DOB", admin.DOB);
                     cmd.Parameters.AddWithValue("@AccessLevel", admin.AccessLevel);
-                    cmd.Parameters.AddWithValue("@Username", admin.Username);
+                    cmd.Parameters.AddWithValue("@UserId", admin.UserId);
 
                     return cmd.ExecuteNonQuery() > 0;
                 }
             }
-        }*/
+        }
+
+        public static bool DeleteAdmin(int userId)
+        {
+            using (var conn = DataConfig.GetConnection())
+            {
+                string query = "DELETE FROM Admin WHERE UserId = @userId";
+                using (var cmd = new SQLiteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@userId", userId);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+        }
+
+        public static List<Admin> SearchAdmins(string keyword)
+        {
+            List<Admin> result = new List<Admin>();
+            using (var conn = DataConfig.GetConnection())
+            {
+                string query = @"SELECT FirstName, LastName, PhoneNumber, Email, Address, DOB, AccessLevel, UserId 
+                         FROM Admin 
+                         WHERE FirstName LIKE @kw OR LastName LIKE @kw OR Email LIKE @kw";
+                using (var cmd = new SQLiteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@kw", "%" + keyword + "%");
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Admin admin = new Admin
+                            {
+                                FirstName = reader["FirstName"].ToString(),
+                                LastName = reader["LastName"].ToString(),
+                                PhoneNumber = reader["PhoneNumber"].ToString(),
+                                Email = reader["Email"].ToString(),
+                                Address = reader["Address"].ToString(),
+                                DOB = reader["DOB"].ToString(),
+                                AccessLevel = reader["AccessLevel"].ToString(),
+                                UserId = Convert.ToInt32(reader["UserId"])
+                            };
+                            result.Add(admin);
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
 
     }
 }

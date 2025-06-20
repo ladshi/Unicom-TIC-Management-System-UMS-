@@ -17,9 +17,25 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
             return StaffService.AddStaff(staff);  
         }
 
-        public static List<Staff> GetStaffs()
+        public static List<Staff> GetAllStaffs()
         {
             return StaffService.GetAllStaffs();
         }
+
+        public static bool UpdateStaff(Staff staff)
+        {
+            return StaffService.UpdateStaff(staff);
+        }
+
+        public static bool DeleteStaff(int userId)
+        {
+            return StaffService.DeleteStaff(userId);
+        }
+
+        public static List<Staff> SearchStaffs(string keyword)
+        {
+            return StaffService.SearchStaffs(keyword);
+        }
+
     }
 }

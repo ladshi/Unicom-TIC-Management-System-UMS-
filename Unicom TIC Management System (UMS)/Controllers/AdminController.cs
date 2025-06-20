@@ -23,5 +23,21 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
         {
             return AdminService.GetAllAdmins();
         }
+
+        public static bool UpdateAdmin(Admin admin)
+        {
+            return AdminService.UpdateAdmin(admin);
+        }
+
+        public static bool DeleteAdmin(int userId)
+        {
+            return AdminService.DeleteAdmin(userId);
+        }
+
+        public static List<Admin> SearchAdmins(string keyword)
+        {
+            return AdminService.SearchAdmins(keyword);
+        }
+
     }
 }

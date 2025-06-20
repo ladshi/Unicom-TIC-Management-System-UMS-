@@ -12,7 +12,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
 {
     internal class LectureService
     {
-        public static bool AddLecturer(Lecturer lecturer) 
+        public static bool AddLecturer(Lecturer lecturer)
         {
             using (var conn = DataConfig.GetConnection())
             {
@@ -33,7 +33,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                         cmd.Parameters.AddWithValue("@userId", lecturer.UserId);
 
                         int rows = cmd.ExecuteNonQuery();
-                        MessageBox.Show("Lecturer added successfully!"); 
+                        MessageBox.Show("Lecturer added successfully!");
                         return rows > 0;
                     }
                 }
@@ -51,7 +51,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
 
             using (var conn = DataConfig.GetConnection())
             {
-                string query = "SELECT FirstName, LastName, PhoneNumber, Email, Address, DOB FROM Lectures";
+                string query = "SELECT FirstName, LastName, PhoneNumber, Email, Address, DOB, UserId FROM Lecturers";
 
                 using (var cmd = new SQLiteCommand(query, conn))
                 using (var reader = cmd.ExecuteReader())
@@ -65,16 +65,125 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                             PhoneNumber = reader["PhoneNumber"].ToString(),
                             Email = reader["Email"].ToString(),
                             Address = reader["Address"].ToString(),
-                            DOB = reader["DOB"].ToString()
+                            DOB = reader["DOB"].ToString(),
+                            UserId = Convert.ToInt32(reader["UserId"])
                         };
-
                         lecturerList.Add(lecturer);
                     }
                 }
             }
-
             return lecturerList;
         }
+
+        public static Lecturer GetLecturerById(int userId)
+        {
+            using (var conn = DataConfig.GetConnection())
+            {
+                string query = @"SELECT FirstName, LastName, PhoneNumber, Email, Address, DOB, UserId 
+                                 FROM Lecturers 
+                                 WHERE UserId = @userId";
+
+                using (var cmd = new SQLiteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@userId", userId);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Lecturer
+                            {
+                                FirstName = reader["FirstName"].ToString(),
+                                LastName = reader["LastName"].ToString(),
+                                PhoneNumber = reader["PhoneNumber"].ToString(),
+                                Email = reader["Email"].ToString(),
+                                Address = reader["Address"].ToString(),
+                                DOB = reader["DOB"].ToString(),
+                                UserId = Convert.ToInt32(reader["UserId"])
+                            };
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        public static bool UpdateLecturer(Lecturer lec)
+        {
+            using (var conn = DataConfig.GetConnection())
+            {
+                // Replace the line: string query =;
+                string query = @"UPDATE Lecturers 
+                                 SET FirstName = @FirstName, 
+                                     LastName = @LastName, 
+                                     PhoneNumber = @PhoneNumber, 
+                                     Email = @Email, 
+                                     Address = @Address, 
+                                     DOB = @DOB 
+                                 WHERE UserId = @UserId";
+
+                using (var cmd = new SQLiteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@FirstName", lec.FirstName);
+                    cmd.Parameters.AddWithValue("@LastName", lec.LastName);
+                    cmd.Parameters.AddWithValue("@PhoneNumber", lec.PhoneNumber);
+                    cmd.Parameters.AddWithValue("@Email", lec.Email);
+                    cmd.Parameters.AddWithValue("@Address", lec.Address);
+                    cmd.Parameters.AddWithValue("@DOB", lec.DOB);
+                    cmd.Parameters.AddWithValue("@UserId", lec.UserId);
+
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+        }   
+
+        public static bool DeleteLecturer(int userId)
+        {
+            using (var conn = DataConfig.GetConnection())
+            {
+                string query = "DELETE FROM Lecturers WHERE UserId = @userId";
+                using (var cmd = new SQLiteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@userId", userId);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+        }
+
+        public static List<Lecturer> SearchLecturers(string keyword)
+        {
+            List<Lecturer> result = new List<Lecturer>();
+            using (var conn = DataConfig.GetConnection())
+            {
+                string query = @"SELECT FirstName, LastName, PhoneNumber, Email, Address, DOB, UserId 
+                                 FROM Lecturers 
+                                 WHERE FirstName LIKE @kw OR LastName LIKE @kw OR Email LIKE @kw";      
+
+                using (var cmd = new SQLiteCommand(query, conn))        
+                {
+                    cmd.Parameters.AddWithValue("@kw", "%" + keyword + "%");
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Lecturer lec = new Lecturer
+                            {
+                                FirstName = reader["FirstName"].ToString(),
+                                LastName = reader["LastName"].ToString(),
+                                PhoneNumber = reader["PhoneNumber"].ToString(),
+                                Email = reader["Email"].ToString(),
+                                Address = reader["Address"].ToString(),
+                                DOB = reader["DOB"].ToString(),
+                                UserId = Convert.ToInt32(reader["UserId"])
+                            };
+                            result.Add(lec);
+                        }
+                    }
+                }           
+            }
+            return result;
+        }   
 
     }
 }
