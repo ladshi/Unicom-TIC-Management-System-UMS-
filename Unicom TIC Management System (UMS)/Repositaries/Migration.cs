@@ -98,12 +98,7 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
                     CREATE TABLE IF NOT EXISTS RoomAllocation (
                         Id INTEGER PRIMARY KEY AUTOINCREMENT,
                         RoomName TEXT NOT NULL,
-                        RoomType TEXT NOT NULL,
-                        CourseId INTEGER,
-                        LectureId INTEGER,
-                        AllocationDate TEXT,
-                        FOREIGN KEY (CourseId) REFERENCES Courses(Id),
-                        FOREIGN KEY (LectureId) REFERENCES Lectures(Id)
+                        RoomType TEXT NOT NULL
                     );
 
                     CREATE TABLE IF NOT EXISTS Lectures (
@@ -120,20 +115,29 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
                     
                     CREATE TABLE IF NOT EXISTS Exams (
                         Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        ExamTitle TEXT NOT NULL,
-                        ExamDate TEXT NOT NULL,
-                        CourseId INTEGER,
-                        FOREIGN KEY (CourseId) REFERENCES Courses(Id)
+                        ExamName TEXT NOT NULL,
+                        ExamDate TEXT NOT NULL
                     );
 
                     CREATE TABLE IF NOT EXISTS Marks (
                         Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        StudentId INTEGER NOT NULL,
-                        ExamId INTEGER NOT NULL,
-                        Mark INTEGER NOT NULL,
-                        Grade TEXT,
-                        FOREIGN KEY (StudentId) REFERENCES Students(Id),
-                        FOREIGN KEY (ExamId) REFERENCES Exams(Id)
+                        StudentId INTEGER,
+                        SubjectId INTEGER,
+                        ExamId INTEGER,
+                        MarksObtained REAL,
+                        MaxMarks REAL,
+                        FOREIGN KEY(StudentId) REFERENCES Students(Id),
+                        FOREIGN KEY(SubjectId) REFERENCES Subjects(Id),
+                        FOREIGN KEY(ExamId) REFERENCES Exams(Id)
+                    );
+                    
+                    CREATE TABLE Timetable (
+                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        SubjectId INTEGER NOT NULL,
+                        TimeSlot TEXT NOT NULL,          
+                        RoomId INTEGER NOT NULL,
+                        FOREIGN KEY (SubjectId) REFERENCES Subjects(Id),
+                        FOREIGN KEY (RoomId) REFERENCES Rooms(Id)
                     );
 
 

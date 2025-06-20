@@ -20,7 +20,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             List<User> users = new List<User>();
             using (var conn = DataConfig.GetConnection())
             {
-                string query = "SELECT Id, Username, Password, Role FROM Users";
+                string query = "SELECT UserId, Username, Password, Role FROM Users";
                 using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
                 using (SQLiteDataReader reader = cmd.ExecuteReader())
                 {
@@ -28,7 +28,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                     {
                         users.Add(new User
                         {
-                            UserId = Convert.ToInt32(reader["Id"]),
+                            UserId = Convert.ToInt32(reader["UserId"]),
                             UserName = reader["Username"].ToString(),
                             Password = reader["Password"].ToString(),
                             Role = System.Enum.TryParse(reader["Role"].ToString(), out UserRole role) ? role : UserRole.Student,

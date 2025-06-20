@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Unicom_TIC_Management_System__UMS_.Models
 {
-    public class Mark
+    public class MarkWithDetails
     {
-        public int Id { get; set; }
-        public int StudentId { get; set; }
-        public int SubjectId { get; set; }
-        public int ExamId { get; set; }
+        public string StudentName { get; set; }
+        public string ExamName { get; set; }
+        public string SubjectName { get; set; }
         public double MarksObtained { get; set; }
         public double MaxMarks { get; set; }
+        public double Percentage { get; set; }
+        public string Grade { get; set; }
     }
 }

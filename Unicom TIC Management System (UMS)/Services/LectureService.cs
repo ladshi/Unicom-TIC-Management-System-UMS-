@@ -51,7 +51,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
 
             using (var conn = DataConfig.GetConnection())
             {
-                string query = "SELECT FirstName, LastName, PhoneNumber, Email, Address, DOB, UserId FROM Lecturers";
+                string query = "SELECT FirstName, LastName, PhoneNumber, Email, Address, DOB, UserId FROM Lectures";
 
                 using (var cmd = new SQLiteCommand(query, conn))
                 using (var reader = cmd.ExecuteReader())
@@ -80,7 +80,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             using (var conn = DataConfig.GetConnection())
             {
                 string query = @"SELECT FirstName, LastName, PhoneNumber, Email, Address, DOB, UserId 
-                                 FROM Lecturers 
+                                 FROM Lectures 
                                  WHERE UserId = @userId";
 
                 using (var cmd = new SQLiteCommand(query, conn))
@@ -113,7 +113,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             using (var conn = DataConfig.GetConnection())
             {
                 // Replace the line: string query =;
-                string query = @"UPDATE Lecturers 
+                string query = @"UPDATE Lectures 
                                  SET FirstName = @FirstName, 
                                      LastName = @LastName, 
                                      PhoneNumber = @PhoneNumber, 
@@ -141,7 +141,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
         {
             using (var conn = DataConfig.GetConnection())
             {
-                string query = "DELETE FROM Lecturers WHERE UserId = @userId";
+                string query = "DELETE FROM Lectures WHERE UserId = @userId";
                 using (var cmd = new SQLiteCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@userId", userId);
@@ -156,7 +156,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             using (var conn = DataConfig.GetConnection())
             {
                 string query = @"SELECT FirstName, LastName, PhoneNumber, Email, Address, DOB, UserId 
-                                 FROM Lecturers 
+                                 FROM Lectures 
                                  WHERE FirstName LIKE @kw OR LastName LIKE @kw OR Email LIKE @kw";      
 
                 using (var cmd = new SQLiteCommand(query, conn))        

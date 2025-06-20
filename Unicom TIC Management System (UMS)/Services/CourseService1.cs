@@ -14,7 +14,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
     
     internal class CourseService
     {
-        public static void Add(Course course)
+        public static void AddCourse(Course course)
         {
             using (var conn = DataConfig.GetConnection())
             {
@@ -48,7 +48,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             return courses;
         }
 
-        public static void Update(Course course)
+        public static void UpdateCourse(Course course)
         {
             using (var conn = DataConfig.GetConnection())
             {

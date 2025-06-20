@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Unicom_TIC_Management_System__UMS_.Models
 {
-    internal class RoomAllocation
+    public class RoomAllocation
     {
+        public int Id { get; set; }
+        public string RoomName { get; set; }
+        public string RoomType { get; set; }
     }
 }

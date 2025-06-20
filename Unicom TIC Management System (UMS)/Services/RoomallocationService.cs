@@ -9,70 +9,74 @@ using Unicom_TIC_Management_System__UMS_.Repositaries;
 
 namespace Unicom_TIC_Management_System__UMS_.Services
 {
-    public class ExamService
+    public static class RoomallocationService
     {
-        public static void AddExam(Exam exam)
+        public static void AddRoom(RoomAllocation room)
         {
             using (var conn = DataConfig.GetConnection())
             {
-                string query = "INSERT INTO Exams (ExamName, ExamDate) VALUES (@name, @date)";
+                string query = "INSERT INTO Rooms (RoomName, RoomType) VALUES (@RoomName, @RoomType)";
                 using (var cmd = new SQLiteCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@name", exam.ExamName);
-                    cmd.Parameters.AddWithValue("@date", exam.ExamDate);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-        public static void UpdateExam(Exam exam)
-        {
-            using (var conn = DataConfig.GetConnection())
-            {
-                string query = "UPDATE Exams SET ExamName = @name, ExamDate = @date WHERE Id = @id";
-                using (var cmd = new SQLiteCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@name", exam.ExamName);
-                    cmd.Parameters.AddWithValue("@date", exam.ExamDate);
-                    cmd.Parameters.AddWithValue("@id", exam.Id);
+                    cmd.Parameters.AddWithValue("@RoomName", room.RoomName);
+                    cmd.Parameters.AddWithValue("@RoomType", room.RoomType);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public static void DeleteExam(int id)
+        public static void UpdateRoom(RoomAllocation room)
         {
             using (var conn = DataConfig.GetConnection())
             {
-                string query = "DELETE FROM Exams WHERE Id = @id";
+                string query = "UPDATE Rooms SET RoomName = @RoomName, RoomType = @RoomType WHERE Id = @Id";
                 using (var cmd = new SQLiteCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@RoomName", room.RoomName);
+                    cmd.Parameters.AddWithValue("@RoomType", room.RoomType);
+                    cmd.Parameters.AddWithValue("@Id", room.Id);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public static List<Exam> GetAllExams()
+        public static void DeleteRoom(int roomId)
         {
-            List<Exam> exams = new List<Exam>();
             using (var conn = DataConfig.GetConnection())
             {
-                string query = "SELECT * FROM Exams";
+                string query = "DELETE FROM Rooms WHERE Id = @Id";
+                using (var cmd = new SQLiteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Id", roomId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public static List<RoomAllocation> GetAllRooms()
+        {
+            List<RoomAllocation> rooms = new List<RoomAllocation>();
+
+            using (var conn = DataConfig.GetConnection())
+            {
+                string query = "SELECT * FROM Rooms";
                 using (var cmd = new SQLiteCommand(query, conn))
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        exams.Add(new Exam
+                        RoomAllocation room = new RoomAllocation
                         {
                             Id = Convert.ToInt32(reader["Id"]),
-                            ExamName = reader["ExamName"].ToString(),
-                            ExamDate = reader["ExamDate"].ToString()
-                        });
+                            RoomName = reader["RoomName"].ToString(),
+                            RoomType = reader["RoomType"].ToString()
+                        };
+                        rooms.Add(room);
                     }
                 }
             }
-            return exams;
+
+            return rooms;
         }
     }
 }

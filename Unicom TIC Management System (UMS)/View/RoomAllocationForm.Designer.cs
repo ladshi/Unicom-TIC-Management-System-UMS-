@@ -34,11 +34,9 @@
             this.ADDbutton = new System.Windows.Forms.Button();
             this.Updatebutton = new System.Windows.Forms.Button();
             this.DELETEbutton = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.ROOMgridview = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.Roomnametext = new System.Windows.Forms.TextBox();
+            this.comboroomtype = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.ROOMgridview)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,7 +50,6 @@
             this.label1.Size = new System.Drawing.Size(170, 28);
             this.label1.TabIndex = 0;
             this.label1.Text = "Manage Rooms";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -75,7 +72,6 @@
             this.label3.Size = new System.Drawing.Size(74, 13);
             this.label3.TabIndex = 3;
             this.label3.Text = "ROOM TYPE ";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // ADDbutton
             // 
@@ -86,6 +82,7 @@
             this.ADDbutton.TabIndex = 5;
             this.ADDbutton.Text = "ADD";
             this.ADDbutton.UseVisualStyleBackColor = true;
+            this.ADDbutton.Click += new System.EventHandler(this.ADDbutton_Click);
             // 
             // Updatebutton
             // 
@@ -96,6 +93,7 @@
             this.Updatebutton.TabIndex = 6;
             this.Updatebutton.Text = "UPDATE";
             this.Updatebutton.UseVisualStyleBackColor = true;
+            this.Updatebutton.Click += new System.EventHandler(this.Updatebutton_Click);
             // 
             // DELETEbutton
             // 
@@ -106,24 +104,7 @@
             this.DELETEbutton.TabIndex = 7;
             this.DELETEbutton.Text = "DELETE";
             this.DELETEbutton.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(248, 75);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(328, 21);
-            this.comboBox1.TabIndex = 8;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(248, 104);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(328, 21);
-            this.comboBox2.TabIndex = 9;
+            this.DELETEbutton.Click += new System.EventHandler(this.DELETEbutton_Click);
             // 
             // ROOMgridview
             // 
@@ -132,34 +113,31 @@
             this.ROOMgridview.Name = "ROOMgridview";
             this.ROOMgridview.Size = new System.Drawing.Size(455, 233);
             this.ROOMgridview.TabIndex = 10;
+            this.ROOMgridview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ROOMgridview_CellContentClick);
             // 
-            // button1
+            // Roomnametext
             // 
-            this.button1.Location = new System.Drawing.Point(123, 486);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "SEARCH";
-            this.button1.UseVisualStyleBackColor = true;
+            this.Roomnametext.Location = new System.Drawing.Point(248, 75);
+            this.Roomnametext.Name = "Roomnametext";
+            this.Roomnametext.Size = new System.Drawing.Size(330, 20);
+            this.Roomnametext.TabIndex = 13;
             // 
-            // comboBox3
+            // comboroomtype
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(218, 487);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(223, 21);
-            this.comboBox3.TabIndex = 12;
+            this.comboroomtype.FormattingEnabled = true;
+            this.comboroomtype.Location = new System.Drawing.Point(248, 104);
+            this.comboroomtype.Name = "comboroomtype";
+            this.comboroomtype.Size = new System.Drawing.Size(330, 21);
+            this.comboroomtype.TabIndex = 14;
             // 
             // RoomAllocationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(758, 691);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.comboroomtype);
+            this.Controls.Add(this.Roomnametext);
             this.Controls.Add(this.ROOMgridview);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.DELETEbutton);
             this.Controls.Add(this.Updatebutton);
             this.Controls.Add(this.ADDbutton);
@@ -171,7 +149,6 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "RoomAllocationForm";
             this.Text = "RoomAllocation";
-            this.Load += new System.EventHandler(this.RoomAllocation_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ROOMgridview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -186,10 +163,8 @@
         private System.Windows.Forms.Button ADDbutton;
         private System.Windows.Forms.Button Updatebutton;
         private System.Windows.Forms.Button DELETEbutton;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.DataGridView ROOMgridview;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.TextBox Roomnametext;
+        private System.Windows.Forms.ComboBox comboroomtype;
     }
 }

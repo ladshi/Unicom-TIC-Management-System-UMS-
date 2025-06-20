@@ -29,6 +29,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
 
                 AdminForm adminForm = new AdminForm(firstTime: true); 
                 adminForm.Show();
+                
             }
             else
             {
@@ -43,5 +44,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
         {
 
         }
+
+        
     }
 }

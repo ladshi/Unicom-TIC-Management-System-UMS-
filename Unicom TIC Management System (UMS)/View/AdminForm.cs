@@ -63,7 +63,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
                 comboaccess.Visible = true;
                 comboaccess.Items.Add(UserRole.Staff.ToString());
             }
-            else if (currentMode == UserRole.Admin)
+            else if (currentMode == UserRole.MainAdmin)
             {
                 labeltitle.Text = "ADMIN DETAILS";
                 labelaccess.Visible = true;
@@ -233,6 +233,12 @@ namespace Unicom_TIC_Management_System__UMS_.View
                 }
 
                 MessageBox.Show("User added successfully!");
+                if (isFirstTime)
+                {
+                    this.Hide();
+                    Login loginForm = new Login();
+                    loginForm.Show();
+                }
                 LoadUsers();
             }
             else

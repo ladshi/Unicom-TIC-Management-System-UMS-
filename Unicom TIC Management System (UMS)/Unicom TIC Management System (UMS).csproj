@@ -56,6 +56,7 @@
     <Compile Include="Controllers\ExamController.cs" />
     <Compile Include="Controllers\LectureController.cs" />
     <Compile Include="Controllers\MarkController.cs" />
+    <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Models\Guardian.cs" />
     <Compile Include="Models\Lecturer.cs" />
     <Compile Include="Models\Mark.cs" />
+    <Compile Include="Models\MarkWithDetails.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\RoomAllocation.cs" />
@@ -92,6 +94,7 @@
     <Compile Include="Services\ExamService.cs" />
     <Compile Include="Services\LectureService.cs" />
     <Compile Include="Services\MarkService.cs" />
+    <Compile Include="Services\RoomallocationService.cs" />
     <Compile Include="Services\StaffService.cs" />
     <Compile Include="Services\StudentService.cs" />
     <Compile Include="Services\SubjectService.cs" />
