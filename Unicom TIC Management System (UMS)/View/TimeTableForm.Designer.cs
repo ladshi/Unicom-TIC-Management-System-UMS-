@@ -36,18 +36,18 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.comboDay = new System.Windows.Forms.ComboBox();
+            this.combosubject = new System.Windows.Forms.ComboBox();
+            this.combolecture = new System.Windows.Forms.ComboBox();
+            this.comboroom = new System.Windows.Forms.ComboBox();
+            this.textstarttime = new System.Windows.Forms.TextBox();
+            this.Textendtime = new System.Windows.Forms.TextBox();
+            this.texttimeslot = new System.Windows.Forms.TextBox();
+            this.dataGridViewTimetable = new System.Windows.Forms.DataGridView();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.buttonUpdate = new System.Windows.Forms.Button();
+            this.buttonDelete = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTimetable)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -103,134 +103,144 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(335, 84);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(335, 99);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 13);
+            this.label6.Size = new System.Drawing.Size(92, 16);
             this.label6.TabIndex = 5;
-            this.label6.Text = "label6";
+            this.label6.Text = "Subject Name";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(335, 118);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(335, 131);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.Size = new System.Drawing.Size(91, 16);
             this.label7.TabIndex = 6;
-            this.label7.Text = "label7";
+            this.label7.Text = "Lecture Name";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(335, 158);
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(335, 171);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 13);
+            this.label8.Size = new System.Drawing.Size(84, 16);
             this.label8.TabIndex = 7;
-            this.label8.Text = "label8";
+            this.label8.Text = "Room Name";
             // 
-            // comboBox1
+            // comboDay
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(155, 69);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 8;
+            this.comboDay.FormattingEnabled = true;
+            this.comboDay.Location = new System.Drawing.Point(155, 69);
+            this.comboDay.Name = "comboDay";
+            this.comboDay.Size = new System.Drawing.Size(121, 21);
+            this.comboDay.TabIndex = 8;
             // 
-            // comboBox2
+            // combosubject
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(398, 81);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 9;
+            this.combosubject.FormattingEnabled = true;
+            this.combosubject.Location = new System.Drawing.Point(444, 94);
+            this.combosubject.Name = "combosubject";
+            this.combosubject.Size = new System.Drawing.Size(121, 21);
+            this.combosubject.TabIndex = 9;
             // 
-            // comboBox3
+            // combolecture
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(398, 115);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 21);
-            this.comboBox3.TabIndex = 10;
+            this.combolecture.FormattingEnabled = true;
+            this.combolecture.Location = new System.Drawing.Point(444, 130);
+            this.combolecture.Name = "combolecture";
+            this.combolecture.Size = new System.Drawing.Size(121, 21);
+            this.combolecture.TabIndex = 10;
             // 
-            // comboBox4
+            // comboroom
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(398, 155);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(121, 21);
-            this.comboBox4.TabIndex = 11;
+            this.comboroom.FormattingEnabled = true;
+            this.comboroom.Location = new System.Drawing.Point(444, 166);
+            this.comboroom.Name = "comboroom";
+            this.comboroom.Size = new System.Drawing.Size(121, 21);
+            this.comboroom.TabIndex = 11;
             // 
-            // textBox1
+            // textstarttime
             // 
-            this.textBox1.Location = new System.Drawing.Point(155, 109);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 20);
-            this.textBox1.TabIndex = 12;
+            this.textstarttime.Location = new System.Drawing.Point(155, 109);
+            this.textstarttime.Name = "textstarttime";
+            this.textstarttime.Size = new System.Drawing.Size(121, 20);
+            this.textstarttime.TabIndex = 12;
             // 
-            // textBox2
+            // Textendtime
             // 
-            this.textBox2.Location = new System.Drawing.Point(155, 146);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(121, 20);
-            this.textBox2.TabIndex = 13;
+            this.Textendtime.Location = new System.Drawing.Point(155, 146);
+            this.Textendtime.Name = "Textendtime";
+            this.Textendtime.Size = new System.Drawing.Size(121, 20);
+            this.Textendtime.TabIndex = 13;
             // 
-            // textBox3
+            // texttimeslot
             // 
-            this.textBox3.Location = new System.Drawing.Point(155, 192);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(121, 20);
-            this.textBox3.TabIndex = 14;
+            this.texttimeslot.Location = new System.Drawing.Point(155, 192);
+            this.texttimeslot.Name = "texttimeslot";
+            this.texttimeslot.Size = new System.Drawing.Size(121, 20);
+            this.texttimeslot.TabIndex = 14;
             // 
-            // dataGridView1
+            // dataGridViewTimetable
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(64, 298);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(536, 150);
-            this.dataGridView1.TabIndex = 15;
+            this.dataGridViewTimetable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTimetable.Location = new System.Drawing.Point(64, 298);
+            this.dataGridViewTimetable.Name = "dataGridViewTimetable";
+            this.dataGridViewTimetable.Size = new System.Drawing.Size(536, 150);
+            this.dataGridViewTimetable.TabIndex = 15;
+            this.dataGridViewTimetable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTimetable_CellContentClick);
             // 
-            // button1
+            // buttonAdd
             // 
-            this.button1.Location = new System.Drawing.Point(509, 256);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAdd.Location = new System.Drawing.Point(509, 256);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(75, 23);
+            this.buttonAdd.TabIndex = 16;
+            this.buttonAdd.Text = "ADD";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
-            // button2
+            // buttonUpdate
             // 
-            this.button2.Location = new System.Drawing.Point(398, 256);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 17;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonUpdate.Location = new System.Drawing.Point(402, 256);
+            this.buttonUpdate.Name = "buttonUpdate";
+            this.buttonUpdate.Size = new System.Drawing.Size(75, 23);
+            this.buttonUpdate.TabIndex = 17;
+            this.buttonUpdate.Text = "UPDATE";
+            this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
-            // button3
+            // buttonDelete
             // 
-            this.button3.Location = new System.Drawing.Point(295, 256);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 18;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDelete.Location = new System.Drawing.Point(292, 256);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(75, 23);
+            this.buttonDelete.TabIndex = 18;
+            this.buttonDelete.Text = "DELETE";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // TimeTableForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(680, 611);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.comboBox4);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.buttonDelete);
+            this.Controls.Add(this.buttonUpdate);
+            this.Controls.Add(this.buttonAdd);
+            this.Controls.Add(this.dataGridViewTimetable);
+            this.Controls.Add(this.texttimeslot);
+            this.Controls.Add(this.Textendtime);
+            this.Controls.Add(this.textstarttime);
+            this.Controls.Add(this.comboroom);
+            this.Controls.Add(this.combolecture);
+            this.Controls.Add(this.combosubject);
+            this.Controls.Add(this.comboDay);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -243,7 +253,7 @@
             this.Name = "TimeTableForm";
             this.Text = "TimeTableForm";
             this.Load += new System.EventHandler(this.TimeTableForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTimetable)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -259,16 +269,16 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ComboBox comboDay;
+        private System.Windows.Forms.ComboBox combosubject;
+        private System.Windows.Forms.ComboBox combolecture;
+        private System.Windows.Forms.ComboBox comboroom;
+        private System.Windows.Forms.TextBox textstarttime;
+        private System.Windows.Forms.TextBox Textendtime;
+        private System.Windows.Forms.TextBox texttimeslot;
+        private System.Windows.Forms.DataGridView dataGridViewTimetable;
+        private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Button buttonUpdate;
+        private System.Windows.Forms.Button buttonDelete;
     }
 }

@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unicom_TIC_Management_System__UMS_.Controllers;
+using Unicom_TIC_Management_System__UMS_.Models;
+using Unicom_TIC_Management_System__UMS_.Services;
 
 namespace Unicom_TIC_Management_System__UMS_.View
 {
@@ -19,12 +21,140 @@ namespace Unicom_TIC_Management_System__UMS_.View
         {
 
             InitializeComponent();
+            LoadSubjects();
+            LoadLecturers();
+            LoadRooms();
             LoadTimetablesToGrid();
         }
+
+        private void LoadSubjects()
+        {
+            var subjects = SubjectService.GetAllSubjects();
+            combosubject.DataSource = subjects;
+            combosubject.DisplayMember = "Name";
+            combosubject.ValueMember = "Id";
+            combosubject.SelectedIndex = -1;
+        }
+
+        private void LoadLecturers()
+        {
+            var lecturers = LectureService.GetAllLecturers();
+            var lecturerDisplayList = lecturers.Select(l => new
+            {
+                UserId = l.UserId,
+                FullName = $"{l.FirstName} {l.LastName}"
+            }).ToList();
+
+            combolecture.DataSource = lecturerDisplayList;
+            combolecture.DisplayMember = "FullName";
+            combolecture.ValueMember = "UserId";
+            combolecture.SelectedIndex = -1;
+        }
+
+        private void LoadRooms()
+        {
+            var rooms = RoomallocationService.GetAllRooms();
+            comboroom.DataSource = rooms;
+            comboroom.DisplayMember = "RoomName";
+            comboroom.ValueMember = "Id";
+            comboroom.SelectedIndex = -1;
+        }
+
+
 
         private void TimeTableForm_Load(object sender, EventArgs e)
         {
 
         }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            var t = new Timetable
+            {
+                Day = comboDay.SelectedItem?.ToString(),
+                StartTime = textstarttime.Text,
+                EndTime = Textendtime.Text,
+                SubjectId = Convert.ToInt32(combosubject.SelectedValue),
+                LectureId = Convert.ToInt32(combolecture.SelectedValue),
+                TimeSlot = texttimeslot.Text,
+                RoomId = Convert.ToInt32(comboroom.SelectedValue)
+            };
+
+            controller.AddTimetable(t);
+            LoadTimetablesToGrid();
+            ClearInputs();
+        }
+
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            if (selectedTimetableId != -1)
+            {
+                var t = new Timetable
+                {
+                    Id = selectedTimetableId,
+                    Day = comboDay.SelectedItem?.ToString(),
+                    StartTime = textstarttime.Text,
+                    EndTime = Textendtime.Text,
+                    SubjectId = Convert.ToInt32(combosubject.SelectedValue),
+                    LectureId = Convert.ToInt32(combolecture.SelectedValue),
+                    TimeSlot = texttimeslot.Text,
+                    RoomId = Convert.ToInt32(comboroom.SelectedValue)
+                };
+
+                controller.UpdateTimetable(t);
+                LoadTimetablesToGrid();
+                ClearInputs();
+            }
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            if (selectedTimetableId != -1)
+            {
+                controller.DeleteTimetable(selectedTimetableId);
+                LoadTimetablesToGrid();
+                ClearInputs();
+            }
+        }
+
+        private void dataGridViewTimetable_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                selectedTimetableId = Convert.ToInt32(dataGridViewTimetable.Rows[e.RowIndex].Cells[0].Value);
+                comboDay.SelectedItem = dataGridViewTimetable.Rows[e.RowIndex].Cells[1].Value.ToString();
+                textstarttime.Text = dataGridViewTimetable.Rows[e.RowIndex].Cells[2].Value.ToString();
+                Textendtime.Text = dataGridViewTimetable.Rows[e.RowIndex].Cells[3].Value.ToString();
+                combosubject.SelectedValue = dataGridViewTimetable.Rows[e.RowIndex].Cells[4].Value;
+                combolecture.SelectedValue = dataGridViewTimetable.Rows[e.RowIndex].Cells[5].Value;
+                texttimeslot.Text = dataGridViewTimetable.Rows[e.RowIndex].Cells[6].Value.ToString();
+                comboroom.SelectedValue = dataGridViewTimetable.Rows[e.RowIndex].Cells[7].Value;
+            }
+        }
+
+            private void LoadTimetablesToGrid()
+            {
+                dataGridViewTimetable.Rows.Clear();
+                foreach (var t in controller.GetAllTimetables())
+                {
+
+                dataGridViewTimetable.Rows.Add(t.Id, t.Day, t.StartTime, t.EndTime, t.SubjectId, t.LectureId, t.TimeSlot, t.RoomId);
+
+                }
+            }
+
+            private void ClearInputs()
+            {
+                selectedTimetableId = -1;
+                comboDay.SelectedIndex = -1;
+                textstarttime.Clear();
+                Textendtime.Clear();
+                texttimeslot.Clear();
+                combosubject.SelectedIndex = -1;
+                combolecture.SelectedIndex = -1;
+                comboroom.SelectedIndex = -1;
+            }
+
     }
 }
+
