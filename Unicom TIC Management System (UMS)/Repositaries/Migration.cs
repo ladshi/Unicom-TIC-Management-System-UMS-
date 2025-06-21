@@ -134,8 +134,10 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
                     CREATE TABLE Timetable (
                         Id INTEGER PRIMARY KEY AUTOINCREMENT,
                         SubjectId INTEGER NOT NULL,
+                        LectureId INTEGER NOT NULL, 
                         TimeSlot TEXT NOT NULL,          
                         RoomId INTEGER NOT NULL,
+                        FOREIGN KEY (LectureId) REFERENCES Lecturers(Id),
                         FOREIGN KEY (SubjectId) REFERENCES Subjects(Id),
                         FOREIGN KEY (RoomId) REFERENCES Rooms(Id)
                     );
