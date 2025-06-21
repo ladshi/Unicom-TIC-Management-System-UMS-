@@ -60,10 +60,10 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.studentsgridview = new System.Windows.Forms.DataGridView();
-            this.label14 = new System.Windows.Forms.Label();
             this.searchstudent = new System.Windows.Forms.TextBox();
             this.comboGender = new System.Windows.Forms.ComboBox();
             this.dateTimePickerDOB = new System.Windows.Forms.DateTimePicker();
+            this.buttonSEARCH = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.studentsgridview)).BeginInit();
             this.SuspendLayout();
             // 
@@ -180,6 +180,7 @@
             this.ButtonADD.TabIndex = 26;
             this.ButtonADD.Text = "ADD";
             this.ButtonADD.UseVisualStyleBackColor = false;
+            this.ButtonADD.Click += new System.EventHandler(this.ButtonADD_Click);
             // 
             // buttonUpdate
             // 
@@ -189,6 +190,7 @@
             this.buttonUpdate.TabIndex = 27;
             this.buttonUpdate.Text = "UPDATE";
             this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
             // buttonDelete
             // 
@@ -197,6 +199,7 @@
             this.buttonDelete.Size = new System.Drawing.Size(75, 30);
             this.buttonDelete.TabIndex = 28;
             this.buttonDelete.Text = "DELETE";
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // textfirstname
             // 
@@ -330,20 +333,11 @@
             this.studentsgridview.Name = "studentsgridview";
             this.studentsgridview.Size = new System.Drawing.Size(557, 108);
             this.studentsgridview.TabIndex = 52;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("MS Reference Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(71, 601);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(57, 16);
-            this.label14.TabIndex = 53;
-            this.label14.Text = "SEARCH";
+            this.studentsgridview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.studentsgridview_CellContentClick);
             // 
             // searchstudent
             // 
-            this.searchstudent.Location = new System.Drawing.Point(134, 596);
+            this.searchstudent.Location = new System.Drawing.Point(142, 598);
             this.searchstudent.Name = "searchstudent";
             this.searchstudent.Size = new System.Drawing.Size(180, 27);
             this.searchstudent.TabIndex = 54;
@@ -363,15 +357,26 @@
             this.dateTimePickerDOB.Size = new System.Drawing.Size(258, 27);
             this.dateTimePickerDOB.TabIndex = 56;
             // 
+            // buttonSEARCH
+            // 
+            this.buttonSEARCH.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSEARCH.Location = new System.Drawing.Point(72, 600);
+            this.buttonSEARCH.Name = "buttonSEARCH";
+            this.buttonSEARCH.Size = new System.Drawing.Size(64, 23);
+            this.buttonSEARCH.TabIndex = 57;
+            this.buttonSEARCH.Text = "SEARCH";
+            this.buttonSEARCH.UseVisualStyleBackColor = true;
+            this.buttonSEARCH.Click += new System.EventHandler(this.buttonSEARCH_Click);
+            // 
             // StudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(696, 650);
+            this.Controls.Add(this.buttonSEARCH);
             this.Controls.Add(this.dateTimePickerDOB);
             this.Controls.Add(this.comboGender);
             this.Controls.Add(this.searchstudent);
-            this.Controls.Add(this.label14);
             this.Controls.Add(this.studentsgridview);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
@@ -409,6 +414,7 @@
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "StudentForm";
             this.Text = "StudentForm";
+            this.Load += new System.EventHandler(this.StudentForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.studentsgridview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -449,9 +455,9 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.DataGridView studentsgridview;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox searchstudent;
         private System.Windows.Forms.ComboBox comboGender;
         private System.Windows.Forms.DateTimePicker dateTimePickerDOB;
+        private System.Windows.Forms.Button buttonSEARCH;
     }
 }

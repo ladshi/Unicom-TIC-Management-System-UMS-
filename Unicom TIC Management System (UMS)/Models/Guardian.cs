@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Unicom_TIC_Management_System__UMS_.Models
 {
-    internal class Guardian : Person
+    public class Guardian : Person
     {
-        public string Name { get; set; }   
+        public string GuardianName { get; set; }
+        public string GuardianContact { get; set; }
+        public int StudentId { get; set; }
     }
 }

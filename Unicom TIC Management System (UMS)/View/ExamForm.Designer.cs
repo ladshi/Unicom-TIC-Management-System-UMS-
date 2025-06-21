@@ -87,7 +87,7 @@
             // buttonAdd
             // 
             this.buttonAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdd.Location = new System.Drawing.Point(435, 168);
+            this.buttonAdd.Location = new System.Drawing.Point(426, 177);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(75, 23);
             this.buttonAdd.TabIndex = 5;
@@ -98,7 +98,7 @@
             // buttonUpdate
             // 
             this.buttonUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonUpdate.Location = new System.Drawing.Point(341, 168);
+            this.buttonUpdate.Location = new System.Drawing.Point(287, 177);
             this.buttonUpdate.Name = "buttonUpdate";
             this.buttonUpdate.Size = new System.Drawing.Size(75, 23);
             this.buttonUpdate.TabIndex = 6;
@@ -109,7 +109,7 @@
             // buttonDelete
             // 
             this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDelete.Location = new System.Drawing.Point(248, 168);
+            this.buttonDelete.Location = new System.Drawing.Point(159, 177);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(75, 23);
             this.buttonDelete.TabIndex = 7;
@@ -120,7 +120,7 @@
             // dataGridViewexam
             // 
             this.dataGridViewexam.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewexam.Location = new System.Drawing.Point(189, 239);
+            this.dataGridViewexam.Location = new System.Drawing.Point(196, 234);
             this.dataGridViewexam.Name = "dataGridViewexam";
             this.dataGridViewexam.Size = new System.Drawing.Size(263, 150);
             this.dataGridViewexam.TabIndex = 8;

@@ -10,19 +10,30 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
 {
     public class StudentController
     {
-        /*
-        private StudentService studentService = new StudentService();
-
-        public bool AddStudent(Student student)
+        public static void AddStudent(Student student, Guardian guardian)
         {
-            return studentService.AddStudent(student);
+            StudentService.AddStudent(student, guardian);
         }
 
-        public List<Student> GetAllStudents()
+        public static void UpdateStudent(Student student, Guardian guardian)
         {
-            return studentService.GetAllStudentDetails();
+            StudentService.UpdateStudent(student, guardian);
         }
-        */
+
+        public static void DeleteStudent(int studentId, int userId)
+        {
+            StudentService.DeleteStudent(studentId, userId);
+        }
+
+        public static List<(Student, Guardian)> GetAllStudents()
+        {
+            return StudentService.GetAllStudents();
+        }
+
+        public static List<(Student, Guardian)> SearchByName(string keyword)
+        {
+            return StudentService.SearchByName(keyword);
+        }
 
     }
 }
