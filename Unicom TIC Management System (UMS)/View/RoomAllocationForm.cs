@@ -128,6 +128,8 @@ namespace Unicom_TIC_Management_System__UMS_.View
         {
             comboroomtype.Items.Add("Lab");
             comboroomtype.Items.Add("Lecture Hall");
+            comboroomtype.Items.Add("Conference Room");
+            comboroomtype.Items.Add("Cafeteria");
             comboroomtype.SelectedIndex = 0;
 
             LoadRoomData();
