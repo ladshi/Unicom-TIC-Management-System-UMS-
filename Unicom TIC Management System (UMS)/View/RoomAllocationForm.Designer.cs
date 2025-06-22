@@ -149,6 +149,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "RoomAllocationForm";
             this.Text = "RoomAllocation";
+            this.Load += new System.EventHandler(this.RoomAllocationForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ROOMgridview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

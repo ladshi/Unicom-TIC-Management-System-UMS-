@@ -22,15 +22,6 @@ namespace Unicom_TIC_Management_System__UMS_.View
             InitializeComponent();
         }
 
-        private void RoomForm_Load(object sender, EventArgs e)
-        {
-            comboroomtype.Items.Add("Lab");
-            comboroomtype.Items.Add("Hall");
-            comboroomtype.SelectedIndex = 0;
-
-            LoadRoomData();
-        }
-
         private void LoadRoomData()
         {
             ROOMgridview.Columns.Clear();
@@ -49,14 +40,32 @@ namespace Unicom_TIC_Management_System__UMS_.View
             selectedRoomId = -1;
             Roomnametext.Clear();
             comboroomtype.SelectedIndex = 0;
+
+            ROOMgridview.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void ADDbutton_Click(object sender, EventArgs e)
         {
+            string roomName = Roomnametext.Text.Trim();
+            string roomType = comboroomtype.SelectedItem?.ToString();
+
+            // Validation
+            if (string.IsNullOrWhiteSpace(roomName))
+            {
+                MessageBox.Show("Room name is required.");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(roomType))
+            {
+                MessageBox.Show("Room type is required.");
+                return;
+
+            }
+
             RoomAllocation room = new RoomAllocation
             {
-                RoomName = Roomnametext.Text.Trim(),
-                RoomType = comboroomtype.SelectedItem.ToString()
+                RoomName = roomName,
+                RoomType = roomType
             };
 
             RoomController.AddRoom(room);
@@ -87,15 +96,41 @@ namespace Unicom_TIC_Management_System__UMS_.View
                 RoomController.UpdateRoom(room);
                 LoadRoomData();
             }
+            else
+            {
+                MessageBox.Show("Select a room to update.");
+            }
         }
 
         private void DELETEbutton_Click(object sender, EventArgs e)
         {
             if (selectedRoomId != -1)
             {
-                RoomController.DeleteRoom(selectedRoomId);
-                LoadRoomData();
+                DialogResult result = MessageBox.Show(
+                    "Are you sure you want to delete this room?",
+                    "Confirm Delete",MessageBoxButtons.YesNo,MessageBoxIcon.Warning
+                     );
+
+                if (result == DialogResult.Yes)
+                {
+                    RoomController.DeleteRoom(selectedRoomId);
+                    LoadRoomData();
+                }
+
             }
+            else
+            {
+                MessageBox.Show("Select a room to delete.");
+            }
+        }
+
+        private void RoomAllocationForm_Load(object sender, EventArgs e)
+        {
+            comboroomtype.Items.Add("Lab");
+            comboroomtype.Items.Add("Lecture Hall");
+            comboroomtype.SelectedIndex = 0;
+
+            LoadRoomData();
         }
     }
 }
