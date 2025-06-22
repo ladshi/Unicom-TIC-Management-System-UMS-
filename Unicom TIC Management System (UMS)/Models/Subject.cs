@@ -9,7 +9,7 @@ namespace Unicom_TIC_Management_System__UMS_.Models
     internal class Subject
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string SubjectName { get; set; }
         public int CourseId { get; internal set; }
     }
 }

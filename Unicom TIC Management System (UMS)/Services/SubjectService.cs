@@ -16,9 +16,8 @@ namespace Unicom_TIC_Management_System__UMS_.Services
         {
             using (var conn = new SQLiteConnection(DataConfig.GetConnection()))
             {
-                var cmd = new SQLiteCommand("INSERT INTO Subjects (Name, CourseId) VALUES (@Name, @CourseId)", conn);
-                cmd.Parameters.AddWithValue("@Name", subject.Name);
-                //cmd.Parameters.AddWithValue("@CourseId", subject.Id);
+                var cmd = new SQLiteCommand("INSERT INTO Subjects (SubjectName, CourseId) VALUES (@SubjectName, @CourseId)", conn); 
+                cmd.Parameters.AddWithValue("@SubjectName", subject.SubjectName); 
                 cmd.Parameters.AddWithValue("@CourseId", subject.CourseId);
                 cmd.ExecuteNonQuery();
             }
@@ -28,10 +27,10 @@ namespace Unicom_TIC_Management_System__UMS_.Services
         {
             using (var conn = new SQLiteConnection(DataConfig.GetConnection()))
             {
-                var cmd = new SQLiteCommand("UPDATE Subjects SET Name = @Name, CourseId = @CourseId WHERE Id = @Id", conn);
-                cmd.Parameters.AddWithValue("@Name", subject.Name);
+                var cmd = new SQLiteCommand("UPDATE Subjects SET SubjectName = @SubjectName, CourseId = @CourseId WHERE SubjectId = @Id", conn); 
+                cmd.Parameters.AddWithValue("@SubjectName", subject.SubjectName); 
                 cmd.Parameters.AddWithValue("@CourseId", subject.CourseId);
-                cmd.Parameters.AddWithValue("@Id", subject.Id);
+                cmd.Parameters.AddWithValue("@Id", subject.Id); 
                 cmd.ExecuteNonQuery();
             }
         }
@@ -40,7 +39,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
         {
             using (var conn = new SQLiteConnection(DataConfig.GetConnection()))
             {
-                var cmd = new SQLiteCommand("DELETE FROM Subjects WHERE Id = @Id", conn);
+                var cmd = new SQLiteCommand("DELETE FROM Subjects WHERE SubjectId = @Id", conn); 
                 cmd.Parameters.AddWithValue("@Id", subjectId);
                 cmd.ExecuteNonQuery();
             }
@@ -59,8 +58,8 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                 {
                     subjects.Add(new Subject
                     {
-                        Id = Convert.ToInt32(reader["Id"]),
-                        Name = reader["Name"].ToString(),
+                        Id = Convert.ToInt32(reader["SubjectId"]),             
+                        SubjectName = reader["SubjectName"].ToString(),      
                         CourseId = Convert.ToInt32(reader["CourseId"])
                     });
                 }
@@ -71,21 +70,25 @@ namespace Unicom_TIC_Management_System__UMS_.Services
 
         public static List<CourseSubject> GetCourseSubjectView()
         {
-            var list = new List<CourseSubject>();
+            var subjectList = new List<CourseSubject>();
 
             using (var conn = new SQLiteConnection(DataConfig.GetConnection()))
             {
                 var cmd = new SQLiteCommand(@"
-                    SELECT s.Id AS Id, s.Name AS SubjectName, c.Name AS CourseName
-                    FROM Subjects s
-                    JOIN Courses c ON s.CourseId = c.Id
-                ", conn);
-
-                using (SQLiteDataReader reader = cmd.ExecuteReader()) 
+                         SELECT 
+                         s.SubjectId AS SubjectId,
+                         s.SubjectName AS SubjectName,
+                         c.CourseName AS CourseName
+                         FROM 
+                         CourseSubjects cs
+                         JOIN Subjects s ON cs.SubjectId = s.SubjectId
+                         JOIN Courses c ON cs.CourseId = c.CourseId
+                         ", conn);
+                using (SQLiteDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        list.Add(new CourseSubject
+                        subjectList.Add(new CourseSubject
                         {
                             SubjectId = Convert.ToInt32(reader["SubjectId"]),
                             SubjectName = reader["SubjectName"].ToString(),
@@ -95,8 +98,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                 }
             }
 
-            return list;
+            return subjectList;
         }
     }
 }
-

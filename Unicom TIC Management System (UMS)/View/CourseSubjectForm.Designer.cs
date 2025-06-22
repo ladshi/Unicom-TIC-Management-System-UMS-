@@ -273,6 +273,7 @@
             this.Coursenamecombo.Name = "Coursenamecombo";
             this.Coursenamecombo.Size = new System.Drawing.Size(216, 21);
             this.Coursenamecombo.TabIndex = 27;
+            this.Coursenamecombo.SelectedIndexChanged += new System.EventHandler(this.Coursenamecombo_SelectedIndexChanged);
             // 
             // Subjectnamecombo
             // 
@@ -315,6 +316,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CourseSubjectForm";
             this.Text = "CourseForm";
+            this.Load += new System.EventHandler(this.CourseSubjectForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.courseDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.subjectDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.courseSubjectDataGridView)).EndInit();

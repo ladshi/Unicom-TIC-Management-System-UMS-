@@ -35,11 +35,11 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
 
                     CREATE TABLE IF NOT EXISTS Subjects (
                         SubjectId INTEGER PRIMARY KEY AUTOINCREMENT,
-                        SubjectName TEXT NOT NULL UNIQUE
+                        SubjectName TEXT NOT NULL 
                     );
                     
                     CREATE TABLE IF NOT EXISTS Courses(
-                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        CourseId INTEGER PRIMARY KEY AUTOINCREMENT,
                         CourseName TEXT NOT NULL
 
                     );

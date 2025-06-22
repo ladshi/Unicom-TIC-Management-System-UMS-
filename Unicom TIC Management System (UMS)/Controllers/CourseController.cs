@@ -12,34 +12,31 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
     {
         public static List<Course> GetAllCourses()
         {
-            return CourseService.GetAll(); // to show in DataGridView
+            return CourseService.GetAll();
         }
 
-        // Add new course using the service
         public static void AddCourse(Course course)
         {
-            CourseService.AddCourse(course);  // pass model to service
+            CourseService.AddCourse(course);  
         }
 
-        // Update course using the service
         public static void UpdateCourse(Course course)
         {
             CourseService.UpdateCourse(course);
         }
 
-        // Delete course by ID using the service
+        
         public static void DeleteCourse(int courseId)
         {
             CourseService.Delete(courseId);
         }
 
-        // Get a course by its ID
+        
         public static Course GetCourseById(int id)
         {
             return CourseService.GetById(id);
         }
 
-        // Get a course by its name (for ComboBox search)
         public static Course GetCourseByName(string name)
         {
             return CourseService.GetByName(name);

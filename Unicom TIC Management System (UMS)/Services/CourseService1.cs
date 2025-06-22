@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SQLite;
 using Unicom_TIC_Management_System__UMS_.Repositaries;
 using Unicom_TIC_Management_System__UMS_.Models;
-using static System.Collections.Specialized.BitVector32;
-using System.Data.SQLite;
 
 namespace Unicom_TIC_Management_System__UMS_.Services
 {
-    
     internal class CourseService
     {
         public static void AddCourse(Course course)
@@ -19,8 +13,8 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             using (var conn = DataConfig.GetConnection())
             {
                 var cmd = conn.CreateCommand();
-                cmd.CommandText = "INSERT INTO Courses (CourseName) VALUES (@name)";
-                cmd.Parameters.AddWithValue("@name", course.Name);
+                cmd.CommandText = "INSERT INTO Courses (CourseName) VALUES (@name)"; 
+                cmd.Parameters.AddWithValue("@name", course.CourseName);             
                 cmd.ExecuteNonQuery();
             }
         }
@@ -30,7 +24,6 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             var courses = new List<Course>();
             using (var conn = new SQLiteConnection(DataConfig.GetConnection()))
             {
-
                 var query = "SELECT * FROM Courses";
                 using (var cmd = new SQLiteCommand(query, conn))
                 using (var reader = cmd.ExecuteReader())
@@ -39,8 +32,8 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                     {
                         courses.Add(new Course
                         {
-                            Id = int.Parse(reader["CourseId"].ToString()),
-                            Name = reader["CourseName"].ToString(),
+                            Id = int.Parse(reader["CourseId"].ToString()),             
+                            CourseName = reader["CourseName"].ToString(),             
                         });
                     }
                 }
@@ -53,8 +46,8 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             using (var conn = DataConfig.GetConnection())
             {
                 var cmd = conn.CreateCommand();
-                cmd.CommandText = "UPDATE Courses SET Name = @name WHERE Id = @id";
-                cmd.Parameters.AddWithValue("@name", course.Name);
+                cmd.CommandText = "UPDATE Courses SET CourseName = @name WHERE CourseId = @id"; 
+                cmd.Parameters.AddWithValue("@name", course.CourseName);                        
                 cmd.Parameters.AddWithValue("@id", course.Id);
                 cmd.ExecuteNonQuery();
             }
@@ -65,7 +58,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             using (var conn = DataConfig.GetConnection())
             {
                 var cmd = conn.CreateCommand();
-                cmd.CommandText = "DELETE FROM Courses WHERE Id = @id";
+                cmd.CommandText = "DELETE FROM Courses WHERE CourseId = @id"; 
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.ExecuteNonQuery();
             }
@@ -75,7 +68,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
         {
             using (var conn = new SQLiteConnection(DataConfig.GetConnection()))
             {
-                var query = "SELECT * FROM Courses WHERE CourseId = @id";
+                var query = "SELECT * FROM Courses WHERE CourseId = @id"; 
                 using (var cmd = new SQLiteCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@id", id);
@@ -85,24 +78,21 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                         {
                             return new Course
                             {
-                                Id = int.Parse(reader["CourseId"].ToString()),
-                                Name = reader["CourseName"].ToString(),
+                                Id = int.Parse(reader["CourseId"].ToString()),        
+                                CourseName = reader["CourseName"].ToString()   
                             };
                         }
                     }
                 }
             }
             return null;
-
         }
-
 
         public static Course GetByName(string name)
         {
             using (var conn = new SQLiteConnection(DataConfig.GetConnection()))
             {
-
-                var query = "SELECT * FROM Courses WHERE CourseName = @name";
+                var query = "SELECT * FROM Courses WHERE CourseName = @name"; 
                 using (var cmd = new SQLiteCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@name", name);
@@ -112,8 +102,8 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                         {
                             return new Course
                             {
-                                Id = int.Parse(reader["CourseId"].ToString()),
-                                Name = reader["CourseName"].ToString(),
+                                Id = int.Parse(reader["CourseId"].ToString()),        
+                                CourseName = reader["CourseName"].ToString()          
                             };
                         }
                     }

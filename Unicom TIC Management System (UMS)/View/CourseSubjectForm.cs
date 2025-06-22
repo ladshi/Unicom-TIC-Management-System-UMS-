@@ -12,7 +12,8 @@ namespace Unicom_TIC_Management_System__UMS_.View
     {
         private int selectedCourseId = -1;
         private int selectedSubjectId = -1;
-        private List<Course> courseList = new List<Course>(); 
+        private List<Course> courseList = new List<Course>();
+        private List<Subject> subjectList = new List<Subject>();
 
         public CourseSubjectForm()
         {
@@ -24,7 +25,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
                 LoadSubjects();
                 LoadCourseCombo();
                 LoadSubjectCombo();
-                LoadCourseSubjectView(); 
+                LoadCourseSubjectView();
             }
             catch (Exception ex)
             {
@@ -35,11 +36,17 @@ namespace Unicom_TIC_Management_System__UMS_.View
         private void LoadCourseSubjectView()
         {
             var list = SubjectController.GetCourseSubjectView();
-            courseDataGridView.Rows.Clear();
 
+            courseSubjectDataGridView.Columns.Clear();
+            courseSubjectDataGridView.Columns.Add("SubjectId", "Subject ID");
+            courseSubjectDataGridView.Columns.Add("SubjectName", "Subject Name");
+            courseSubjectDataGridView.Columns.Add("CourseName", "Course Name");
+            courseSubjectDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            courseSubjectDataGridView.Rows.Clear();
             foreach (var item in list)
             {
-                courseDataGridView.Rows.Add(item.SubjectId, item.SubjectName, item.CourseName);
+                courseSubjectDataGridView.Rows.Add(item.SubjectId, item.SubjectName, item.CourseName);
             }
         }
 
@@ -48,54 +55,73 @@ namespace Unicom_TIC_Management_System__UMS_.View
             Coursenamecombo.Items.Clear();
             courseList = CourseController.GetAllCourses();
 
-            foreach (var course in courseList)
-            {
-                Coursenamecombo.Items.Add(course.Name);
-            }
-
+            //foreach (var course in courseList)
+            //{
+             //   Coursenamecombo.Items.Add(courseList);
+            //}
+            Coursenamecombo.Items.Add(courseList);
             Coursenamecombo.SelectedIndex = -1;
         }
 
         private void LoadSubjectCombo()
         {
             Subjectnamecombo.Items.Clear();
-            var subjects = SubjectController.GetAllSubjects();
-            foreach (var subject in subjects)
+            subjectList = SubjectController.GetAllSubjects();
+            foreach (var subject in subjectList)
             {
-                Subjectnamecombo.Items.Add(subject.Name);
+                Subjectnamecombo.Items.Add(subject.SubjectName);
             }
             Subjectnamecombo.SelectedIndex = -1;
         }
 
         private void LoadCourses()
         {
-            courseList = CourseController.GetAllCourses();
-            courseDataGridView.DataSource = null;
+            courseDataGridView.Columns.Clear();
+            courseDataGridView.Columns.Add("CourseId", "Course ID");
+            courseDataGridView.Columns.Add("CourseName", "Course Name");
+            courseDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
             courseDataGridView.Rows.Clear();
+            courseList = CourseController.GetAllCourses();
             foreach (var course in courseList)
             {
-                courseDataGridView.Rows.Add(course.Id, course.Name);
+                courseDataGridView.Rows.Add(course.Id, course.CourseName);
             }
 
             courseSEARCH.DataSource = courseList;
             courseSEARCH.DisplayMember = "Name";
             courseSEARCH.ValueMember = "Id";
+
+            selectedCourseId = -1;
         }
 
         private void LoadSubjects()
         {
-            var subjects = SubjectController.GetAllSubjects();
-            subjectDataGridView.DataSource = null;
+            subjectDataGridView.Columns.Clear();
+            subjectDataGridView.Columns.Add("SubjectId", "Subject ID");
+            subjectDataGridView.Columns.Add("SubjectName", "Subject Name");
+            subjectDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            subjectList = SubjectController.GetAllSubjects();
             subjectDataGridView.Rows.Clear();
-            foreach (var subject in subjects)
+            foreach (var subject in subjectList)
             {
-                subjectDataGridView.Rows.Add(subject.Id, subject.Name);
+                subjectDataGridView.Rows.Add(subject.Id, subject.SubjectName);
             }
+
+            Subjectnamecombo.DataSource = subjectList;
+            Subjectnamecombo.DisplayMember = "Name";
+            Subjectnamecombo.ValueMember = "Id";
+
+            selectedSubjectId = -1;
         }
 
         private void courseAddButton_Click(object sender, EventArgs e)
         {
-            Course course = new Course { Name = courseNameTextBox.Text.Trim() };
+            Course course = new Course 
+            { 
+                CourseName = courseNameTextBox.Text.Trim() 
+            };
             CourseController.AddCourse(course);
             courseNameTextBox.Clear();
             LoadCourses();
@@ -122,7 +148,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
             Course updatedCourse = new Course
             {
                 Id = selectedCourseId,
-                Name = courseNameTextBox.Text.Trim()
+                CourseName = courseNameTextBox.Text.Trim()
             };
             CourseController.UpdateCourse(updatedCourse);
             LoadCourses();
@@ -153,7 +179,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
 
             Subject subject = new Subject
             {
-                Name = subjectNameTextBox.Text.Trim(),
+                SubjectName = subjectNameTextBox.Text.Trim(),
                 CourseId = CourseController.GetCourseByName(Coursenamecombo.SelectedItem.ToString()).Id
             };
 
@@ -170,7 +196,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
             Subject updatedSubject = new Subject
             {
                 Id = selectedSubjectId,
-                Name = subjectNameTextBox.Text.Trim(),
+                SubjectName = subjectNameTextBox.Text.Trim(),
                 CourseId = SubjectController.GetAllSubjects()
                     .FirstOrDefault(x => x.Id == selectedSubjectId)?.CourseId ?? 0
             };
@@ -213,7 +239,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
             courseDataGridView.Rows.Clear();
             if (course != null)
             {
-                courseDataGridView.Rows.Add(course.Id, course.Name);
+                courseDataGridView.Rows.Add(course.Id, course.CourseName);
             }
         }
 
@@ -221,13 +247,22 @@ namespace Unicom_TIC_Management_System__UMS_.View
         {
             if (Subjectnamecombo.SelectedIndex == -1) return;
             string selectedSubject = Subjectnamecombo.SelectedItem.ToString();
-            var subject = SubjectController.GetAllSubjects().FirstOrDefault(s => s.Name == selectedSubject);
+            var subject = SubjectController.GetAllSubjects().FirstOrDefault(s => s.SubjectName == selectedSubject);
             subjectDataGridView.Rows.Clear();
             if (subject != null)
             {
-                subjectDataGridView.Rows.Add(subject.Id, subject.Name);
+                subjectDataGridView.Rows.Add(subject.Id, subject.SubjectName);
             }
+        }
+
+        private void CourseSubjectForm_Load(object sender, EventArgs e)
+        {
+            LoadCourseSubjectView();
+        }
+
+        private void Coursenamecombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
-
