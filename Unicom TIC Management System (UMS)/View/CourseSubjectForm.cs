@@ -10,8 +10,9 @@ namespace Unicom_TIC_Management_System__UMS_.View
 {
     public partial class CourseSubjectForm : Form
     {
-        private int selectedCourseId = -1; // -1 means no selection yet
-        private int selectedSubjectId = -1; // -1 means no selection yet
+        private int selectedCourseId = -1;
+        private int selectedSubjectId = -1;
+        private List<Course> courseList = new List<Course>(); 
 
         public CourseSubjectForm()
         {
@@ -19,10 +20,11 @@ namespace Unicom_TIC_Management_System__UMS_.View
 
             try
             {
-                LoadCourses();    // optional
-                LoadSubjects();   // optional
+                LoadCourses();
+                LoadSubjects();
                 LoadCourseCombo();
                 LoadSubjectCombo();
+                LoadCourseSubjectView(); 
             }
             catch (Exception ex)
             {
@@ -30,17 +32,28 @@ namespace Unicom_TIC_Management_System__UMS_.View
             }
         }
 
+        private void LoadCourseSubjectView()
+        {
+            var list = SubjectController.GetCourseSubjectView();
+            courseDataGridView.Rows.Clear();
+
+            foreach (var item in list)
+            {
+                courseDataGridView.Rows.Add(item.SubjectId, item.SubjectName, item.CourseName);
+            }
+        }
+
         private void LoadCourseCombo()
         {
             Coursenamecombo.Items.Clear();
-            List<Course> courseList = CourseController.GetAllCourses();
+            courseList = CourseController.GetAllCourses();
 
             foreach (var course in courseList)
             {
                 Coursenamecombo.Items.Add(course.Name);
             }
 
-            Coursenamecombo.SelectedIndex = -1; // No selection by default
+            Coursenamecombo.SelectedIndex = -1;
         }
 
         private void LoadSubjectCombo()
@@ -56,21 +69,14 @@ namespace Unicom_TIC_Management_System__UMS_.View
 
         private void LoadCourses()
         {
-           
-            var courses = CourseController.GetAllCourses();
-            Coursenamecombo.DataSource = courses;
-            courseDataGridView.DataSource = courses;
-
+            courseList = CourseController.GetAllCourses();
+            courseDataGridView.DataSource = null;
             courseDataGridView.Rows.Clear();
-
-            List<Course> courseList = CourseController.GetAllCourses();
-
             foreach (var course in courseList)
             {
                 courseDataGridView.Rows.Add(course.Id, course.Name);
             }
 
-            // For ComboBox search
             courseSEARCH.DataSource = courseList;
             courseSEARCH.DisplayMember = "Name";
             courseSEARCH.ValueMember = "Id";
@@ -79,15 +85,17 @@ namespace Unicom_TIC_Management_System__UMS_.View
         private void LoadSubjects()
         {
             var subjects = SubjectController.GetAllSubjects();
-            subjectDataGridView.DataSource = subjects;
+            subjectDataGridView.DataSource = null;
+            subjectDataGridView.Rows.Clear();
+            foreach (var subject in subjects)
+            {
+                subjectDataGridView.Rows.Add(subject.Id, subject.Name);
+            }
         }
 
         private void courseAddButton_Click(object sender, EventArgs e)
         {
-            Course course = new Course
-            {
-                Name = courseNameTextBox.Text.Trim()
-            };
+            Course course = new Course { Name = courseNameTextBox.Text.Trim() };
             CourseController.AddCourse(course);
             courseNameTextBox.Clear();
             LoadCourses();
@@ -97,227 +105,129 @@ namespace Unicom_TIC_Management_System__UMS_.View
         {
             if (e.RowIndex >= 0)
             {
-                // 1️⃣ Get selected row
                 DataGridViewRow row = courseDataGridView.Rows[e.RowIndex];
-
-                // 2️⃣ Read values
-                selectedCourseId = Convert.ToInt32(row.Cells[0].Value); // Id column
-                string courseName = row.Cells[1].Value.ToString();      // Name column
-
-                // 3️⃣ Display in textbox
-                courseNameTextBox.Text = courseName;
+                selectedCourseId = Convert.ToInt32(row.Cells[0].Value);
+                courseNameTextBox.Text = row.Cells[1].Value.ToString();
             }
         }
 
         private void courseUpdatebutton_Click(object sender, EventArgs e)
         {
-            // 1️⃣ Ensure a course is selected
-            if (selectedCourseId == -1)
+            if (selectedCourseId == -1 || string.IsNullOrEmpty(courseNameTextBox.Text.Trim()))
             {
-                MessageBox.Show("Please select a course to update.");
+                MessageBox.Show("Select a course and enter new name.");
                 return;
             }
 
-            // 2️⃣ Validate textbox input
-            string updatedName = courseNameTextBox.Text.Trim();
-            if (string.IsNullOrEmpty(updatedName))
+            Course updatedCourse = new Course
             {
-                MessageBox.Show("Course name cannot be empty.");
-                return;
-            }
-
-            // 3️⃣ Create course object with updated data
-            Course updatedCourse = new Course();
-            updatedCourse.Id = selectedCourseId;  // already stored during row click
-            updatedCourse.Name = updatedName;
-
-            // 4️⃣ Send to Controller
+                Id = selectedCourseId,
+                Name = courseNameTextBox.Text.Trim()
+            };
             CourseController.UpdateCourse(updatedCourse);
-
-            // 5️⃣ Refresh grid and reset form
             LoadCourses();
             courseNameTextBox.Clear();
             selectedCourseId = -1;
-
-            MessageBox.Show("Course updated successfully!");
+            MessageBox.Show("Course updated.");
         }
 
         private void courseDeleteButton_Click(object sender, EventArgs e)
         {
-            // 1️⃣ Ensure a course is selected
-            if (selectedCourseId == -1)
+            if (selectedCourseId == -1) return;
+            if (MessageBox.Show("Delete course?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                MessageBox.Show("Please select a course to delete.");
-                return;
+                CourseController.DeleteCourse(selectedCourseId);
+                LoadCourses();
+                selectedCourseId = -1;
+                courseNameTextBox.Clear();
             }
-
-            // 2️⃣ Ask user confirmation
-            var confirm = MessageBox.Show("Are you sure you want to delete this course?",
-                                          "Confirm Delete",
-                                          MessageBoxButtons.YesNo,
-                                          MessageBoxIcon.Warning);
-            if (confirm == DialogResult.No)
-                return;
-
-            // 3️⃣ Send to controller
-            CourseController.DeleteCourse(selectedCourseId);
-
-            // 4️⃣ Refresh grid and clear form
-            LoadCourses();
-            courseNameTextBox.Clear();
-            selectedCourseId = -1;
-
-            MessageBox.Show("Course deleted successfully.");
         }
 
         private void Subjectaddbtn_Click(object sender, EventArgs e)
         {
+            if (Coursenamecombo.SelectedIndex == -1)
+            {
+                MessageBox.Show("Select a course before adding subject.");
+                return;
+            }
+
             Subject subject = new Subject
             {
-                Name = subjectNameTextBox.Text.Trim()
+                Name = subjectNameTextBox.Text.Trim(),
+                CourseId = CourseController.GetCourseByName(Coursenamecombo.SelectedItem.ToString()).Id
             };
+
             SubjectController.AddSubject(subject);
             subjectNameTextBox.Clear();
             LoadSubjects();
+            LoadCourseSubjectView();
         }
 
         private void subjectUpdateButton_Click(object sender, EventArgs e)
         {
-            // 1️⃣ Ensure a course is selected
-            if (selectedSubjectId == -1)
+            if (selectedSubjectId == -1 || string.IsNullOrEmpty(subjectNameTextBox.Text.Trim())) return;
+
+            Subject updatedSubject = new Subject
             {
-                MessageBox.Show("Please select a subject to update.");
-                return;
-            }
+                Id = selectedSubjectId,
+                Name = subjectNameTextBox.Text.Trim(),
+                CourseId = SubjectController.GetAllSubjects()
+                    .FirstOrDefault(x => x.Id == selectedSubjectId)?.CourseId ?? 0
+            };
 
-            // 2️⃣ Validate textbox input
-            string updatedName = subjectNameTextBox.Text.Trim();
-            if (string.IsNullOrEmpty(updatedName))
-            {
-                MessageBox.Show("Subject name cannot be empty.");
-                return;
-            }
-
-            // 3️⃣ Create course object with updated data
-            Subject updatedSubject = new Subject();
-            updatedSubject.Id = selectedCourseId;  // already stored during row click
-            updatedSubject.Name = updatedName;
-
-            // 4️⃣ Send to Controller
             SubjectController.UpdateSubject(updatedSubject);
-
-            // 5️⃣ Refresh grid and reset form
             LoadSubjects();
-            subjectNameTextBox.Clear();
+            LoadCourseSubjectView();
             selectedSubjectId = -1;
-
-            MessageBox.Show("Course updated successfully!");
+            subjectNameTextBox.Clear();
         }
 
         private void subjectDeleteButton_Click(object sender, EventArgs e)
         {
-            // 1️⃣ Ensure a course is selected
-            if (selectedSubjectId == -1)
+            if (selectedSubjectId == -1) return;
+            if (MessageBox.Show("Delete subject?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                MessageBox.Show("Please select a select to delete.");
-                return;
+                SubjectController.DeleteSubject(selectedSubjectId);
+                LoadSubjects();
+                LoadCourseSubjectView();
+                selectedSubjectId = -1;
+                subjectNameTextBox.Clear();
             }
-
-            // 2️⃣ Ask user confirmation
-            var confirm = MessageBox.Show("Are you sure you want to delete this subject?",
-                                          "Confirm Delete",
-                                          MessageBoxButtons.YesNo,
-                                          MessageBoxIcon.Warning);
-            if (confirm == DialogResult.No)
-                return;
-
-            // 3️⃣ Send to controller
-            SubjectController.DeleteSubject(selectedSubjectId);
-
-            // 4️⃣ Refresh grid and clear form
-            LoadSubjects();
-            subjectNameTextBox.Clear();
-            selectedSubjectId = -1;
-
-            MessageBox.Show("Subject deleted successfully.");
         }
 
         private void subjectDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
-                // 1️⃣ Get selected row
                 DataGridViewRow row = subjectDataGridView.Rows[e.RowIndex];
-
-                // 2️⃣ Read values
-                selectedSubjectId = Convert.ToInt32(row.Cells[0].Value); // Id column
-                string subjectName = row.Cells[1].Value.ToString();      // Name column
-
-                // 3️⃣ Display in textbox
-                subjectNameTextBox.Text = subjectName;
+                selectedSubjectId = Convert.ToInt32(row.Cells[0].Value);
+                subjectNameTextBox.Text = row.Cells[1].Value.ToString();
             }
-        }
-
-        private void combosubject_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void coursesearchbutton_Click(object sender, EventArgs e)
         {
-            if (Coursenamecombo.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please select a course to search.");
-                return;
-            }
-
+            if (Coursenamecombo.SelectedIndex == -1) return;
             string selectedCourse = Coursenamecombo.SelectedItem.ToString();
-
-            // 1️⃣ Search using controller
             Course course = CourseController.GetCourseByName(selectedCourse);
-
-            // 2️⃣ Clear grid first
             courseDataGridView.Rows.Clear();
-
             if (course != null)
             {
                 courseDataGridView.Rows.Add(course.Id, course.Name);
-            }
-            else
-            {
-                MessageBox.Show("No course found.");
             }
         }
 
         private void Subjectsearchbutton_Click(object sender, EventArgs e)
         {
-            if (Subjectnamecombo.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please select a subject to search.");
-                return;
-            }
-
+            if (Subjectnamecombo.SelectedIndex == -1) return;
             string selectedSubject = Subjectnamecombo.SelectedItem.ToString();
-
-            // Search manually since GetSubjectByName does not exist
-            var subjects = SubjectController.GetAllSubjects();
-            var subject = subjects.FirstOrDefault(s => s.Name == selectedSubject);
-
+            var subject = SubjectController.GetAllSubjects().FirstOrDefault(s => s.Name == selectedSubject);
             subjectDataGridView.Rows.Clear();
-
             if (subject != null)
             {
                 subjectDataGridView.Rows.Add(subject.Id, subject.Name);
             }
-            else
-            {
-                MessageBox.Show("No subject found.");
-            }
-        }
-
-        private void Subjectnamecombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
+

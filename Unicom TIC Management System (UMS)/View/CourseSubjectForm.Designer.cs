@@ -277,12 +277,10 @@
             // Subjectnamecombo
             // 
             this.Subjectnamecombo.FormattingEnabled = true;
-            this.Subjectnamecombo.Name = "Subjectnamecombo";
             this.Subjectnamecombo.Location = new System.Drawing.Point(444, 432);
+            this.Subjectnamecombo.Name = "Subjectnamecombo";
             this.Subjectnamecombo.Size = new System.Drawing.Size(216, 21);
             this.Subjectnamecombo.TabIndex = 0;
-            this.Subjectnamecombo.SelectedIndexChanged += new System.EventHandler(this.Subjectnamecombo_SelectedIndexChanged);
-            this.Controls.Add(this.Subjectnamecombo);
             // 
             // CourseSubjectForm
             // 

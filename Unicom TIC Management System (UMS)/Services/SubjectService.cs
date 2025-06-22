@@ -18,7 +18,8 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             {
                 var cmd = new SQLiteCommand("INSERT INTO Subjects (Name, CourseId) VALUES (@Name, @CourseId)", conn);
                 cmd.Parameters.AddWithValue("@Name", subject.Name);
-                cmd.Parameters.AddWithValue("@CourseId", subject.Id);
+                //cmd.Parameters.AddWithValue("@CourseId", subject.Id);
+                cmd.Parameters.AddWithValue("@CourseId", subject.CourseId);
                 cmd.ExecuteNonQuery();
             }
         }
