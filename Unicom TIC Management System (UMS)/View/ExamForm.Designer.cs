@@ -124,6 +124,7 @@
             this.dataGridViewexam.Name = "dataGridViewexam";
             this.dataGridViewexam.Size = new System.Drawing.Size(263, 150);
             this.dataGridViewexam.TabIndex = 8;
+            this.dataGridViewexam.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewexam_CellContentClick);
             // 
             // ExamForm
             // 

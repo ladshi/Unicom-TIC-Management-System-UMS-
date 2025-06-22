@@ -52,14 +52,11 @@ namespace Unicom_TIC_Management_System__UMS_.View
 
         private void LoadCourseCombo()
         {
-            Coursenamecombo.Items.Clear();
+            Coursenamecombo.DataSource = null;
             courseList = CourseController.GetAllCourses();
-
-            //foreach (var course in courseList)
-            //{
-             //   Coursenamecombo.Items.Add(courseList);
-            //}
-            Coursenamecombo.Items.Add(courseList);
+            Coursenamecombo.DataSource = courseList;
+            Coursenamecombo.DisplayMember = "CourseName";
+            Coursenamecombo.ValueMember = "Id";
             Coursenamecombo.SelectedIndex = -1;
         }
 
@@ -118,13 +115,14 @@ namespace Unicom_TIC_Management_System__UMS_.View
 
         private void courseAddButton_Click(object sender, EventArgs e)
         {
-            Course course = new Course 
-            { 
-                CourseName = courseNameTextBox.Text.Trim() 
+            Course course = new Course
+            {
+                CourseName = courseNameTextBox.Text.Trim()
             };
             CourseController.AddCourse(course);
             courseNameTextBox.Clear();
             LoadCourses();
+            LoadCourseCombo();
         }
 
         private void courseDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -152,6 +150,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
             };
             CourseController.UpdateCourse(updatedCourse);
             LoadCourses();
+            LoadCourseCombo();
             courseNameTextBox.Clear();
             selectedCourseId = -1;
             MessageBox.Show("Course updated.");
@@ -164,6 +163,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
             {
                 CourseController.DeleteCourse(selectedCourseId);
                 LoadCourses();
+                LoadCourseCombo();
                 selectedCourseId = -1;
                 courseNameTextBox.Clear();
             }
@@ -180,7 +180,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
             Subject subject = new Subject
             {
                 SubjectName = subjectNameTextBox.Text.Trim(),
-                CourseId = CourseController.GetCourseByName(Coursenamecombo.SelectedItem.ToString()).Id
+                CourseId = Convert.ToInt32(Coursenamecombo.SelectedValue)
             };
 
             SubjectController.AddSubject(subject);
@@ -211,7 +211,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
         private void subjectDeleteButton_Click(object sender, EventArgs e)
         {
             if (selectedSubjectId == -1) return;
-            if (MessageBox.Show("Delete subject?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Are you sure you want to Delete the subject?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 SubjectController.DeleteSubject(selectedSubjectId);
                 LoadSubjects();

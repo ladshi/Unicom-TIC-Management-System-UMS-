@@ -49,7 +49,6 @@ namespace Unicom_TIC_Management_System__UMS_.View
             string roomName = Roomnametext.Text.Trim();
             string roomType = comboroomtype.SelectedItem?.ToString();
 
-            // Validation
             if (string.IsNullOrWhiteSpace(roomName))
             {
                 MessageBox.Show("Room name is required.");
