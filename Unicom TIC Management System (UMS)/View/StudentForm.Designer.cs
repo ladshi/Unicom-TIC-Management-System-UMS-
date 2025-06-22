@@ -333,7 +333,7 @@
             this.studentsgridview.Name = "studentsgridview";
             this.studentsgridview.Size = new System.Drawing.Size(557, 108);
             this.studentsgridview.TabIndex = 52;
-            this.studentsgridview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.studentsgridview_CellContentClick);
+            this.studentsgridview.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.studentsgridview_CellClick);
             // 
             // searchstudent
             // 
@@ -415,6 +415,8 @@
             this.Name = "StudentForm";
             this.Text = "StudentForm";
             this.Load += new System.EventHandler(this.StudentForm_Load);
+            this.MouseEnter += new System.EventHandler(this.StudentForm_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.StudentForm_MouseLeave);
             ((System.ComponentModel.ISupportInitialize)(this.studentsgridview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

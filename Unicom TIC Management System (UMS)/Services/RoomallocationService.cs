@@ -15,7 +15,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
         {
             using (var conn = DataConfig.GetConnection())
             {
-                string query = "INSERT INTO Rooms (RoomName, RoomType) VALUES (@RoomName, @RoomType)";
+                string query = "INSERT INTO RoomAllocation (RoomName, RoomType) VALUES (@RoomName, @RoomType)";
                 using (var cmd = new SQLiteCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@RoomName", room.RoomName);
@@ -29,7 +29,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
         {
             using (var conn = DataConfig.GetConnection())
             {
-                string query = "UPDATE Rooms SET RoomName = @RoomName, RoomType = @RoomType WHERE Id = @Id";
+                string query = "UPDATE RoomAllocation SET RoomName = @RoomName, RoomType = @RoomType WHERE Id = @Id";
                 using (var cmd = new SQLiteCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@RoomName", room.RoomName);
@@ -44,7 +44,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
         {
             using (var conn = DataConfig.GetConnection())
             {
-                string query = "DELETE FROM Rooms WHERE Id = @Id";
+                string query = "DELETE FROM RoomAllocation WHERE Id = @Id";
                 using (var cmd = new SQLiteCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@Id", roomId);
@@ -59,7 +59,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
 
             using (var conn = DataConfig.GetConnection())
             {
-                string query = "SELECT * FROM Rooms";
+                string query = "SELECT * FROM RoomAllocation";
                 using (var cmd = new SQLiteCommand(query, conn))
                 using (var reader = cmd.ExecuteReader())
                 {

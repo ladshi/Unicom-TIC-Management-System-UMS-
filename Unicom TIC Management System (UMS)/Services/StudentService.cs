@@ -19,7 +19,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                 // 1. Insert student
                 var studentCmd = conn.CreateCommand();
                 studentCmd.CommandText = @"INSERT INTO Students 
-                    (UserId, FirstName, LastName, DateOfBirth, Gender, PhoneNumber, Address, Email, CourseId) 
+                    (UserId, FirstName, LastName, DOB, Gender, PhoneNumber, Address, Email, CourseId) 
                     VALUES (@uid, @fname, @lname, @dob, @gender, @phone, @addr, @mail, @course);
                     SELECT last_insert_rowid();";
 
@@ -37,7 +37,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
 
                 // 2. Insert guardian
                 var guardianCmd = conn.CreateCommand();
-                guardianCmd.CommandText = @"INSERT INTO Guardians (StudentId, GuardianName, ContactNo)
+                guardianCmd.CommandText = @"INSERT INTO Guardians (StudentId, GuardianName, PhoneNumber)
                                             VALUES (@sid, @gname, @gcontact)";
                 guardianCmd.Parameters.AddWithValue("@sid", studentId);
                 guardianCmd.Parameters.AddWithValue("@gname", guardian.GuardianName);
@@ -53,7 +53,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                 // Update Students
                 var cmd = conn.CreateCommand();
                 cmd.CommandText = @"UPDATE Students 
-                            SET FirstName = @fname, LastName = @lname, DateOfBirth = @dob, 
+                            SET FirstName = @fname, LastName = @lname, DOB = @dob, 
                                 Gender = @gender, PhoneNumber = @phone, Address = @addr, 
                                 Email = @mail, CourseId = @course
                             WHERE Id = @id";
@@ -72,7 +72,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                 // Update Guardians
                 var gCmd = conn.CreateCommand();
                 gCmd.CommandText = @"UPDATE Guardians 
-                             SET GuardianName = @gname, ContactNo = @gcontact 
+                             SET GuardianName = @gname, PhoneNumber = @gcontact 
                              WHERE StudentId = @sid";
 
                 gCmd.Parameters.AddWithValue("@gname", guardian.GuardianName);
@@ -112,9 +112,9 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             using (var conn = DataConfig.GetConnection())
             {
                 var cmd = conn.CreateCommand();
-                cmd.CommandText = @"SELECT s.*, g.GuardianName, g.ContactNo
-                            FROM Students s
-                            JOIN Guardians g ON s.Id = g.StudentId";
+                cmd.CommandText = @"SELECT s.*, g.GuardianName, g.PhoneNumber
+                                  FROM Students s
+                                  JOIN Guardians g ON s.Id = g.StudentId";
 
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -126,7 +126,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                             UserId = Convert.ToInt32(reader["UserId"]),
                             FirstName = reader["FirstName"].ToString(),
                             LastName = reader["LastName"].ToString(),
-                            DOB = reader["DateOfBirth"].ToString(),
+                            DOB = reader["DOB"].ToString(),
                             Gender = (Gender)System.Enum.Parse(typeof(Gender), reader["Gender"].ToString()),
                             PhoneNumber = reader["PhoneNumber"].ToString(),
                             Address = reader["Address"].ToString(),
@@ -137,8 +137,13 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                         var guardian = new Guardian
                         {
                             GuardianName = reader["GuardianName"].ToString(),
-                            PhoneNumber = reader["ContactNo"].ToString()
+                            PhoneNumber = reader["GuardianContact"].ToString()
                         };
+
+                        string username = reader["UserName"].ToString();
+                        string password = reader["Password"].ToString();
+                        string courseName = reader["CourseName"].ToString();
+
 
                         list.Add((student, guardian));
                     }
@@ -148,13 +153,62 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             return list;
         }
 
+        public static List<(Student student, Guardian guardian, string username, string password, string courseName)> GetAllStudentsWithUserData()
+        {
+            var list = new List<(Student, Guardian, string, string, string)>();
+
+            using (var conn = DataConfig.GetConnection())
+            {
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = @"SELECT s.*, g.GuardianName, g.PhoneNumber AS GuardianContact, 
+                                        u.UserName, u.Password, c.CourseName AS CourseName
+                                FROM Students s
+                                JOIN Guardians g ON s.Id = g.StudentId
+                                JOIN Users u ON s.UserId = u.UserId
+                                JOIN Courses c ON s.CourseId = c.Id";
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var student = new Student
+                        {
+                            Id = Convert.ToInt32(reader["Id"]),
+                            UserId = Convert.ToInt32(reader["UserId"]),
+                            FirstName = reader["FirstName"].ToString(),
+                            LastName = reader["LastName"].ToString(),
+                            DOB = reader["DOB"].ToString(),
+                            Gender = (Gender)System.Enum.Parse(typeof(Gender), reader["Gender"].ToString()),
+                            PhoneNumber = reader["PhoneNumber"].ToString(),
+                            Address = reader["Address"].ToString(),
+                            Email = reader["Email"].ToString(),
+                            CourseId = Convert.ToInt32(reader["CourseId"])
+                        };
+
+                        var guardian = new Guardian
+                        {
+                            GuardianName = reader["GuardianName"].ToString(),
+                            PhoneNumber = reader["GuardianContact"].ToString()
+                        };
+
+                        string username = reader["UserName"].ToString();
+                        string password = reader["Password"].ToString();
+                        string courseName = reader["CourseName"].ToString();
+
+                        list.Add((student, guardian, username, password, courseName));
+                    }
+                }
+            }
+            return list;
+        }
+
         public static List<(Student, Guardian)> SearchByName(string keyword)
         {
             var list = new List<(Student, Guardian)>();
             using (var conn = DataConfig.GetConnection())
             {
                 var cmd = conn.CreateCommand();
-                cmd.CommandText = @"SELECT s.*, g.GuardianName, g.ContactNo
+                cmd.CommandText = @"SELECT s.*, g.GuardianName, g.PhoneNumber
                             FROM Students s
                             JOIN Guardians g ON s.Id = g.StudentId
                             WHERE s.FirstName LIKE @kw OR s.LastName LIKE @kw";

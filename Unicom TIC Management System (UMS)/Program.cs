@@ -22,7 +22,8 @@ namespace Unicom_TIC_Management_System__UMS_
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Welcome());
+            //Application.Run(new Welcome());
+            Application.Run(new StudentForm());
         }
     }
 }

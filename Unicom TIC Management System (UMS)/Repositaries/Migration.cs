@@ -46,8 +46,8 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
 
                       CREATE TABLE IF NOT EXISTS Students (
                         Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        First_name TEXT NOT NULL,
-                        Last_name TEXT NOT NULL,
+                        FirstName TEXT NOT NULL,
+                        LastName TEXT NOT NULL,
                         DOB TEXT NOT NULL, 
                         Gender INTEGER NOT NULL ,
                         Email TEXT NOT NULL UNIQUE,
@@ -62,8 +62,8 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
                     );
                
 
-                    CREATE TABLE IF NOT EXISTS Gurdians(
-                        Gurdian_Name TEXT NOT NULL,
+                    CREATE TABLE IF NOT EXISTS Guardians(
+                        GuardianName TEXT NOT NULL,
                         PhoneNumber TEXT NOT NULL,
                         StudentId INTEGER,
                         FOREIGN KEY (StudentId) REFERENCES Students(Id)
@@ -131,7 +131,7 @@ namespace Unicom_TIC_Management_System__UMS_.Repositaries
                         FOREIGN KEY(ExamId) REFERENCES Exams(Id)
                     );
                     
-                    CREATE TABLE Timetable (
+                    CREATE TABLE IF NOT EXISTS Timetable (
                         Id INTEGER PRIMARY KEY AUTOINCREMENT,
                         Day TEXT NOT NULL,
                         StartTime TEXT NOT NULL,

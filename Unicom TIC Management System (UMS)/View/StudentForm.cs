@@ -54,20 +54,20 @@ namespace Unicom_TIC_Management_System__UMS_.View
             studentsgridview.Columns.Add("GuardianName", "Guardian Name");         
             studentsgridview.Columns.Add("GuardianContact", "Guardian Contact");   
             studentsgridview.Columns.Add("UserId", "User ID");
+            studentsgridview.Columns.Add("Username", "Username");
+            studentsgridview.Columns.Add("Password", "Password");
+            studentsgridview.Columns.Add("CourseName", "Course");
 
-            // Make UserId column hidden (important for tracking)
             studentsgridview.Columns["UserId"].Visible = false;
-
-            // Optional: auto-size
-            studentsgridview.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            studentsgridview.Columns["Password"].Visible = false;
         }
 
         private void LoadStudentsToGrid()
         {
-            studentsgridview.Rows.Clear(); // Assume dgvStudents is your DataGridView
-            var students = StudentController.GetAllStudents();
+            studentsgridview.Rows.Clear();
+            var students = StudentController.GetAllStudentsWithUserData();
 
-            foreach (var (student, guardian) in students)
+            foreach (var (student, guardian, username, password, courseName) in students)
             {
                 studentsgridview.Rows.Add(
                     student.Id,
@@ -80,9 +80,15 @@ namespace Unicom_TIC_Management_System__UMS_.View
                     student.Address,
                     guardian.GuardianName,
                     guardian.GuardianContact,
-                    student.UserId  // hidden column for delete
+                    student.UserId,
+                    username,
+                    password,
+                    courseName
                 );
             }
+
+            studentsgridview.Columns["UserId"].Visible = false;
+            studentsgridview.Columns["Password"].Visible = false;
         }
 
         private void ButtonADD_Click(object sender, EventArgs e)
@@ -99,7 +105,8 @@ namespace Unicom_TIC_Management_System__UMS_.View
             var user = new User
             {
                 UserName = textSusername.Text,
-                Password = textSpassword.Text
+                Password = textSpassword.Text,
+                Role = UserRole.Student
             };
 
             int userId = UserController.AddUser(user);
@@ -114,7 +121,9 @@ namespace Unicom_TIC_Management_System__UMS_.View
                 PhoneNumber = textSPhoneNo.Text,
                 Address = textSaddress.Text,
                 Email = textEmail.Text,
-                CourseId = Convert.ToInt32(courseCombo.SelectedValue)
+                CourseId = Convert.ToInt32(courseCombo.SelectedValue),
+
+                UserId = userId
             };
 
             var guardian = new Guardian
@@ -174,29 +183,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
                 );
             }
         }
-
-        private void studentsgridview_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = studentsgridview.Rows[e.RowIndex];
-
-                selectedStudentId = Convert.ToInt32(row.Cells[0].Value);
-                textfirstname.Text = row.Cells[1].Value.ToString();
-                textSlastname.Text = row.Cells[2].Value.ToString();
-                comboGender.SelectedItem = System.Enum.Parse(typeof(Gender), row.Cells[3].Value.ToString());
-                dateTimePickerDOB.Value = DateTime.Parse(row.Cells[4].Value.ToString());
-                textSPhoneNo.Text = row.Cells[5].Value.ToString();
-                textEmail.Text = row.Cells[6].Value.ToString();
-                textSaddress.Text = row.Cells[7].Value.ToString();
-                textGurname.Text = row.Cells[8].Value.ToString();
-                textGurPhoNo.Text = row.Cells[9].Value.ToString();
-
-                selectedUserId = Convert.ToInt32(row.Cells[10].Value);
-            }
-        }
-
+         
         private void ClearFields()
         {
             textfirstname.Clear();
@@ -261,6 +248,40 @@ namespace Unicom_TIC_Management_System__UMS_.View
             MessageBox.Show("Student updated successfully.");
             ClearFields();
             LoadStudentsToGrid();
+        }
+
+        private void StudentForm_MouseEnter(object sender, EventArgs e)
+        {
+            studentsgridview.Cursor = Cursors.Hand;
+        }
+
+        private void StudentForm_MouseLeave(object sender, EventArgs e)
+        {
+            studentsgridview.Cursor = Cursors.Default;
+        }
+
+        private void studentsgridview_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = studentsgridview.Rows[e.RowIndex];
+
+                selectedStudentId = Convert.ToInt32(row.Cells[0].Value ?? -1);
+                textfirstname.Text = row.Cells[1].Value?.ToString() ?? "";
+                textSlastname.Text = row.Cells[2].Value?.ToString() ?? "";
+                comboGender.SelectedItem = System.Enum.Parse(typeof(Gender), row.Cells[3].Value?.ToString() ?? "");
+
+
+                if (DateTime.TryParse(row.Cells[4].Value?.ToString(), out var dob))
+                    dateTimePickerDOB.Value = dob;
+
+                textSPhoneNo.Text = row.Cells[5].Value?.ToString() ?? "";
+                textEmail.Text = row.Cells[6].Value?.ToString() ?? "";
+                textSaddress.Text = row.Cells[7].Value?.ToString() ?? "";
+                textGurname.Text = row.Cells[8].Value?.ToString() ?? "";
+                textGurPhoNo.Text = row.Cells[9].Value?.ToString() ?? "";
+                selectedUserId = Convert.ToInt32(row.Cells[10].Value ?? -1);
+            }
         }
     }
 }

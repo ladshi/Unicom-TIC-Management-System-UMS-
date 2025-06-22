@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Unicom_TIC_Management_System__UMS_.Models;
 using Unicom_TIC_Management_System__UMS_.Services;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Unicom_TIC_Management_System__UMS_.Controllers
 {
@@ -33,6 +34,11 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
         public static List<(Student, Guardian)> SearchByName(string keyword)
         {
             return StudentService.SearchByName(keyword);
+        }
+
+        public static List<(Student, Guardian, string username, string password, string courseName)> GetAllStudentsWithUserData()
+        {
+            return StudentService.GetAllStudentsWithUserData();
         }
 
     }
