@@ -27,7 +27,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
         {
             var courses = CourseController.GetAllCourses();
             courseCombo.DataSource = courses;
-            courseCombo.DisplayMember = "Name";
+            courseCombo.DisplayMember = "CourseName";
             courseCombo.ValueMember = "Id";
         }
 

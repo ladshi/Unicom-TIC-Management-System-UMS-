@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Unicom_TIC_Management_System__UMS_.Models;
 using Unicom_TIC_Management_System__UMS_.Services;
 
@@ -24,7 +25,16 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
 
         public static bool UpdateStaff(Staff staff)
         {
-            return StaffService.UpdateStaff(staff);
+            bool result = StaffService.UpdateStaff(staff);
+
+            if (result)
+            {
+                MessageBox.Show("control ok");
+            }
+
+            return result;
+            //return StaffService.UpdateStaff(staff);
+            //MessageBox.Show("control ok");
         }
 
         public static bool DeleteStaff(int userId)

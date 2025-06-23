@@ -1,0 +1,25 @@
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\bin\Debug\Unicom TIC Management System (UMS).exe.config
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\bin\Debug\Unicom TIC Management System (UMS).exe
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\bin\Debug\Unicom TIC Management System (UMS).pdb
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\bin\Debug\System.Data.SQLite.dll
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\bin\Debug\System.Data.SQLite.xml
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\obj\Debug\Unicom TIC Management System (UMS).csproj.AssemblyReference.cache
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\obj\Debug\Unicom_TIC_Management_System__UMS_.Properties.Resources.resources
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\obj\Debug\Unicom TIC Management System (UMS).csproj.GenerateResource.cache
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\obj\Debug\Unicom TIC Management System (UMS).csproj.CoreCompileInputs.cache
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\obj\Debug\Unicom T.961D77F9.Up2Date
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\obj\Debug\Unicom TIC Management System (UMS).exe
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\obj\Debug\Unicom TIC Management System (UMS).pdb
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\obj\Debug\Unicom_TIC_Management_System__UMS_.Form1.resources
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\obj\Debug\Unicom_TIC_Management_System__UMS_.View.Login.resources
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\obj\Debug\Unicom_TIC_Management_System__UMS_.View.StudentForm.resources
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\obj\Debug\Unicom_TIC_Management_System__UMS_.View.AdminForm.resources
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\obj\Debug\Unicom_TIC_Management_System__UMS_.View.Studentpanel.resources
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\obj\Debug\Unicom_TIC_Management_System__UMS_.View.Welcome.resources
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\obj\Debug\Unicom_TIC_Management_System__UMS_.View.DashboardForm.resources
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\obj\Debug\Unicom_TIC_Management_System__UMS_.View.defaultForm.resources
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\obj\Debug\Unicom_TIC_Management_System__UMS_.View.CourseSubjectForm.resources
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\obj\Debug\Unicom_TIC_Management_System__UMS_.View.ExamForm.resources
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\obj\Debug\Unicom_TIC_Management_System__UMS_.View.MarksForm.resources
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\obj\Debug\Unicom_TIC_Management_System__UMS_.View.RoomAllocationForm.resources
+Z:\C SHARP\assignment\Unicom TIC Management System (UMS)\Unicom TIC Management System (UMS)\obj\Debug\Unicom_TIC_Management_System__UMS_.View.TimeTableForm.resources

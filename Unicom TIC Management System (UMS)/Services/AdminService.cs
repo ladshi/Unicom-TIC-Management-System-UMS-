@@ -53,7 +53,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
 
             using (var conn = DataConfig.GetConnection())
             {
-                string query = "SELECT FirstName, LastName, PhoneNumber, Email, Address, DOB, AccessLevel FROM Admin";
+                string query = "SELECT FirstName, LastName, PhoneNumber, Email, Address, DOB, AccessLevel, UserId FROM Admin";
 
                 using (var cmd = new SQLiteCommand(query, conn))
                 using (var reader = cmd.ExecuteReader())
@@ -68,7 +68,8 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                             Email = reader["Email"].ToString(),
                             Address = reader["Address"].ToString(),
                             DOB = reader["DOB"].ToString(),
-                            AccessLevel = reader["AccessLevel"].ToString()
+                            AccessLevel = reader["AccessLevel"].ToString(),
+                            UserId = Convert.ToInt32(reader["UserId"])
                         };
 
                         adminList.Add(admin);

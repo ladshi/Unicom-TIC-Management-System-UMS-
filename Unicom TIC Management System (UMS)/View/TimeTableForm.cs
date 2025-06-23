@@ -71,7 +71,9 @@ namespace Unicom_TIC_Management_System__UMS_.View
         {
             var t = new Timetable
             {
+
                 Day = DTpic.Value.ToString(),
+
                 StartTime = textstarttime.Text,
                 EndTime = Textendtime.Text,
                 SubjectId = Convert.ToInt32(combosubject.SelectedValue),
@@ -92,7 +94,9 @@ namespace Unicom_TIC_Management_System__UMS_.View
                 var t = new Timetable
                 {
                     Id = selectedTimetableId,
+
                     Day = DTpic.Value.ToString(),
+
                     StartTime = textstarttime.Text,
                     EndTime = Textendtime.Text,
                     SubjectId = Convert.ToInt32(combosubject.SelectedValue),
@@ -122,7 +126,9 @@ namespace Unicom_TIC_Management_System__UMS_.View
             if (e.RowIndex >= 0)
             {
                 selectedTimetableId = Convert.ToInt32(dataGridViewTimetable.Rows[e.RowIndex].Cells[0].Value);
+
                 DTpic.Value = dataGridViewTimetable.Rows[e.RowIndex].Cells[1].Value.DateTime.Today;
+
                 textstarttime.Text = dataGridViewTimetable.Rows[e.RowIndex].Cells[2].Value.ToString();
                 Textendtime.Text = dataGridViewTimetable.Rows[e.RowIndex].Cells[3].Value.ToString();
                 combosubject.SelectedValue = dataGridViewTimetable.Rows[e.RowIndex].Cells[4].Value;
@@ -146,7 +152,9 @@ namespace Unicom_TIC_Management_System__UMS_.View
             private void ClearInputs()
             {
                 selectedTimetableId = -1;
+
                 DTpic.Value = DateTime.Today; ;
+
                 textstarttime.Clear();
                 Textendtime.Clear();
                 texttimeslot.Clear();
@@ -155,7 +163,12 @@ namespace Unicom_TIC_Management_System__UMS_.View
                 comboroom.SelectedIndex = -1;
             }
 
-       
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
 
