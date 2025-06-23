@@ -223,6 +223,7 @@
             this.admingridview.Name = "admingridview";
             this.admingridview.Size = new System.Drawing.Size(591, 150);
             this.admingridview.TabIndex = 19;
+            this.admingridview.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.admingridview_CellClick);
             this.admingridview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.admingridview_CellContentClick);
             // 
             // buttonAdd
