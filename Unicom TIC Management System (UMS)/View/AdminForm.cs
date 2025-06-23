@@ -95,9 +95,11 @@ namespace Unicom_TIC_Management_System__UMS_.View
 
         private void LoadUsers()
         {
+            // Remove all columns before adding new ones because iam using role base so for staff lecture accesslevel will be null so
+            admingridview.Columns.Clear();
+
             admingridview.Rows.Clear();
 
-            // Add columns only once
             if (admingridview.Columns.Count == 0)
             {
                 admingridview.Columns.Add("FirstName", "First Name");
@@ -106,9 +108,48 @@ namespace Unicom_TIC_Management_System__UMS_.View
                 admingridview.Columns.Add("Email", "Email");
                 admingridview.Columns.Add("Address", "Address");
                 admingridview.Columns.Add("DOB", "DOB");
-                admingridview.Columns.Add("AccessLevel", "Access Level"); // can be hidden for Staff/Lecturer
-                admingridview.Columns.Add("UserId", "User ID");
-                admingridview.Columns["UserId"].Visible = false;
+                //admingridview.Columns.Add("AccessLevel", "Access Level"); // can be hidden for Staff/Lecturer
+                //admingridview.Columns.Add("UserId", "User ID");
+                //admingridview.Columns["UserId"].Visible = false;
+
+                if (currentMode == UserRole.Admin || currentMode == UserRole.MainAdmin)
+                {
+                    admingridview.Columns.Add("AccessLevel", "Access Level");
+                    admingridview.Columns.Add("UserId", "User ID");
+                    admingridview.Columns["UserId"].Visible = false;
+
+                    var adminList = AdminController.GetAdmins();
+                    foreach (var admin in adminList)
+                    {
+                        admingridview.Rows.Add(admin.FirstName, admin.LastName, admin.PhoneNumber,
+                            admin.Email, admin.Address, admin.DOB, admin.AccessLevel, admin.UserId);
+                    }
+                }
+                else if (currentMode == UserRole.Staff)
+                {
+                    admingridview.Columns.Add("UserId", "User ID");
+                    admingridview.Columns["UserId"].Visible = false;
+
+                    var staffList = StaffController.GetAllStaffs();
+                    foreach (var staff in staffList)
+                    {
+                        admingridview.Rows.Add(staff.FirstName, staff.LastName, staff.PhoneNumber,
+                            staff.Email, staff.Address, staff.DOB, staff.UserId);
+                    }
+                }
+                else if (currentMode == UserRole.Lecturer)
+                {
+                    admingridview.Columns.Add("UserId", "User ID");
+                    admingridview.Columns["UserId"].Visible = false;
+
+                    var LectureList = LectureController.GetLecturers();
+                    foreach (var lec in LectureList)
+                    {
+                        admingridview.Rows.Add(lec.FirstName, lec.LastName, lec.PhoneNumber,
+                            lec.Email, lec.Address, lec.DOB, lec.UserId);
+                    }
+                }
+
             }
 
             if (currentMode == UserRole.Admin || currentMode == UserRole.MainAdmin)
@@ -260,8 +301,17 @@ namespace Unicom_TIC_Management_System__UMS_.View
                 textEmail.Text = row.Cells["Email"].Value.ToString();
                 textAddress.Text = row.Cells["Address"].Value.ToString();
                 dateTimePicker.Text = row.Cells["DOB"].Value.ToString();
-                comboaccess.Text = row.Cells["AccessLevel"].Value.ToString();
+                //comboaccess.Text = row.Cells["AccessLevel"].Value.ToString();
+                if (admingridview.Columns.Contains("AccessLevel") && comboaccess.Visible)
+                {
+                    comboaccess.Text = row.Cells["AccessLevel"].Value?.ToString();
+                }
                 selectedUserId = Convert.ToInt32(row.Cells["UserId"].Value);
+
+                /*if (admingridview.Columns.Contains("UserId"))
+                {
+                    selectedUserId = Convert.ToInt32(row.Cells["UserId"].Value);
+                }*/
             }
         }
 
@@ -371,7 +421,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            if (selectedUserId == -1)
+            /*if (selectedUserId == -1)
             {
                 MessageBox.Show("Please select a record to delete.");
                 return;
@@ -386,6 +436,34 @@ namespace Unicom_TIC_Management_System__UMS_.View
                     StaffController.DeleteStaff(selectedUserId);
                 else if (currentMode == UserRole.Lecturer)
                     LectureController.DeleteLecturer(selectedUserId);
+
+                UserService.DeleteUser(selectedUserId);
+
+                MessageBox.Show("Deleted Successfully!");
+                ClearForm();
+                LoadUsers();
+            }*/
+            if (selectedUserId == -1)
+            {
+                MessageBox.Show("Please select a record to delete.");
+                return;
+            }
+
+            var confirm = MessageBox.Show("Are you sure you want to delete this user?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (confirm == DialogResult.Yes)
+            {
+                if (currentMode == UserRole.Admin || currentMode == UserRole.MainAdmin)
+                {
+                    AdminController.DeleteAdmin(selectedUserId);
+                }
+                else if (currentMode == UserRole.Staff)
+                {
+                    StaffController.DeleteStaff(selectedUserId);
+                }
+                else if (currentMode == UserRole.Lecturer)
+                {
+                    LectureController.DeleteLecturer(selectedUserId);
+                }
 
                 UserService.DeleteUser(selectedUserId);
 
@@ -431,12 +509,23 @@ namespace Unicom_TIC_Management_System__UMS_.View
                 dateTimePicker.Text = row.Cells["DOB"].Value.ToString();
 
                 // Use AccessLevel only if visible
-                if (comboaccess.Visible)
+                /*if (comboaccess.Visible)
                 {
                     comboaccess.Text = row.Cells["AccessLevel"].Value.ToString();
                 }
 
                 selectedUserId = Convert.ToInt32(row.Cells["UserId"].Value);
+                */
+
+                if (admingridview.Columns.Contains("AccessLevel") && row.Cells["AccessLevel"].Value != null)
+                {
+                    comboaccess.Text = row.Cells["AccessLevel"].Value.ToString();
+                }
+                else
+                {
+                    comboaccess.Text = ""; 
+                }
+
             }
         }
     }

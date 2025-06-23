@@ -51,7 +51,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
 
             using (var conn = DataConfig.GetConnection())
             {
-                string query = "SELECT FirstName, LastName, PhoneNumber, Email, Address, DOB FROM Staff";
+                string query = "SELECT FirstName, LastName, PhoneNumber, Email, Address, DOB, UserId FROM Staff";
 
                 using (var cmd = new SQLiteCommand(query, conn))
                 using (var reader = cmd.ExecuteReader())
@@ -65,7 +65,8 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                             PhoneNumber = reader["PhoneNumber"].ToString(),
                             Email = reader["Email"].ToString(),
                             Address = reader["Address"].ToString(),
-                            DOB = reader["DOB"].ToString()
+                            DOB = reader["DOB"].ToString(),
+                            UserId = Convert.ToInt32(reader["UserId"])
                         };
 
                         staffList.Add(staff);
@@ -87,6 +88,14 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                                 WHERE UserId = @UserId";
 
                 MessageBox.Show("Reached StaffService: " + staff.FirstName);
+                MessageBox.Show("Trying to update UserId: " + staff.UserId +
+                "\nFirstName: " + staff.FirstName +
+                "\nLastName: " + staff.LastName +
+                "\nPhone: " + staff.PhoneNumber +
+                "\nEmail: " + staff.Email +
+                "\nAddress: " + staff.Address +
+                "\nDOB: " + staff.DOB);
+
 
                 using (var cmd = new SQLiteCommand(query, conn))
                 {
@@ -97,6 +106,9 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                     cmd.Parameters.AddWithValue("@Address", staff.Address);
                     cmd.Parameters.AddWithValue("@DOB", staff.DOB);
                     cmd.Parameters.AddWithValue("@UserId", staff.UserId);
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Rows affected: " + rowsAffected);
 
                     return cmd.ExecuteNonQuery() > 0;
                 }
