@@ -324,14 +324,14 @@ namespace Unicom_TIC_Management_System__UMS_.View
             }
 
 
-            User user = new User
+            /*User user = new User
             {
                 UserId = selectedUserId,
                 UserName = username,
                 Password = password,
                 Role = selectedRole
             };
-            UserService.UpdateUser(user);
+            UserService.UpdateUser(user);*/
 
             if (currentMode == UserRole.Admin || currentMode == UserRole.MainAdmin)
             {
