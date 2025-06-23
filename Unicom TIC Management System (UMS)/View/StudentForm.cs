@@ -209,7 +209,6 @@ namespace Unicom_TIC_Management_System__UMS_.View
                 return;
             }
 
-            // 1. Update user credentials
             var user = new User
             {
                 UserId = selectedUserId,
@@ -220,7 +219,6 @@ namespace Unicom_TIC_Management_System__UMS_.View
 
             UserController.UpdateUser(user);
 
-            // 2. Update student data
             var student = new Student
             {
                 Id = selectedStudentId,
@@ -235,7 +233,6 @@ namespace Unicom_TIC_Management_System__UMS_.View
                 CourseId = Convert.ToInt32(courseCombo.SelectedValue)
             };
 
-            // 3. Update guardian
             var guardian = new Guardian
             {
                 StudentId = selectedStudentId,
