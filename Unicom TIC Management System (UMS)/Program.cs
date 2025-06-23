@@ -25,7 +25,7 @@ namespace Unicom_TIC_Management_System__UMS_
             //Application.Run(new Welcome());
             //Application.Run(new StudentForm());
             //Application.Run(new CourseSubjectForm());
-            Application.Run(new ExamForm());
+            Application.Run(new TimeTableForm());
 
         }
     }

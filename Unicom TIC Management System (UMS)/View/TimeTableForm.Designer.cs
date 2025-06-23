@@ -36,7 +36,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.comboDay = new System.Windows.Forms.ComboBox();
             this.combosubject = new System.Windows.Forms.ComboBox();
             this.combolecture = new System.Windows.Forms.ComboBox();
             this.comboroom = new System.Windows.Forms.ComboBox();
@@ -47,6 +46,7 @@
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
+            this.DTpic = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTimetable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -129,14 +129,6 @@
             this.label8.Size = new System.Drawing.Size(84, 16);
             this.label8.TabIndex = 7;
             this.label8.Text = "Room Name";
-            // 
-            // comboDay
-            // 
-            this.comboDay.FormattingEnabled = true;
-            this.comboDay.Location = new System.Drawing.Point(155, 69);
-            this.comboDay.Name = "comboDay";
-            this.comboDay.Size = new System.Drawing.Size(121, 21);
-            this.comboDay.TabIndex = 8;
             // 
             // combosubject
             // 
@@ -225,11 +217,19 @@
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
+            // DTpic
+            // 
+            this.DTpic.Location = new System.Drawing.Point(155, 70);
+            this.DTpic.Name = "DTpic";
+            this.DTpic.Size = new System.Drawing.Size(121, 20);
+            this.DTpic.TabIndex = 19;
+            // 
             // TimeTableForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(680, 611);
+            this.Controls.Add(this.DTpic);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonUpdate);
             this.Controls.Add(this.buttonAdd);
@@ -240,7 +240,6 @@
             this.Controls.Add(this.comboroom);
             this.Controls.Add(this.combolecture);
             this.Controls.Add(this.combosubject);
-            this.Controls.Add(this.comboDay);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -269,7 +268,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboDay;
         private System.Windows.Forms.ComboBox combosubject;
         private System.Windows.Forms.ComboBox combolecture;
         private System.Windows.Forms.ComboBox comboroom;
@@ -280,5 +278,6 @@
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.DateTimePicker DTpic;
     }
 }

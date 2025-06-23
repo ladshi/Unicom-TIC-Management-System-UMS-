@@ -165,7 +165,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                                 FROM Students s
                                 JOIN Guardians g ON s.Id = g.StudentId
                                 JOIN Users u ON s.UserId = u.UserId
-                                JOIN Courses c ON s.CourseId = c.Id";
+                                JOIN Courses c ON s.CourseId = c.CourseId";
 
                 using (var reader = cmd.ExecuteReader())
                 {
