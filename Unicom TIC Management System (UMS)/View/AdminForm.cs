@@ -285,9 +285,28 @@ namespace Unicom_TIC_Management_System__UMS_.View
 
             string username = textUsername.Text.Trim();
             string password = textpassword.Text.Trim();
-            UserRole selectedRole = (UserRole)System.Enum.Parse(typeof(UserRole), comboaccess.Text);
+            //UserRole selectedRole = (UserRole)System.Enum.Parse(typeof(UserRole), comboaccess.Text);
 
-            // 1️⃣ UPDATE USERS table
+            UserRole selectedRole;
+
+            // For Admin and MainAdmin, parse from comboaccess
+            if (currentMode == UserRole.Admin || currentMode == UserRole.MainAdmin)
+            {
+                if (string.IsNullOrWhiteSpace(comboaccess.Text))
+                {
+                    MessageBox.Show("Please select an Access Level.");
+                    return;
+                }
+
+                selectedRole = (UserRole)System.Enum.Parse(typeof(UserRole), comboaccess.Text);
+            }
+            // For Staff or Lecturer, directly assign the current mode
+            else
+            {
+                selectedRole = currentMode;
+            }
+
+
             User user = new User
             {
                 UserId = selectedUserId,
@@ -297,7 +316,6 @@ namespace Unicom_TIC_Management_System__UMS_.View
             };
             UserService.UpdateUser(user);
 
-            // 2️⃣ UPDATE Role-specific table
             if (currentMode == UserRole.Admin || currentMode == UserRole.MainAdmin)
             {
                 var admin = new Admin
@@ -315,6 +333,8 @@ namespace Unicom_TIC_Management_System__UMS_.View
             }
             else if (currentMode == UserRole.Staff)
             {
+                MessageBox.Show("Entering Staff update block");
+
                 var staff = new Staff
                 {
                     FirstName = textfirstname.Text.Trim(),
@@ -326,6 +346,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
                     UserId = selectedUserId
                 };
                 StaffController.UpdateStaff(staff);
+                MessageBox.Show("ok");
             }
             else if (currentMode == UserRole.Lecturer)
             {
@@ -359,7 +380,6 @@ namespace Unicom_TIC_Management_System__UMS_.View
             var confirm = MessageBox.Show("Are you sure to delete?", "Confirm", MessageBoxButtons.YesNo);
             if (confirm == DialogResult.Yes)
             {
-                // 1️⃣ Delete from role-specific table
                 if (currentMode == UserRole.Admin || currentMode == UserRole.MainAdmin)
                     AdminController.DeleteAdmin(selectedUserId);
                 else if (currentMode == UserRole.Staff)
@@ -367,7 +387,6 @@ namespace Unicom_TIC_Management_System__UMS_.View
                 else if (currentMode == UserRole.Lecturer)
                     LectureController.DeleteLecturer(selectedUserId);
 
-                // 2️⃣ Delete from USERS table
                 UserService.DeleteUser(selectedUserId);
 
                 MessageBox.Show("Deleted Successfully!");
@@ -395,6 +414,29 @@ namespace Unicom_TIC_Management_System__UMS_.View
                     admin.AccessLevel,
                     admin.UserId
                 );
+            }
+        }
+
+        private void admingridview_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) 
+            {
+                DataGridViewRow row = admingridview.Rows[e.RowIndex];
+
+                textfirstname.Text = row.Cells["FirstName"].Value.ToString();
+                textLastName.Text = row.Cells["LastName"].Value.ToString();
+                textContactNo.Text = row.Cells["PhoneNumber"].Value.ToString();
+                textEmail.Text = row.Cells["Email"].Value.ToString();
+                textAddress.Text = row.Cells["Address"].Value.ToString();
+                dateTimePicker.Text = row.Cells["DOB"].Value.ToString();
+
+                // Use AccessLevel only if visible
+                if (comboaccess.Visible)
+                {
+                    comboaccess.Text = row.Cells["AccessLevel"].Value.ToString();
+                }
+
+                selectedUserId = Convert.ToInt32(row.Cells["UserId"].Value);
             }
         }
     }

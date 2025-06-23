@@ -86,6 +86,8 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                                     Address = @Address, DOB = @DOB
                                 WHERE UserId = @UserId";
 
+                MessageBox.Show("Reached StaffService: " + staff.FirstName);
+
                 using (var cmd = new SQLiteCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@FirstName", staff.FirstName);

@@ -15,7 +15,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
         {
             using (var con = DataConfig.GetConnection())
             {
-                var cmd = new SQLiteCommand("INSERT INTO Timetables (Day, StartTime, EndTime, SubjectId, LectureId, TimeSlot, RoomId) VALUES (@Day, @StartTime, @EndTime, @SubjectId, @LectureId, @TimeSlot, @RoomId)", con);
+                var cmd = new SQLiteCommand("INSERT INTO Timetable (Day, StartTime, EndTime, SubjectId, LectureId, TimeSlot, RoomId) VALUES (@Day, @StartTime, @EndTime, @SubjectId, @LectureId, @TimeSlot, @RoomId)", con);
                 cmd.Parameters.AddWithValue("@Day", t.Day);
                 cmd.Parameters.AddWithValue("@StartTime", t.StartTime);
                 cmd.Parameters.AddWithValue("@EndTime", t.EndTime);
@@ -31,7 +31,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
         {
             using (var con = DataConfig.GetConnection())
             {
-                var cmd = new SQLiteCommand("UPDATE Timetables SET Day=@Day, StartTime=@StartTime, EndTime=@EndTime, SubjectId=@SubjectId, LectureId=@LectureId, TimeSlot=@TimeSlot, RoomId=@RoomId WHERE Id=@Id", con);
+                var cmd = new SQLiteCommand("UPDATE Timetable SET Day=@Day, StartTime=@StartTime, EndTime=@EndTime, SubjectId=@SubjectId, LectureId=@LectureId, TimeSlot=@TimeSlot, RoomId=@RoomId WHERE Id=@Id", con);
                 cmd.Parameters.AddWithValue("@Day", t.Day);
                 cmd.Parameters.AddWithValue("@StartTime", t.StartTime);
                 cmd.Parameters.AddWithValue("@EndTime", t.EndTime);
@@ -48,7 +48,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
         {
             using (var con = DataConfig.GetConnection())
             {
-                var cmd = new SQLiteCommand("DELETE FROM Timetables WHERE Id=@Id", con);
+                var cmd = new SQLiteCommand("DELETE FROM Timetable WHERE Id=@Id", con);
                 cmd.Parameters.AddWithValue("@Id", id);
                 cmd.ExecuteNonQuery();
             }
@@ -59,7 +59,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             var list = new List<Timetable>();
             using (var con = DataConfig.GetConnection())
             {
-                var cmd = new SQLiteCommand("SELECT * FROM Timetables", con);
+                var cmd = new SQLiteCommand("SELECT * FROM Timetable", con);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
