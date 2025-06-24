@@ -54,9 +54,21 @@ namespace Unicom_TIC_Management_System__UMS_.View
                 //string accessLevel = UserController.GetAccessLevel(username);
                 MessageBox.Show("Login successful!", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Hide();
-                DashboardForm dashboardForm = new DashboardForm(role, username);
-                dashboardForm.Show();
+                if (role == UserRole.Student)
+                {
+                    StudentDashboardForm studentDashboard = new StudentDashboardForm(username);
+                    studentDashboard.Show();
+                }
+                else
+                {
+                    DashboardForm dashboardForm = new DashboardForm(role, username);
+                    dashboardForm.Show();
+                }
                 this.Hide();
+
+                //DashboardForm dashboardForm = new DashboardForm(role, username);
+                //dashboardForm.Show();
+                //this.Hide();
             }
             else
             {

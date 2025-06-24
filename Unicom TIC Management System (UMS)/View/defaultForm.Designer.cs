@@ -35,7 +35,6 @@
             this.lblTotalLecturers = new System.Windows.Forms.Label();
             this.lblTotalCourses = new System.Windows.Forms.Label();
             this.lblTotalSubjects = new System.Windows.Forms.Label();
-            this.lbltotal = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -103,20 +102,10 @@
             // lblTotalSubjects
             // 
             this.lblTotalSubjects.AutoSize = true;
-            this.lblTotalSubjects.Location = new System.Drawing.Point(90, 292);
+            this.lblTotalSubjects.Location = new System.Drawing.Point(91, 370);
             this.lblTotalSubjects.Name = "lblTotalSubjects";
             this.lblTotalSubjects.Size = new System.Drawing.Size(0, 13);
             this.lblTotalSubjects.TabIndex = 6;
-            // 
-            // lbltotal
-            // 
-            this.lbltotal.AutoSize = true;
-            this.lbltotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltotal.Location = new System.Drawing.Point(76, 374);
-            this.lbltotal.Name = "lbltotal";
-            this.lbltotal.Size = new System.Drawing.Size(234, 31);
-            this.lbltotal.TabIndex = 7;
-            this.lbltotal.Text = "Total Subjects: 0";
             // 
             // defaultForm
             // 
@@ -125,7 +114,6 @@
             this.BackgroundImage = global::Unicom_TIC_Management_System__UMS_.Properties.Resources.OIP__2_;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(696, 650);
-            this.Controls.Add(this.lbltotal);
             this.Controls.Add(this.lblTotalSubjects);
             this.Controls.Add(this.lblTotalCourses);
             this.Controls.Add(this.lblTotalLecturers);
@@ -151,6 +139,5 @@
         private System.Windows.Forms.Label lblTotalLecturers;
         private System.Windows.Forms.Label lblTotalCourses;
         private System.Windows.Forms.Label lblTotalSubjects;
-        private System.Windows.Forms.Label lbltotal;
     }
 }

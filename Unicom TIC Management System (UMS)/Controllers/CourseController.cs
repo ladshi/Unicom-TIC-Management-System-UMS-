@@ -47,5 +47,17 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
             return CourseService.GetCourseCount();
         }
 
+        public static string GetCourseNameById(int courseId)
+        {
+            var courses = CourseService.GetAll();
+            foreach (var course in courses)
+            {
+                if (course.Id == courseId)
+                    return course.CourseName;
+            }
+            return "";
+        }
+
+
     }
 }

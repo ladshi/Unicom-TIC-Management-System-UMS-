@@ -29,36 +29,36 @@
         private void InitializeComponent()
         {
             this.groupBoxProfile = new System.Windows.Forms.GroupBox();
-            this.labelName = new System.Windows.Forms.Label();
-            this.labelDOB = new System.Windows.Forms.Label();
-            this.labelGender = new System.Windows.Forms.Label();
-            this.labelCourse = new System.Windows.Forms.Label();
-            this.labelGuardian = new System.Windows.Forms.Label();
+            this.textContact = new System.Windows.Forms.TextBox();
+            this.textGuardian = new System.Windows.Forms.TextBox();
+            this.textCourse = new System.Windows.Forms.TextBox();
+            this.textGender = new System.Windows.Forms.TextBox();
+            this.textDOB = new System.Windows.Forms.TextBox();
+            this.textName = new System.Windows.Forms.TextBox();
             this.labelContact = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.labelGuardian = new System.Windows.Forms.Label();
+            this.labelCourse = new System.Windows.Forms.Label();
+            this.labelGender = new System.Windows.Forms.Label();
+            this.labelDOB = new System.Windows.Forms.Label();
+            this.labelName = new System.Windows.Forms.Label();
+            this.dataGridViewTimeTable = new System.Windows.Forms.DataGridView();
+            this.dataGridViewMarks = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBoxProfile.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTimeTable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMarks)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxProfile
             // 
-            this.groupBoxProfile.Controls.Add(this.textBox6);
-            this.groupBoxProfile.Controls.Add(this.textBox5);
-            this.groupBoxProfile.Controls.Add(this.textBox4);
-            this.groupBoxProfile.Controls.Add(this.textBox3);
-            this.groupBoxProfile.Controls.Add(this.textBox2);
-            this.groupBoxProfile.Controls.Add(this.textBox1);
+            this.groupBoxProfile.Controls.Add(this.textContact);
+            this.groupBoxProfile.Controls.Add(this.textGuardian);
+            this.groupBoxProfile.Controls.Add(this.textCourse);
+            this.groupBoxProfile.Controls.Add(this.textGender);
+            this.groupBoxProfile.Controls.Add(this.textDOB);
+            this.groupBoxProfile.Controls.Add(this.textName);
             this.groupBoxProfile.Controls.Add(this.labelContact);
             this.groupBoxProfile.Controls.Add(this.labelGuardian);
             this.groupBoxProfile.Controls.Add(this.labelCourse);
@@ -73,50 +73,47 @@
             this.groupBoxProfile.Text = "My Profile";
             this.groupBoxProfile.Enter += new System.EventHandler(this.groupBoxProfile_Enter);
             // 
-            // labelName
+            // textContact
             // 
-            this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(22, 26);
-            this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(35, 13);
-            this.labelName.TabIndex = 0;
-            this.labelName.Text = "Name";
+            this.textContact.Location = new System.Drawing.Point(87, 148);
+            this.textContact.Name = "textContact";
+            this.textContact.Size = new System.Drawing.Size(226, 20);
+            this.textContact.TabIndex = 11;
             // 
-            // labelDOB
+            // textGuardian
             // 
-            this.labelDOB.AutoSize = true;
-            this.labelDOB.Location = new System.Drawing.Point(22, 51);
-            this.labelDOB.Name = "labelDOB";
-            this.labelDOB.Size = new System.Drawing.Size(30, 13);
-            this.labelDOB.TabIndex = 1;
-            this.labelDOB.Text = "DOB";
+            this.textGuardian.Location = new System.Drawing.Point(87, 121);
+            this.textGuardian.Name = "textGuardian";
+            this.textGuardian.Size = new System.Drawing.Size(226, 20);
+            this.textGuardian.TabIndex = 10;
             // 
-            // labelGender
+            // textCourse
             // 
-            this.labelGender.AutoSize = true;
-            this.labelGender.Location = new System.Drawing.Point(22, 73);
-            this.labelGender.Name = "labelGender";
-            this.labelGender.Size = new System.Drawing.Size(42, 13);
-            this.labelGender.TabIndex = 2;
-            this.labelGender.Text = "Gender";
+            this.textCourse.Location = new System.Drawing.Point(87, 96);
+            this.textCourse.Name = "textCourse";
+            this.textCourse.Size = new System.Drawing.Size(226, 20);
+            this.textCourse.TabIndex = 9;
             // 
-            // labelCourse
+            // textGender
             // 
-            this.labelCourse.AutoSize = true;
-            this.labelCourse.Location = new System.Drawing.Point(24, 99);
-            this.labelCourse.Name = "labelCourse";
-            this.labelCourse.Size = new System.Drawing.Size(40, 13);
-            this.labelCourse.TabIndex = 3;
-            this.labelCourse.Text = "Course";
+            this.textGender.Location = new System.Drawing.Point(87, 70);
+            this.textGender.Name = "textGender";
+            this.textGender.Size = new System.Drawing.Size(226, 20);
+            this.textGender.TabIndex = 8;
             // 
-            // labelGuardian
+            // textDOB
             // 
-            this.labelGuardian.AutoSize = true;
-            this.labelGuardian.Location = new System.Drawing.Point(22, 124);
-            this.labelGuardian.Name = "labelGuardian";
-            this.labelGuardian.Size = new System.Drawing.Size(50, 13);
-            this.labelGuardian.TabIndex = 4;
-            this.labelGuardian.Text = "Guardian";
+            this.textDOB.Location = new System.Drawing.Point(87, 48);
+            this.textDOB.Name = "textDOB";
+            this.textDOB.Size = new System.Drawing.Size(226, 20);
+            this.textDOB.TabIndex = 7;
+            // 
+            // textName
+            // 
+            this.textName.Location = new System.Drawing.Point(87, 23);
+            this.textName.Name = "textName";
+            this.textName.Size = new System.Drawing.Size(226, 20);
+            this.textName.TabIndex = 6;
             // 
             // labelContact
             // 
@@ -127,63 +124,66 @@
             this.labelContact.TabIndex = 5;
             this.labelContact.Text = "Contact";
             // 
-            // textBox1
+            // labelGuardian
             // 
-            this.textBox1.Location = new System.Drawing.Point(87, 23);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(226, 20);
-            this.textBox1.TabIndex = 6;
+            this.labelGuardian.AutoSize = true;
+            this.labelGuardian.Location = new System.Drawing.Point(22, 124);
+            this.labelGuardian.Name = "labelGuardian";
+            this.labelGuardian.Size = new System.Drawing.Size(50, 13);
+            this.labelGuardian.TabIndex = 4;
+            this.labelGuardian.Text = "Guardian";
             // 
-            // textBox2
+            // labelCourse
             // 
-            this.textBox2.Location = new System.Drawing.Point(87, 48);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(226, 20);
-            this.textBox2.TabIndex = 7;
+            this.labelCourse.AutoSize = true;
+            this.labelCourse.Location = new System.Drawing.Point(24, 99);
+            this.labelCourse.Name = "labelCourse";
+            this.labelCourse.Size = new System.Drawing.Size(40, 13);
+            this.labelCourse.TabIndex = 3;
+            this.labelCourse.Text = "Course";
             // 
-            // textBox3
+            // labelGender
             // 
-            this.textBox3.Location = new System.Drawing.Point(87, 70);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(226, 20);
-            this.textBox3.TabIndex = 8;
+            this.labelGender.AutoSize = true;
+            this.labelGender.Location = new System.Drawing.Point(22, 73);
+            this.labelGender.Name = "labelGender";
+            this.labelGender.Size = new System.Drawing.Size(42, 13);
+            this.labelGender.TabIndex = 2;
+            this.labelGender.Text = "Gender";
             // 
-            // textBox4
+            // labelDOB
             // 
-            this.textBox4.Location = new System.Drawing.Point(87, 96);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(226, 20);
-            this.textBox4.TabIndex = 9;
+            this.labelDOB.AutoSize = true;
+            this.labelDOB.Location = new System.Drawing.Point(22, 51);
+            this.labelDOB.Name = "labelDOB";
+            this.labelDOB.Size = new System.Drawing.Size(30, 13);
+            this.labelDOB.TabIndex = 1;
+            this.labelDOB.Text = "DOB";
             // 
-            // textBox5
+            // labelName
             // 
-            this.textBox5.Location = new System.Drawing.Point(87, 121);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(226, 20);
-            this.textBox5.TabIndex = 10;
+            this.labelName.AutoSize = true;
+            this.labelName.Location = new System.Drawing.Point(22, 26);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(35, 13);
+            this.labelName.TabIndex = 0;
+            this.labelName.Text = "Name";
             // 
-            // textBox6
+            // dataGridViewTimeTable
             // 
-            this.textBox6.Location = new System.Drawing.Point(87, 148);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(226, 20);
-            this.textBox6.TabIndex = 11;
+            this.dataGridViewTimeTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTimeTable.Location = new System.Drawing.Point(59, 431);
+            this.dataGridViewTimeTable.Name = "dataGridViewTimeTable";
+            this.dataGridViewTimeTable.Size = new System.Drawing.Size(578, 150);
+            this.dataGridViewTimeTable.TabIndex = 1;
             // 
-            // dataGridView1
+            // dataGridViewMarks
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(59, 431);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(578, 150);
-            this.dataGridView1.TabIndex = 1;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(59, 286);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(350, 90);
-            this.dataGridView2.TabIndex = 2;
+            this.dataGridViewMarks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewMarks.Location = new System.Drawing.Point(59, 286);
+            this.dataGridViewMarks.Name = "dataGridViewMarks";
+            this.dataGridViewMarks.Size = new System.Drawing.Size(350, 90);
+            this.dataGridViewMarks.TabIndex = 2;
             // 
             // label1
             // 
@@ -222,15 +222,16 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBoxProfile);
-            this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridViewMarks);
+            this.Controls.Add(this.dataGridViewTimeTable);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "StudentDashboardForm";
             this.Text = "Studentpanel";
+            this.Load += new System.EventHandler(this.StudentDashboardForm_Load);
             this.groupBoxProfile.ResumeLayout(false);
             this.groupBoxProfile.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTimeTable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMarks)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -239,20 +240,20 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBoxProfile;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textContact;
+        private System.Windows.Forms.TextBox textGuardian;
+        private System.Windows.Forms.TextBox textCourse;
+        private System.Windows.Forms.TextBox textGender;
+        private System.Windows.Forms.TextBox textDOB;
+        private System.Windows.Forms.TextBox textName;
         private System.Windows.Forms.Label labelContact;
         private System.Windows.Forms.Label labelGuardian;
         private System.Windows.Forms.Label labelCourse;
         private System.Windows.Forms.Label labelGender;
         private System.Windows.Forms.Label labelDOB;
         private System.Windows.Forms.Label labelName;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridViewTimeTable;
+        private System.Windows.Forms.DataGridView dataGridViewMarks;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
