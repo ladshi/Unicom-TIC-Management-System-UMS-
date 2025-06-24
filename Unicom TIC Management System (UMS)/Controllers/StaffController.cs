@@ -47,5 +47,10 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
             return StaffService.SearchStaffs(keyword);
         }
 
+        public static int GetStaffCount()
+        {
+            return StaffService.GetStaffCount();
+        }
+
     }
 }

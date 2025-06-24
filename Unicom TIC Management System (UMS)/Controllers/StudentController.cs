@@ -45,6 +45,11 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
             return StudentService.GetStudentNames();
         }
 
+        public static int GetStudentCount()
+        {
+            return StudentService.GetStudentCount();
+        }
+
 
     }
 }

@@ -274,6 +274,15 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             return list;
         }
 
+        public static int GetStudentCount()
+        {
+            using (var conn = DataConfig.GetConnection())
+            {
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT COUNT(*) FROM Students";
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
 
 
     }

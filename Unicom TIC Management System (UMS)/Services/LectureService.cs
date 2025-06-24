@@ -202,6 +202,15 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             }
         }
 
+        public static int GetLecturerCount()
+        {
+            using (var conn = DataConfig.GetConnection())
+            {
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT COUNT(*) FROM Lectures";
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
 
     }
 }

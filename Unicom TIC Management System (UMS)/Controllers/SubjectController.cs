@@ -42,5 +42,10 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
             return SubjectService.GetSubjectNameById(id);
         }
 
+        public static int GetSubjectCount()
+        {
+            return SubjectService.GetSubjectCount();
+        }
+
     }
 }

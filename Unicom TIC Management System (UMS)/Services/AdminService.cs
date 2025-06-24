@@ -154,6 +154,16 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             return result;
         }
 
+        public static int GetAdminCount()
+        {
+            using (var conn = DataConfig.GetConnection())
+            {
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT COUNT(*) FROM Admin";
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
 
     }
 }

@@ -38,5 +38,11 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
             return LectureService.GetLecturerNameById(userId);
         }
 
+        public static int GetLecturerCount()
+        {
+            return LectureService.GetLecturerCount();
+        }
+
+
     }
 }

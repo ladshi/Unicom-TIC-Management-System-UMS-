@@ -37,5 +37,10 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
             return AdminService.SearchAdmins(keyword);
         }
 
+        public static int GetAdminCount()
+        {
+            return AdminService.GetAdminCount();
+        }
+
     }
 }

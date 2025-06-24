@@ -41,6 +41,11 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
         {
             return CourseService.GetByName(name);
         }
-        
+
+        public static int GetCourseCount()
+        {
+            return CourseService.GetCourseCount();
+        }
+
     }
 }

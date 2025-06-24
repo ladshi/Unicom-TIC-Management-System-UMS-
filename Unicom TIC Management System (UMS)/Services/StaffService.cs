@@ -162,6 +162,17 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             }
             return result;
         }
+
+        public static int GetStaffCount()
+        {
+            using (var conn = DataConfig.GetConnection())
+            {
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT COUNT(*) FROM Staff";
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
     }
 }
  

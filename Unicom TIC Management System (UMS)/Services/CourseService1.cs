@@ -111,5 +111,16 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             }
             return null;
         }
+
+        public static int GetCourseCount()
+        {
+            using (var conn = DataConfig.GetConnection())
+            {
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT COUNT(*) FROM Courses";
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
     }
 }
