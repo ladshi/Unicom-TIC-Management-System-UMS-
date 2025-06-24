@@ -36,6 +36,11 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
         {
             return SubjectService.GetCourseSubjectView();
         }
-        
+
+        public static string GetSubjectNameById(int id)
+        {
+            return SubjectService.GetSubjectNameById(id);
+        }
+
     }
 }

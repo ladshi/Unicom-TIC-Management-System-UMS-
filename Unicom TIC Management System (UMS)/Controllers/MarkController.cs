@@ -24,6 +24,11 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
         {
             return MarkService.GetAllMarksWithDetails();
         }
+        public static List<MarkWithDetails> GetTopThreeStudents()
+        {
+            return MarkService.GetTopThreeStudents();
+        }
+
 
     }
 }

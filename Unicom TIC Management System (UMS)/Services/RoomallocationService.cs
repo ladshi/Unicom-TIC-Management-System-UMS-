@@ -78,5 +78,17 @@ namespace Unicom_TIC_Management_System__UMS_.Services
 
             return rooms;
         }
+
+        public static string GetRoomNameById(int id)
+        {
+            using (var conn = DataConfig.GetConnection())
+            {
+                var cmd = new SQLiteCommand("SELECT RoomName FROM RoomAllocation WHERE Id = @id", conn);
+                cmd.Parameters.AddWithValue("@id", id);
+                var result = cmd.ExecuteScalar();
+                return result != null ? result.ToString() : "Unknown";
+            }
+        }
+
     }
 }

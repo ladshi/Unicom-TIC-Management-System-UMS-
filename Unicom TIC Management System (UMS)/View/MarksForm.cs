@@ -17,6 +17,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
         public MarksForm()
         {
             InitializeComponent();
+            SetupGrid();
         }
 
         private void ClearInputs()
@@ -47,6 +48,11 @@ namespace Unicom_TIC_Management_System__UMS_.View
         private void SetupGrid()
         {
             dataGridViewMarks.Columns.Clear();
+            // dataGridViewMarks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewMarks.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dataGridViewMarks.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dataGridViewMarks.Columns.Clear();
             dataGridViewMarks.Columns.Add("StudentName", "Student Name");
             dataGridViewMarks.Columns.Add("ExamName", "Exam");
             dataGridViewMarks.Columns.Add("SubjectName", "Subject");
@@ -54,27 +60,6 @@ namespace Unicom_TIC_Management_System__UMS_.View
             dataGridViewMarks.Columns.Add("MaxMarks", "Max Marks");
             dataGridViewMarks.Columns.Add("Percentage", "Percentage");
             dataGridViewMarks.Columns.Add("Grade", "Grade");
-        }
-
-
-        private void MarkEntryForm_Load(object sender, EventArgs e)
-        {
-            SetupGrid();
-            LoadMarksToGrid();
-            // Load Exams
-            comboExam.DataSource = ExamController.GetAllExams();
-            comboExam.DisplayMember = "ExamName";
-            comboExam.ValueMember = "Id";
-
-            // Load Students
-            comboStudent.DataSource = StudentController.GetAllStudents(); 
-            comboStudent.DisplayMember = "FirstName"; // or full name
-            comboStudent.ValueMember = "Id";
-
-            // Load Subjects
-            comboSubject.DataSource = SubjectController.GetAllSubjects(); // Already done in SubjectService
-            comboSubject.DisplayMember = "SubjectName";
-            comboSubject.ValueMember = "Id";
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -91,17 +76,80 @@ namespace Unicom_TIC_Management_System__UMS_.View
             MarkController.AddMark(mark);
             MessageBox.Show("Marks added successfully!");
             ClearInputs();
+
+            LoadMarksToGrid();
+            LoadTopThree();
+        }
+        private void SetupTopThreeGrid()
+        {
+            dataGridTopThree.Columns.Clear();
+            dataGridTopThree.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            dataGridTopThree.Columns.Add("StudentName", "Student Name");
+            dataGridTopThree.Columns.Add("ExamName", "Exam");
+            dataGridTopThree.Columns.Add("SubjectName", "Subject");
+            dataGridTopThree.Columns.Add("MarksObtained", "Marks");
+            dataGridTopThree.Columns.Add("MaxMarks", "Max Marks");
+            dataGridTopThree.Columns.Add("Percentage", "Percentage");
+            dataGridTopThree.Columns.Add("Grade", "Grade");
         }
 
-        private void MarksViewForm_Load(object sender, EventArgs e)
+        private void LoadTopThree()
         {
-            SetupGrid();
-            LoadMarksToGrid();
+            var topThree = MarkController.GetTopThreeStudents();
+            dataGridTopThree.Rows.Clear();
+
+            foreach (var item in topThree)
+            {
+                dataGridTopThree.Rows.Add(
+                    item.StudentName,
+                    item.ExamName,
+                    item.SubjectName,
+                    item.MarksObtained,
+                    item.MaxMarks,
+                    item.Percentage,
+                    item.Grade
+                );
+            }
         }
 
         private void dataGridViewMarks_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void MarksForm_Load(object sender, EventArgs e)
+        {
+            SetupGrid();         
+            SetupTopThreeGrid(); 
+            LoadMarksToGrid();
+            LoadTopThree();
+
+            comboExam.DataSource = ExamController.GetAllExams();
+            comboExam.DisplayMember = "ExamName";
+            comboExam.ValueMember = "Id";
+
+            comboStudent.DataSource = StudentController.GetStudentNames();
+            comboStudent.DisplayMember = "FullName";
+            comboStudent.ValueMember = "StudentId";
+            /*var studentList = new List<object>();
+
+            foreach (var s in StudentController.GetAllStudents())
+            {
+                var id = s.Item1.Id;
+                var fullName = string.Concat(s.Item1.FirstName, " ", s.Item1.LastName);
+
+                studentList.Add(new { Id = id, FullName = fullName });
+            }*/
+
+            // Loading Students
+            //comboStudent.DataSource = StudentController.GetAllStudents(); 
+            //comboStudent.DisplayMember = "FirstName"; 
+            //comboStudent.ValueMember = "Id";
+
+            comboSubject.DataSource = SubjectController.GetAllSubjects();
+            comboSubject.DisplayMember = "SubjectName";
+            comboSubject.ValueMember = "Id";
         }
     }
 }

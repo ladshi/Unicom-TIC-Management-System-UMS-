@@ -116,6 +116,7 @@
             this.courseDataGridView.Name = "courseDataGridView";
             this.courseDataGridView.Size = new System.Drawing.Size(288, 231);
             this.courseDataGridView.TabIndex = 6;
+            this.courseDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.courseDataGridView_CellClick);
             this.courseDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.courseDataGridView_CellContentClick);
             // 
             // coursesearchbutton
@@ -195,6 +196,7 @@
             this.subjectDataGridView.Name = "subjectDataGridView";
             this.subjectDataGridView.Size = new System.Drawing.Size(285, 225);
             this.subjectDataGridView.TabIndex = 15;
+            this.subjectDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.subjectDataGridView_CellClick);
             this.subjectDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.subjectDataGridView_CellContentClick);
             // 
             // CourseCombo

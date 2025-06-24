@@ -87,7 +87,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             using (var conn = DataConfig.GetConnection())
             {
                 string query = @"UPDATE Users 
-                         SET UserName = @username, Password = @password, Role = @role
+                         SET Username = @username, Password = @password, Role = @role
                          WHERE UserId = @userId";
 
                 using (var cmd = new SQLiteCommand(query, conn))
@@ -119,7 +119,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
         {
             using (var conn = DataConfig.GetConnection())
             {
-                string query = "SELECT UserId FROM Users WHERE UserName = @username";
+                string query = "SELECT UserId FROM Users WHERE Username = @username";
                 using (var cmd = new SQLiteCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@username", username);
@@ -145,7 +145,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                             return new User
                             {
                                 UserId = Convert.ToInt32(reader["UserId"]),
-                                UserName = reader["UserName"].ToString(),
+                                UserName = reader["Username"].ToString(),
                                 Password = reader["Password"].ToString(),
                                 Role = (UserRole)System.Enum.Parse(typeof(UserRole), reader["Role"].ToString())
                             };

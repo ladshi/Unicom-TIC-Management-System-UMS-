@@ -183,7 +183,25 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                 }           
             }
             return result;
-        }   
+        }
+
+        public static string GetLecturerNameById(int userId)
+        {
+            using (var conn = DataConfig.GetConnection())
+            {
+                var cmd = new SQLiteCommand("SELECT FirstName, LastName FROM Lectures WHERE UserId = @id", conn);
+                cmd.Parameters.AddWithValue("@id", userId);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return reader["FirstName"] + " " + reader["LastName"];
+                    }
+                }
+                return "Unknown";
+            }
+        }
+
 
     }
 }

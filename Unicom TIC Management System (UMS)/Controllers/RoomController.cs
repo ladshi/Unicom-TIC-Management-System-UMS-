@@ -29,6 +29,12 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
         {
             return RoomallocationService.GetAllRooms();
         }
+
+        public static string GetRoomNameById(int id)
+        {
+            return RoomallocationService.GetRoomNameById(id);
+        }
+
     }
 
 }

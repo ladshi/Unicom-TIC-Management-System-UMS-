@@ -41,7 +41,10 @@
             this.textmaxmarks = new System.Windows.Forms.TextBox();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.dataGridViewMarks = new System.Windows.Forms.DataGridView();
+            this.dataGridTopThree = new System.Windows.Forms.DataGridView();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMarks)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridTopThree)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -162,11 +165,31 @@
             this.dataGridViewMarks.TabIndex = 12;
             this.dataGridViewMarks.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMarks_CellContentClick);
             // 
+            // dataGridTopThree
+            // 
+            this.dataGridTopThree.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridTopThree.Location = new System.Drawing.Point(139, 490);
+            this.dataGridTopThree.Name = "dataGridTopThree";
+            this.dataGridTopThree.Size = new System.Drawing.Size(404, 97);
+            this.dataGridTopThree.TabIndex = 13;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(284, 450);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(106, 24);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "TOPPERS";
+            // 
             // MarksForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(696, 640);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.dataGridTopThree);
             this.Controls.Add(this.dataGridViewMarks);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.textmaxmarks);
@@ -183,7 +206,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MarksForm";
             this.Text = "MarksForm";
+            this.Load += new System.EventHandler(this.MarksForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMarks)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridTopThree)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,5 +229,7 @@
         private System.Windows.Forms.TextBox textmaxmarks;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.DataGridView dataGridViewMarks;
+        private System.Windows.Forms.DataGridView dataGridTopThree;
+        private System.Windows.Forms.Label label7;
     }
 }

@@ -19,6 +19,11 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                 var cmd = new SQLiteCommand("INSERT INTO Subjects (SubjectName, CourseId) VALUES (@SubjectName, @CourseId)", conn); 
                 cmd.Parameters.AddWithValue("@SubjectName", subject.SubjectName); 
                 cmd.Parameters.AddWithValue("@CourseId", subject.CourseId);
+
+                int insertedSubjectId = Convert.ToInt32(cmd.ExecuteScalar());
+                var csCmd = new SQLiteCommand("INSERT INTO CourseSubjects (CourseId, SubjectId) VALUES (@cid, @sid)", conn);
+                csCmd.Parameters.AddWithValue("@cid", subject.CourseId);
+                csCmd.Parameters.AddWithValue("@sid", insertedSubjectId);
                 cmd.ExecuteNonQuery();
             }
         }
@@ -100,5 +105,17 @@ namespace Unicom_TIC_Management_System__UMS_.Services
 
             return subjectList;
         }
+
+        public static string GetSubjectNameById(int id)
+        {
+            using (var conn = DataConfig.GetConnection())
+            {
+                var cmd = new SQLiteCommand("SELECT SubjectName FROM Subjects WHERE SubjectId = @id", conn);
+                cmd.Parameters.AddWithValue("@id", id);
+                var result = cmd.ExecuteScalar();
+                return result != null ? result.ToString() : "Unknown";
+            }
+        }
+
     }
 }

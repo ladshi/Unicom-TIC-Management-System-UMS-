@@ -133,5 +133,15 @@ namespace Unicom_TIC_Management_System__UMS_.View
 
             LoadRoomData();
         }
+
+        private void ROOMgridview_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                selectedRoomId = Convert.ToInt32(ROOMgridview.Rows[e.RowIndex].Cells[0].Value);
+                Roomnametext.Text = ROOMgridview.Rows[e.RowIndex].Cells[1].Value.ToString();
+                comboroomtype.SelectedItem = ROOMgridview.Rows[e.RowIndex].Cells[2].Value.ToString();
+            }
+        }
     }
 }

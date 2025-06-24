@@ -133,15 +133,22 @@ namespace Unicom_TIC_Management_System__UMS_.View
             }
             /*else if (currentRole == UserRole.Student)
             {
-                TreeNode studentNode = new TreeNode("Student Portal");
-                studentNode.Nodes.Add("My Marks");
-                studentNode.Nodes.Add("My Timetable");
-                studentNode.Nodes.Add("My Profile");
-
-                treeView1.Nodes.Add(studentNode);
+                StudentDashboardForm studentdashboardForm = new StudentDashboardForm(currentRole, username);
+                studentdashboardForm.Show();
+                this.Hide(); 
+                return;
             }*/
+                /*else if (currentRole == UserRole.Student)
+                {
+                    TreeNode studentNode = new TreeNode("Student Portal");
+                    studentNode.Nodes.Add("My Marks");
+                    studentNode.Nodes.Add("My Timetable");
+                    studentNode.Nodes.Add("My Profile");
 
-            treeView1.ExpandAll(); // optional
+                    treeView1.Nodes.Add(studentNode);
+                }*/
+
+                treeView1.ExpandAll(); // optional
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
@@ -195,25 +202,28 @@ namespace Unicom_TIC_Management_System__UMS_.View
                     break;
 
                 case "My Marks":
-                    LoadForm(new MyMarksForm(username));  // If you pass username
-                    break;
+                    LoadForm(new MyMarksForm(username)); 
 
                 case "My Timetable":
                     LoadForm(new MyTimetableForm());
                     break;
 
                 /*case "My Profile":
-                    LoadForm(new MyProfileForm(username));  // Example
+                    LoadForm(new MyProfileForm(username));  
                     break;*/
 
                 default:
-                    // Optional: Load dashboard again if unknown
                     LoadForm(new defaultForm());
                     break;
             }
         }
 
         private void mainPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }

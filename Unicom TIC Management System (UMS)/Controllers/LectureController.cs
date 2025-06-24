@@ -33,5 +33,10 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
             return LectureService.SearchLecturers(keyword);
         }
 
+        public static string GetLecturerNameById(int userId)
+        {
+            return LectureService.GetLecturerNameById(userId);
+        }
+
     }
 }

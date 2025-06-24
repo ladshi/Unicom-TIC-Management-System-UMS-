@@ -155,11 +155,11 @@
     <Compile Include="View\StudentForm.Designer.cs">
       <DependentUpon>StudentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Studentpanel.cs">
+    <Compile Include="View\StudentDashboardForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Studentpanel.Designer.cs">
-      <DependentUpon>Studentpanel.cs</DependentUpon>
+    <Compile Include="View\StudentDashboardForm.Designer.cs">
+      <DependentUpon>StudentDashboardForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\TimeTableForm.cs">
       <SubType>Form</SubType>
@@ -184,6 +184,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="View\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
@@ -212,8 +213,8 @@
     <EmbeddedResource Include="View\StudentForm.resx">
       <DependentUpon>StudentForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Studentpanel.resx">
-      <DependentUpon>Studentpanel.cs</DependentUpon>
+    <EmbeddedResource Include="View\StudentDashboardForm.resx">
+      <DependentUpon>StudentDashboardForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\TimeTableForm.resx">
       <DependentUpon>TimeTableForm.cs</DependentUpon>
@@ -237,7 +238,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\ChatGPT Image Jun 23, 2025, 09_35_41 AM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OIP %282%29.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

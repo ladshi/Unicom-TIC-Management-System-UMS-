@@ -23,8 +23,8 @@ namespace Unicom_TIC_Management_System__UMS_.View
             {
                 LoadCourses();
                 LoadSubjects();
-                LoadCourseCombo();
-                LoadSubjectCombo();
+                //LoadCourseCombo();
+                //LoadSubjectCombo();
                 LoadCourseSubjectView();
             }
             catch (Exception ex)
@@ -50,7 +50,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
             }
         }
 
-        private void LoadCourseCombo()
+        /*private void LoadCourseCombo()
         {
             Coursenamecombo.DataSource = null;
             courseList = CourseController.GetAllCourses();
@@ -58,9 +58,9 @@ namespace Unicom_TIC_Management_System__UMS_.View
             Coursenamecombo.DisplayMember = "CourseName";
             Coursenamecombo.ValueMember = "Id";
             Coursenamecombo.SelectedIndex = -1;
-        }
+        }*/
 
-        private void LoadSubjectCombo()
+        /*private void LoadSubjectCombo()
         {
             Subjectnamecombo.Items.Clear();
             subjectList = SubjectController.GetAllSubjects();
@@ -69,7 +69,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
                 Subjectnamecombo.Items.Add(subject.SubjectName);
             }
             Subjectnamecombo.SelectedIndex = -1;
-        }
+        }*/
 
         private void LoadCourses()
         {
@@ -86,7 +86,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
             }
 
             courseSEARCH.DataSource = courseList;
-            courseSEARCH.DisplayMember = "Name";
+            courseSEARCH.DisplayMember = "CourseName";
             courseSEARCH.ValueMember = "Id";
 
             selectedCourseId = -1;
@@ -107,7 +107,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
             }
 
             Subjectnamecombo.DataSource = subjectList;
-            Subjectnamecombo.DisplayMember = "Name";
+            Subjectnamecombo.DisplayMember = "SubjectName";
             Subjectnamecombo.ValueMember = "Id";
 
             selectedSubjectId = -1;
@@ -122,7 +122,6 @@ namespace Unicom_TIC_Management_System__UMS_.View
             CourseController.AddCourse(course);
             courseNameTextBox.Clear();
             LoadCourses();
-            LoadCourseCombo();
         }
 
         private void courseDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -150,7 +149,6 @@ namespace Unicom_TIC_Management_System__UMS_.View
             };
             CourseController.UpdateCourse(updatedCourse);
             LoadCourses();
-            LoadCourseCombo();
             courseNameTextBox.Clear();
             selectedCourseId = -1;
             MessageBox.Show("Course updated.");
@@ -163,7 +161,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
             {
                 CourseController.DeleteCourse(selectedCourseId);
                 LoadCourses();
-                LoadCourseCombo();
+                
                 selectedCourseId = -1;
                 courseNameTextBox.Clear();
             }
@@ -233,9 +231,11 @@ namespace Unicom_TIC_Management_System__UMS_.View
 
         private void coursesearchbutton_Click(object sender, EventArgs e)
         {
-            if (Coursenamecombo.SelectedIndex == -1) return;
-            string selectedCourse = Coursenamecombo.SelectedItem.ToString();
-            Course course = CourseController.GetCourseByName(selectedCourse);
+            if (courseSEARCH.SelectedIndex == -1) return;
+
+            int selectedCourseId = Convert.ToInt32(courseSEARCH.SelectedValue);
+            var course = courseList.FirstOrDefault(c => c.Id == selectedCourseId);
+
             courseDataGridView.Rows.Clear();
             if (course != null)
             {
@@ -246,8 +246,10 @@ namespace Unicom_TIC_Management_System__UMS_.View
         private void Subjectsearchbutton_Click(object sender, EventArgs e)
         {
             if (Subjectnamecombo.SelectedIndex == -1) return;
-            string selectedSubject = Subjectnamecombo.SelectedItem.ToString();
-            var subject = SubjectController.GetAllSubjects().FirstOrDefault(s => s.SubjectName == selectedSubject);
+
+            int selectedSubjectId = Convert.ToInt32(Subjectnamecombo.SelectedValue);
+            var subject = subjectList.FirstOrDefault(s => s.Id == selectedSubjectId);
+
             subjectDataGridView.Rows.Clear();
             if (subject != null)
             {
@@ -263,6 +265,26 @@ namespace Unicom_TIC_Management_System__UMS_.View
         private void Coursenamecombo_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void subjectDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = subjectDataGridView.Rows[e.RowIndex];
+                selectedSubjectId = Convert.ToInt32(row.Cells[0].Value);
+                subjectNameTextBox.Text = row.Cells[1].Value.ToString();
+            }
+        }
+
+        private void courseDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = courseDataGridView.Rows[e.RowIndex];
+                selectedCourseId = Convert.ToInt32(row.Cells[0].Value);
+                courseNameTextBox.Text = row.Cells[1].Value.ToString();
+            }
         }
     }
 }

@@ -99,7 +99,12 @@ namespace Unicom_TIC_Management_System__UMS_.View
             admingridview.Columns.Clear();
             admingridview.Rows.Clear();
 
-            // Define columns
+            admingridview.Columns.Add("Username", "Username");
+            admingridview.Columns["Username"].Visible = false;
+
+            admingridview.Columns.Add("Password", "Password");
+            admingridview.Columns["Password"].Visible = false;
+
             admingridview.Columns.Add("FirstName", "First Name");
             admingridview.Columns.Add("LastName", "Last Name");
             admingridview.Columns.Add("PhoneNumber", "Phone Number");
@@ -107,7 +112,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
             admingridview.Columns.Add("Address", "Address");
             admingridview.Columns.Add("DOB", "DOB");
 
-            // Conditionally add extra columns based on user role
+            // Conditionally adding extra columns based on user role
             if (currentMode == UserRole.Admin || currentMode == UserRole.MainAdmin)
             {
                 admingridview.Columns.Add("AccessLevel", "Access Level");
@@ -261,6 +266,13 @@ namespace Unicom_TIC_Management_System__UMS_.View
         {
             if (admingridview.SelectedRows.Count > 0)
             {
+                User selectedUser = UserController.GetUserById(selectedUserId);
+                if (selectedUser != null)
+                {
+                    textUsername.Text = selectedUser.UserName;
+                    textpassword.Text = selectedUser.Password;
+                }
+
                 var row = admingridview.SelectedRows[0];
                 textfirstname.Text = row.Cells["FirstName"].Value.ToString();
                 textLastName.Text = row.Cells["LastName"].Value.ToString();
@@ -324,14 +336,15 @@ namespace Unicom_TIC_Management_System__UMS_.View
             }
 
 
-            /*User user = new User
+            User updatedUser = new User
             {
                 UserId = selectedUserId,
                 UserName = username,
                 Password = password,
                 Role = selectedRole
             };
-            UserService.UpdateUser(user);*/
+            UserController.UpdateUser(updatedUser);
+
 
             if (currentMode == UserRole.Admin || currentMode == UserRole.MainAdmin)
             {
@@ -363,7 +376,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
                     UserId = selectedUserId
                 };
                 StaffController.UpdateStaff(staff);
-                MessageBox.Show("ok");
+                //MessageBox.Show("ok");
             }
             else if (currentMode == UserRole.Lecturer)
             {
@@ -388,28 +401,6 @@ namespace Unicom_TIC_Management_System__UMS_.View
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            /*if (selectedUserId == -1)
-            {
-                MessageBox.Show("Please select a record to delete.");
-                return;
-            }
-
-            var confirm = MessageBox.Show("Are you sure to delete?", "Confirm", MessageBoxButtons.YesNo);
-            if (confirm == DialogResult.Yes)
-            {
-                if (currentMode == UserRole.Admin || currentMode == UserRole.MainAdmin)
-                    AdminController.DeleteAdmin(selectedUserId);
-                else if (currentMode == UserRole.Staff)
-                    StaffController.DeleteStaff(selectedUserId);
-                else if (currentMode == UserRole.Lecturer)
-                    LectureController.DeleteLecturer(selectedUserId);
-
-                UserService.DeleteUser(selectedUserId);
-
-                MessageBox.Show("Deleted Successfully!");
-                ClearForm();
-                LoadUsers();
-            }*/
             if (selectedUserId == -1)
             {
                 MessageBox.Show("Please select a record to delete.");
@@ -475,15 +466,6 @@ namespace Unicom_TIC_Management_System__UMS_.View
                 textAddress.Text = row.Cells["Address"].Value.ToString();
                 dateTimePicker.Text = row.Cells["DOB"].Value.ToString();
 
-                // Use AccessLevel only if visible
-                /*if (comboaccess.Visible)
-                {
-                    comboaccess.Text = row.Cells["AccessLevel"].Value.ToString();
-                }
-
-                selectedUserId = Convert.ToInt32(row.Cells["UserId"].Value);
-                */
-
                 if (admingridview.Columns.Contains("AccessLevel") && row.Cells["AccessLevel"].Value != null)
                 {
                     comboaccess.Text = row.Cells["AccessLevel"].Value.ToString();
@@ -500,6 +482,13 @@ namespace Unicom_TIC_Management_System__UMS_.View
         {
             if (e.RowIndex >= 0)
             {
+                User selectedUser = UserController.GetUserById(selectedUserId);
+                if (selectedUser != null)
+                {
+                    textUsername.Text = selectedUser.UserName;
+                    textpassword.Text = selectedUser.Password;
+                }
+
                 DataGridViewRow row = admingridview.Rows[e.RowIndex];
 
                 textfirstname.Text = row.Cells["FirstName"].Value.ToString();
@@ -531,86 +520,12 @@ namespace Unicom_TIC_Management_System__UMS_.View
                     selectedUserId = -1;  // If UserId is invalid or empty, set it to -1 (or another default value)
                 }
 
-                // Optional: You can log or display the UserId to verify
+                // You can log or display the UserId to verify
                 Console.WriteLine("Selected UserId: " + selectedUserId);
             }
         }
 
     }
-
-
-    /*private void buttonUpdate_Click(object sender, EventArgs e)
-    {
-        string username = textUsername.Text.Trim();
-        string password = textpassword.Text.Trim();
-        string firstName = textfirstname.Text.Trim();
-        string lastName = textLastName.Text.Trim();
-        string contactNo = textContactNo.Text.Trim();
-        string email = textEmail.Text.Trim();
-        string address = textAddress.Text.Trim();
-        string dob = dateTimePicker.Value.ToString("yyyy-MM-dd"),
-
-        //  Updating  user in Users table
-        User user = new User
-        {
-            UserName = username,
-            Password = password,
-            Role = currentMode
-
-        };
-
-        UserService.UpdateUser(user);
-
-        if (currentMode == UserRole.Admin)
-        {
-            string accessLevel = comboaccess.Text;
-
-            Admin admin = new Admin
-            {
-                FirstName = firstName,
-                LastName = lastName,
-                PhoneNumber = contactNo,
-                Email = email,
-                Address = address,
-                DOB = dob,
-                AccessLevel = accessLevel
-            };
-
-            AdminService.UpdateAdmin(admin);
-        }
-
-        else if (currentMode == UserRole.Staff)
-        {
-            Staff staff = new Staff
-            {
-                FirstName = firstName,
-                LastName = lastName,
-                PhoneNumber = contactNo,
-                Email = email,
-                Address = address,
-                DOB = dob
-            };
-
-            StaffService.UpdateStaff(staff);
-        }
-        else if (currentMode == UserRole.Lecturer)
-        {
-            Lecturer lecturer = new Lecturer
-            {
-                FirstName = firstName,
-                LastName = lastName,
-                PhoneNumber = contactNo,
-                Email = email,
-                Address = address,
-                DOB = dob
-            };
-
-            LecturerService.UpdateLecturer(lecturer);
-        }
-        ClearForm();
-        LoadAdmins();
-
-    }*/
 
 }
 

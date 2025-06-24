@@ -31,7 +31,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
         {
             var subjects = SubjectService.GetAllSubjects();
             combosubject.DataSource = subjects;
-            combosubject.DisplayMember = "Name";
+            combosubject.DisplayMember = "SubjectName";
             combosubject.ValueMember = "Id";
             combosubject.SelectedIndex = -1;
         }
@@ -127,7 +127,7 @@ namespace Unicom_TIC_Management_System__UMS_.View
             {
                 selectedTimetableId = Convert.ToInt32(dataGridViewTimetable.Rows[e.RowIndex].Cells[0].Value);
 
-                DTpic.Value = dataGridViewTimetable.Rows[e.RowIndex].Cells[1].Value.DateTime.Today;
+                DTpic.Value = Convert.ToDateTime(dataGridViewTimetable.Rows[e.RowIndex].Cells[1].Value);
 
                 textstarttime.Text = dataGridViewTimetable.Rows[e.RowIndex].Cells[2].Value.ToString();
                 Textendtime.Text = dataGridViewTimetable.Rows[e.RowIndex].Cells[3].Value.ToString();
@@ -140,14 +140,49 @@ namespace Unicom_TIC_Management_System__UMS_.View
 
             private void LoadTimetablesToGrid()
             {
-                dataGridViewTimetable.Rows.Clear();
-                foreach (var t in controller.GetAllTimetables())
-                {
+            dataGridViewTimetable.Columns.Clear();
+            dataGridViewTimetable.Columns.Add("Id", "ID");
+            dataGridViewTimetable.Columns.Add("Day", "Day");
+            dataGridViewTimetable.Columns.Add("StartTime", "Start Time");
+            dataGridViewTimetable.Columns.Add("EndTime", "End Time");
 
-                dataGridViewTimetable.Rows.Add(t.Id, t.Day, t.StartTime, t.EndTime, t.SubjectId, t.LectureId, t.TimeSlot, t.RoomId);
+            dataGridViewTimetable.Columns.Add("SubjectId", "Subject ID");
+            dataGridViewTimetable.Columns["SubjectId"].Visible = false;
 
-                }
+            dataGridViewTimetable.Columns.Add("LectureId", "Lecturer ID");
+            dataGridViewTimetable.Columns["LectureId"].Visible = false;
+
+            dataGridViewTimetable.Columns.Add("RoomId", "Room ID");
+            dataGridViewTimetable.Columns["RoomId"].Visible = false;
+
+            dataGridViewTimetable.Columns.Add("SubjectName", "Subject");
+            dataGridViewTimetable.Columns.Add("LecturerName", "Lecturer");
+            dataGridViewTimetable.Columns.Add("TimeSlot", "Time Slot");
+            dataGridViewTimetable.Columns.Add("RoomName", "Room");
+
+            dataGridViewTimetable.Rows.Clear();
+
+            foreach (var t in controller.GetAllTimetables())
+            {
+                string subjectName = SubjectController.GetSubjectNameById(t.SubjectId);
+                string lecturerName = LectureController.GetLecturerNameById(t.LectureId);
+                string roomName = RoomController.GetRoomNameById(t.RoomId);
+
+                dataGridViewTimetable.Rows.Add(
+                       t.Id,
+                       t.Day,
+                       t.StartTime,
+                       t.EndTime,
+                       t.SubjectId,          // invisible ids 
+                       t.LectureId,          
+                       t.RoomId,            
+                       subjectName,          
+                       lecturerName,         
+                       t.TimeSlot,
+                       roomName             
+                   );
             }
+        }
 
             private void ClearInputs()
             {
@@ -172,3 +207,4 @@ namespace Unicom_TIC_Management_System__UMS_.View
     }
 }
 
+ 

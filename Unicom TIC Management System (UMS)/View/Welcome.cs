@@ -45,6 +45,9 @@ namespace Unicom_TIC_Management_System__UMS_.View
 
         }
 
-        
+        private void Welcome_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

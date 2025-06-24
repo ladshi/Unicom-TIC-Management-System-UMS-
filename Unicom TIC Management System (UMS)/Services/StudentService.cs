@@ -86,19 +86,19 @@ namespace Unicom_TIC_Management_System__UMS_.Services
         {
             using (var conn = DataConfig.GetConnection())
             {
-                // 1. Delete Guardian (FK to StudentId)
+                // Deleting Guardian (FK to StudentId)
                 var gCmd = conn.CreateCommand();
                 gCmd.CommandText = "DELETE FROM Guardians WHERE StudentId = @sid";
                 gCmd.Parameters.AddWithValue("@sid", studentId);
                 gCmd.ExecuteNonQuery();
 
-                // 2. Delete Student
+                // Deleting Student in student table
                 var sCmd = conn.CreateCommand();
                 sCmd.CommandText = "DELETE FROM Students WHERE Id = @id";
                 sCmd.Parameters.AddWithValue("@id", studentId);
                 sCmd.ExecuteNonQuery();
 
-                // 3. Delete User
+                // Deleting User in users table
                 var uCmd = conn.CreateCommand();
                 uCmd.CommandText = "DELETE FROM Users WHERE UserId = @uid";
                 uCmd.Parameters.AddWithValue("@uid", userId);
@@ -245,6 +245,36 @@ namespace Unicom_TIC_Management_System__UMS_.Services
 
             return list;
         }
+        //this is for sending student id and name to the marks form
+        public static List<object> GetStudentNames()
+        {
+            var list = new List<object>();
+
+            using (var conn = DataConfig.GetConnection())
+            {
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT Id, FirstName, LastName FROM Students";
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int id = Convert.ToInt32(reader["Id"]);
+                        string fullName = reader["FirstName"].ToString() + " " + reader["LastName"].ToString();
+
+                        list.Add(new
+                        {
+                            StudentId = id,
+                            FullName = fullName
+                        });
+                    }
+                }
+            }
+
+            return list;
+        }
+
+
 
     }
 

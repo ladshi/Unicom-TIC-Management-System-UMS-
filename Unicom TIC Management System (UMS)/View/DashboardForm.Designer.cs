@@ -34,7 +34,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -52,9 +54,9 @@
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(12, 179);
+            this.treeView1.Location = new System.Drawing.Point(3, 190);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(161, 306);
+            this.treeView1.Size = new System.Drawing.Size(177, 306);
             this.treeView1.TabIndex = 7;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -75,6 +77,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.panel2.Controls.Add(this.label2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(183, 0);
             this.panel2.Name = "panel2";
@@ -92,6 +95,17 @@
             this.mainPanel.TabIndex = 2;
             this.mainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.mainPanel_Paint);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Historic", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(25, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(622, 40);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "UNICOM TIC MANAGEMENT SYSTEM - UMS";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
             // DashboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -104,6 +118,8 @@
             this.Text = "Dashboard";
             this.Load += new System.EventHandler(this.AdminMainForm_Load);
             this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -116,5 +132,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.Panel mainPanel;
+        private System.Windows.Forms.Label label2;
     }
 }

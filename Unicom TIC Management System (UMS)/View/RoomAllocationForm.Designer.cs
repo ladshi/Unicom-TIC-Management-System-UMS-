@@ -113,6 +113,7 @@
             this.ROOMgridview.Name = "ROOMgridview";
             this.ROOMgridview.Size = new System.Drawing.Size(455, 233);
             this.ROOMgridview.TabIndex = 10;
+            this.ROOMgridview.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ROOMgridview_CellClick);
             this.ROOMgridview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ROOMgridview_CellContentClick);
             // 
             // Roomnametext

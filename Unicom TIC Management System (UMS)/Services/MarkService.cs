@@ -57,7 +57,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             return marks;
         }
 
-    public static List<MarkWithDetails> GetAllMarksWithDetails()
+        public static List<MarkWithDetails> GetAllMarksWithDetails()
         {
             List<MarkWithDetails> list = new List<MarkWithDetails>();
 
@@ -72,7 +72,7 @@ namespace Unicom_TIC_Management_System__UMS_.Services
                 m.MaxMarks
             FROM Marks m
             JOIN Students s ON m.StudentId = s.Id
-            JOIN Subjects sub ON m.SubjectId = sub.Id
+            JOIN Subjects sub ON m.SubjectId = sub.SubjectId
             JOIN Exams e ON m.ExamId = e.Id";
 
                 using (var cmd = new SQLiteCommand(query, conn))
@@ -108,6 +108,14 @@ namespace Unicom_TIC_Management_System__UMS_.Services
             if (percentage >= 60) return "B";
             if (percentage >= 45) return "C";
             return "F";
+        }
+
+        public static List<MarkWithDetails> GetTopThreeStudents()
+        {
+            return GetAllMarksWithDetails()
+                .OrderByDescending(m => m.Percentage)
+                .Take(3)
+                .ToList();
         }
 
     }

@@ -46,9 +46,7 @@
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
-
             this.DTpic = new System.Windows.Forms.DateTimePicker();
-
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTimetable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -219,25 +217,19 @@
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
-
             // DTpic
             // 
             this.DTpic.Location = new System.Drawing.Point(155, 70);
             this.DTpic.Name = "DTpic";
             this.DTpic.Size = new System.Drawing.Size(121, 20);
             this.DTpic.TabIndex = 19;
-            this.Dtpic.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
-
             // 
             // TimeTableForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(680, 611);
-
             this.Controls.Add(this.DTpic);
-
-
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonUpdate);
             this.Controls.Add(this.buttonAdd);

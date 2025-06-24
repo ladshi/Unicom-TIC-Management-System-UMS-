@@ -40,6 +40,11 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
         {
             return StudentService.GetAllStudentsWithUserData();
         }
+        public static List<object> GetStudentNames()
+        {
+            return StudentService.GetStudentNames();
+        }
+
 
     }
 }
