@@ -31,5 +31,21 @@ namespace Unicom_TIC_Management_System__UMS_.Controllers
         {
             return service.GetAllTimetables();
         }
+
+        public static List<Timetable> GetAllTimetablesByStudentId(int studentId)
+        {
+            TimeTableService service = new TimeTableService();
+            List<Timetable> allTimetables = service.GetAllTimetables();
+
+            var student = StudentController
+                            .GetAllStudentsWithUserData()
+                            .FirstOrDefault(s => s.Item1.Id == studentId);
+
+            if (student.Item1 == null)
+                return new List<Timetable>();
+
+            int courseId = student.Item1.CourseId;
+            return allTimetables;
+        }
     }
 }
